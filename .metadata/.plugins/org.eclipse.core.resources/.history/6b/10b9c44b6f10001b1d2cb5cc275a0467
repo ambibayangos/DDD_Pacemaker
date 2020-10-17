@@ -1,0 +1,104 @@
+scchart DDD_pacemaker {
+	
+	input signal Vsense,Asense,AVI_ex,PVARP_ex,AEI_ex,VRP_ex,LRI_ex,stop_LRI,stop_AEI,URI_ex;
+	output signal stop_URI,stop_VRP,stop_PVARP,stop_AVI,start_AVI,Vpace,start_PVARP,start_AEI,Apace,start_VRP,start_LRI,start_URI,LRI_stop;
+	
+	initial state TOP
+	{		
+	    	
+	  		region AVI:
+	  		int URI_TO = 0;
+	  		initial state waitURIandAVI
+	  		{
+	  		
+	  		  region waitURI:
+	  		  	
+	  		  	initial state waitURI
+	  		  	-->URIdone with URI_ex;
+	  		  	
+	  		  	final state URIdone; 
+	  		
+	  		  region waitAVI:
+	  		  	
+	  		  	initial state init
+	  		  	-->connect with Asense
+	  		  	-->connect with Apace;
+	  		  	
+	  		  	connector state connect
+	  		  	-->waitVRP immediate with /start_AVI;
+	  		  	
+	  		  	state waitVRP
+	  		  	-->waitAVI with VRP_ex;
+	  		  	
+	  		  	final state waitAVI;
+				
+	  		  
+	  		}
+	  		>-> waitPVARP with Vsense/stop_AVI
+	  		>-> connect with AVI_ex
+	  		>-> connect with none;
+	  		
+	  		connector state connect
+	  		-->waitPVARP immediate with /Vpace;
+	  		
+	  		state waitPVARP
+	  		-->waitURIandAVI with PVARP_ex;
+	  		
+	  		region AEI:
+	  			initial state idle
+	  			--> waitPVARP with Vpace/start_AEI
+	  			--> waitPVARP with Vsense/start_AEI;
+	  			
+	  			state waitPVARP
+	  			--> Action with PVARP_ex;
+	  			
+	  			state Action
+	  			--> idle with Asense/stop_AEI
+	  			--> idle with AEI_ex/Apace;
+	  		
+	  		region PVARP:
+	  		
+	  			initial state idle
+	  			--> waitPVARP with Vsense/start_PVARP
+	  			--> waitPVARP with Vpace/start_PVARP;
+	  			
+	  			state waitPVARP
+	  			--> idle with PVARP_ex;
+	  			
+	  		region VRP:
+	  			
+	  			initial state idle
+	  			--> waitVRP with Vsense/start_VRP
+	  			--> waitVRP with Vpace/start_VRP;
+	  			
+	  			state waitVRP
+	  			--> idle with VRP_ex;
+	  		
+	  		region LRI:
+	  			
+	  			initial state idle
+	  			--> waitVRP with Vsense/start_LRI;
+	  				
+	  			state waitVRP
+	  			--> waitLRI with VRP_ex;
+	  			
+	  			state waitLRI
+	  			-->reinit with LRI_ex/Vpace
+	  			-->reinit with Vsense/LRI_stop;
+	  			
+	  			state reinit
+	  			-->waitVRP with /start_LRI;
+	  						
+	  			
+	  		region URI:
+	  			
+	  			initial state idle
+	  			--> waitURI with Vsense/start_URI
+	  			--> waitURI with Vpace/start_URI;
+	  			
+	  			state waitURI
+	  			--> idle with URI_ex;
+	  			
+	};
+
+}

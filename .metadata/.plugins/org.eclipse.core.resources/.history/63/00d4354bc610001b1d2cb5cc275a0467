@@ -7,44 +7,42 @@ scchart DDD_pacemaker {
 	{		
 	    	
 	  		region AVI:
+	  		initial state waitURIandAVI
+	  		{
 	  		
-	  			initial state waitURIandAVI
-	  			{
+	  		  region waitURI:
+	  		  	
+	  		  	initial state waitURI
+	  		  	-->URIdone with URI_ex;
+	  		  	
+	  		  	final state URIdone; 
 	  		
-	  		  		region waitURI:
+	  		  region waitAVI:
 	  		  	
-	  		  		initial state waitURI
-	  		  		-->URIdone with URI_ex;
+	  		  	initial state init
+	  		  	-->connect with Asense
+	  		  	-->connect with Apace;
 	  		  	
-	  		  		final state URIdone; 
-	  		
-	  		  		region waitAVI:
+	  		  	connector state connect
+	  		  	-->waitAVI immediate with /start_AVI;
 	  		  	
-	  		  		initial state init
-	  		  		-->connect with Asense
-	  		  		-->connect with Apace;
+	  		  	state waitAVI
+	  		  	--> VentricleEvent immediate with AVI_ex
+	  		  	--> VentricleEvent immediate with Vsense;
 	  		  	
-	  		  		connector state connect
-	  		  		-->waitAVI immediate with /start_AVI;
-	  		  	
-	  		  		state waitAVI
-	  		  		--> VentricleEvent immediate with AVI_ex
-	  		  		--> VentricleEvent immediate with Vsense;
-	  		  	
-	  		  		final state VentricleEvent;
+	  		  	final state VentricleEvent;
 
 	  		  	
-	  			}
-	  			>-> waitPVARP with AVI_ex/Vpace
-	  			>-> waitPVARP with Vsense/stop_URI
-	  			>-> waitPVARP with /Vpace;
+	  		}
+	  		>-> waitPVARP with AVI_ex/Vpace
+	  		>-> waitPVARP with Vsense/stop_URI
+	  		>-> waitPVARP with /Vpace;
 	  		
-	  			state waitPVARP
-	  			-->waitURIandAVI with PVARP_ex;
+	  		state waitPVARP
+	  		-->waitURIandAVI with PVARP_ex;
 		  		
 	  		
 	  		region AEI:
-	  		
 	  			initial state idle
 	  			--> connect with Vpace
 	  			--> connect with Vsense;
@@ -62,11 +60,8 @@ scchart DDD_pacemaker {
 	  		region PVARP:
 	  		
 	  			initial state idle
-	  			--> connect with Vsense
-	  			--> connect with Vpace;
-	  			
-	  			connector state connect
-	  			--> waitPVARP immediate with /start_PVARP;
+	  			--> waitPVARP with Vsense/start_PVARP
+	  			--> waitPVARP with Vpace/start_PVARP;
 	  			
 	  			state waitPVARP
 	  			--> idle with PVARP_ex;
@@ -74,11 +69,8 @@ scchart DDD_pacemaker {
 	  		region VRP:
 	  			
 	  			initial state idle
-	  			--> connect with Vsense
-	  			--> connect with Vpace;
-	  			
-	  			connector state connect
-	  			--> waitVRP immediate with /start_VRP;
+	  			--> waitVRP with Vsense/start_VRP
+	  			--> waitVRP with Vpace/start_VRP;
 	  			
 	  			state waitVRP
 	  			--> idle with VRP_ex;
