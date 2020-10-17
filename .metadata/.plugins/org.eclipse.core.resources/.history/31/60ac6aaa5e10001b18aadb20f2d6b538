@@ -26,14 +26,26 @@ scchart DDD_pacemaker {
 	  		  	state waitVRP
 	  		  	-->waitAVI with VRP_ex;
 	  		  	
-	  		  	final state waitAVI;
+	  		  	state waitAVI
+	  		  	--> Vectricular_event with AVI_ex
+	  		  	--> Vectricular_event with Vsense/stop_AVI;
+	  		  	
+				final state Vectricular_event
+				-->waitPVARP  with PVARP_ex;
+				
+				state waitPVARP
+				--> reinit;
+				
+				state reinit
+				--> waitVRP with Asense/start_AVI
+				--> waitVRP with Apace/start_AVI;
 				
 	  		  
 	  		}
-	  		>-> waitPVARP with Vsense/stop_AVI
-	  		>-> waitPVARP with AVI_ex/Vpace;
+	  		o-> done with Vsense/stop_AVI
+	  		>-> done with AVI_ex/Vpace;
 	  		
-	  		state waitPVARP
+	  		state done
 	  		-->waitURIandAVI with PVARP_ex;
 	  		
 	  		region AEI:

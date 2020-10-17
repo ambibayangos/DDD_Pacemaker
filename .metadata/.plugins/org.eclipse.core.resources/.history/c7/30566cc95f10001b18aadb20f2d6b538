@@ -30,10 +30,10 @@ scchart DDD_pacemaker {
 				
 	  		  
 	  		}
-	  		>-> waitPVARP with Vsense/stop_AVI
-	  		>-> waitPVARP with AVI_ex/Vpace;
+	  		>-> done with Vsense/stop_AVI
+	  		>-> done with AVI_ex/Vpace;
 	  		
-	  		state waitPVARP
+	  		state done
 	  		-->waitURIandAVI with PVARP_ex;
 	  		
 	  		region AEI:
