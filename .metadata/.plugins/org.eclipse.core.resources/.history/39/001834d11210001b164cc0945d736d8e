@@ -1,0 +1,91 @@
+scchart DDD_pacemaker {
+	
+	input signal Vsense,Asense,AVI_ex,PVARP_ex,AEI_ex,VRP_ex,LRI_ex,stop_LRI,stop_AEI,URI_ex;
+	output signal start_AVI,stop_AVI,Vpace,start_PVARP,start_AEI,Apace,start_VRP,start_LRI;
+	
+	initial state TOP
+	{			  	
+	  		region AVI:
+	  			
+	  			initial state idle
+	  			{
+	  			  	region A: // wait for AVI
+	  					
+	  					initial state idle
+	  					--> waitVRP with Asense
+	  					--> waitVRP with Apace;
+	  					
+	  					state waitVRP
+	  					--> Action with VRP_ex;
+	  					
+	  					state Action
+	  					--> AVI_done with Vsense
+	  					--> AVI_done with AVI_ex/Vpace;
+	  					
+	  					final state AVI_done;
+	  			
+	  				region B: // wait for URI
+	  			
+	  					initial state idle
+	  					--> URI_done with URI_ex;
+	  					
+	  					final state URI_done;
+	  			}
+	  			>->idle with / Vpace;
+	  			 	
+	  		
+	  		region AEI:
+	  			initial state idle
+	  			--> waitPVARP with Vpace/start_AEI
+	  			--> waitPVARP with Vsense/start_AEI;
+	  			
+	  			state waitPVARP
+	  			--> Action with PVARP_ex;
+	  			
+	  			state Action
+	  			--> idle with Asense/stop_AEI
+	  			--> idle with AEI_ex/Apace;
+	  		
+	  		region PVARP:
+	  		
+	  			initial state idle
+	  			--> waitPVARP with Vsense/start_PVARP
+	  			--> waitPVARP with Vpace/start_PVARP;
+	  			
+	  			state waitPVARP
+	  			--> idle with PVARP_ex;
+	  			
+	  		region VRP:
+	  			
+	  			initial state idle
+	  			--> waitVRP with Vsense/start_VRP
+	  			--> waitVRP with Vpace/start_VRP;
+	  			
+	  			state waitVRP
+	  			--> idle with VRP_ex;
+	  		
+	  		region LRI:
+	  			
+	  			initial state idle
+	  			--> waitVRP with Vsense/start_LRI
+	  			--> waitVRP with Vpace/start_LRI;
+	  			
+	  			state waitVRP
+	  			--> Action with VRP_ex;
+	  			
+	  			state Action
+	  			--> idle with Vsense/stop_LRI
+	  			--> idle with LRI_ex/Vpace;
+	  			
+	  		region URI:
+	  			
+	  			initial state idle
+	  			--> waitURI with Vsense
+	  			--> waitURI with Vpace;
+	  			
+	  			state waitURI
+	  			--> waitURI with Vpace;
+	  			
+	};
+
+}

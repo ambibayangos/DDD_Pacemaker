@@ -1,0 +1,19 @@
+scchart NewModel {
+
+      		region AVI:
+	  			
+	  			 initial state idle;
+	  	
+	  		
+	  		region AEI:
+	  			initial state idle
+	  			--> waitPVARP with Vpace/start_AEI
+	  			--> waitPVARP with Vsense/start_AEI;
+	  			
+	  			state waitPVARP
+	  			--> Action with PVARP_ex;
+	  			
+	  			state Action
+	  			--> idle with Asense/stop_AEI
+	  			--> idle with AEI_ex/Apace;
+}

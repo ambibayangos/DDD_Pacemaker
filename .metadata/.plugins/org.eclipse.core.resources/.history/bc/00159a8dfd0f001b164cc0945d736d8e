@@ -1,0 +1,14 @@
+scchart DDD_pacemaker {
+	
+	input signal Vsense;
+	output signal start_AVI;
+	initial state TOP
+	{
+	  		region AVI:
+	  		initial state idle
+	  		--> waitVsense with Vsense/start_AVI;
+	  		
+	  		state waitVsense; 	  
+	} ; 
+
+}

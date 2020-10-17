@@ -1,0 +1,9 @@
+scchart DDD_pacemaker {
+  
+  input signal C;
+  
+initial state A 
+--> B with C;
+
+state B;
+}

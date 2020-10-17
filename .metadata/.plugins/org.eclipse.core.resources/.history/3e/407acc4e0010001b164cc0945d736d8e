@@ -1,0 +1,24 @@
+scchart DDD_pacemaker {
+	
+	input signal Vsense,Asense,AVI_ex;
+	output signal start_AVI,stop_AVI,Vpace,start_PVARP;
+	
+	initial state TOP
+	{			  	
+	  		region AVI:
+	  			initial state idle
+	  			--> waitVsense with Asense/start_AVI;
+	  		
+	  			state waitVsense
+	  			--> idle with Vsense/stop_AVI
+	  			--> idle with AVI_ex/Vpace;
+	  		
+	  		region PVARP:
+	  			initial state idle
+	  			--> ignore_Atrialevents with Vsense/start_PVARP
+	  			--> ignore_Atrialevents with Vpace/start_PVARP;
+	  			
+	  			state ignore_Atrialevents;	  
+	};
+
+}

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<launchConfiguration type="de.cau.cs.kieler.prom.launchconfig.kiCoLaunchConfig">
+<mapAttribute key="DDD_Pacemaker.sct">
+<mapEntry key="origin" value=""/>
+<mapEntry key="projectRelativePath" value="DDD_Pacemaker.sct"/>
+<mapEntry key="providesInputs" value=""/>
+</mapAttribute>
+<listAttribute key="de.cau.cs.kieler.prom.launchconfig.commands"/>
+<listAttribute key="de.cau.cs.kieler.prom.simulation.files">
+<listEntry value="DDD_Pacemaker.sct"/>
+</listAttribute>
+<mapAttribute key="launchdata">
+<mapEntry key="associatedLaunchShortcut" value=""/>
+<mapEntry key="mainFile" value=".project"/>
+<mapEntry key="projectName" value="DDD_Pacemaker"/>
+<mapEntry key="targetDirectory" value="kieler-gen"/>
+<mapEntry key="targetLanguage" value="s.c"/>
+<mapEntry key="targetLanguageFileExtension" value=".c"/>
+<mapEntry key="targetTemplate" value=""/>
+<mapEntry key="wrapperCodeSnippetDirectory" value=""/>
+<mapEntry key="wrapperCodeTemplate" value=""/>
+</mapAttribute>
+</launchConfiguration>
