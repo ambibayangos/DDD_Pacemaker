@@ -1,9 +1,0 @@
-scchart DDD_pacemaker {
-	
-	initial state TOP
-	{
-	  region AVI:
-	  
-	} ; 
-
-}

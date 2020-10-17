@@ -1,4 +1,0 @@
-scchart DDD_Pacemaker {
-
-    initial state init;
-}
