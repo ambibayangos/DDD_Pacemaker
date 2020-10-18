@@ -1,0 +1,39 @@
+# # File gsaved with Nlview version 6.3.8  2013-12-19 bk=1.2992 VDI=34 GEI=35
+# 
+preplace inst nios2_sytem.timer_1 -pg 1 -lvl 3 -y 930
+preplace inst nios2_sytem.switches -pg 1 -lvl 3 -y 430
+preplace inst nios2_sytem.leds_red -pg 1 -lvl 3 -y 230
+preplace inst nios2_sytem.jtag_uart -pg 1 -lvl 3 -y 610
+preplace inst nios2_sytem.cpu.clock_bridge -pg 1
+preplace inst nios2_sytem.sdram_pll -pg 1 -lvl 3 -y 1180
+preplace inst nios2_sytem.sdram -pg 1 -lvl 3 -y 330
+preplace inst nios2_sytem -pg 1 -lvl 1 -y 40 -regy -20
+preplace inst nios2_sytem.uart -pg 1 -lvl 3 -y 1030
+preplace inst nios2_sytem.cpu.reset_bridge -pg 1
+preplace inst nios2_sytem.onchip_mem -pg 1 -lvl 3 -y 530
+preplace inst nios2_sytem.lcd -pg 1 -lvl 3 -y 30
+preplace inst nios2_sytem.leds_green -pg 1 -lvl 3 -y 130
+preplace inst nios2_sytem.cpu -pg 1 -lvl 2 -y 880
+preplace inst nios2_sytem.sdram_pll.reset_from_locked -pg 1
+preplace inst nios2_sytem.clk_0 -pg 1 -lvl 1 -y 1030
+preplace inst nios2_sytem.sdram_pll.sys_pll -pg 1
+preplace inst nios2_sytem.keys -pg 1 -lvl 3 -y 810
+preplace inst nios2_sytem.cpu.cpu -pg 1
+preplace inst nios2_sytem.timer_0 -pg 1 -lvl 3 -y 710
+preplace netloc EXPORT<net_container>nios2_sytem</net_container>(SLAVE)leds_green.external_connection,(SLAVE)nios2_sytem.leds_green_external_connection) 1 0 3 NJ 160 NJ 160 NJ
+preplace netloc EXPORT<net_container>nios2_sytem</net_container>(SLAVE)clk_0.clk_in_reset,(SLAVE)nios2_sytem.reset) 1 0 1 NJ
+preplace netloc EXPORT<net_container>nios2_sytem</net_container>(SLAVE)keys.external_connection,(SLAVE)nios2_sytem.keys_external_connection) 1 0 3 NJ 840 NJ 840 NJ
+preplace netloc FAN_OUT<net_container>nios2_sytem</net_container>(SLAVE)uart.reset,(SLAVE)timer_1.reset,(SLAVE)keys.reset,(SLAVE)lcd.reset,(SLAVE)sdram_pll.ref_reset,(SLAVE)onchip_mem.reset1,(SLAVE)cpu.reset,(SLAVE)leds_green.reset,(SLAVE)leds_red.reset,(SLAVE)jtag_uart.reset,(SLAVE)switches.reset,(MASTER)clk_0.clk_reset,(SLAVE)sdram.reset,(SLAVE)timer_0.reset) 1 1 2 410 1080 910
+preplace netloc INTERCONNECT<net_container>nios2_sytem</net_container>(MASTER)cpu.data_master,(MASTER)cpu.instruction_master,(SLAVE)leds_green.s1,(SLAVE)onchip_mem.s1,(SLAVE)timer_1.s1,(SLAVE)uart.s1,(SLAVE)switches.s1,(SLAVE)timer_0.s1,(SLAVE)jtag_uart.avalon_jtag_slave,(SLAVE)keys.s1,(SLAVE)leds_red.s1,(SLAVE)cpu.debug_mem_slave,(SLAVE)sdram.s1) 1 1 2 450 1040 810
+preplace netloc EXPORT<net_container>nios2_sytem</net_container>(SLAVE)nios2_sytem.sdram_wire,(SLAVE)sdram.wire) 1 0 3 NJ 400 NJ 400 NJ
+preplace netloc EXPORT<net_container>nios2_sytem</net_container>(SLAVE)lcd.external,(SLAVE)nios2_sytem.lcd_external) 1 0 3 NJ 80 NJ 80 NJ
+preplace netloc EXPORT<net_container>nios2_sytem</net_container>(SLAVE)clk_0.clk_in,(SLAVE)nios2_sytem.clk) 1 0 1 NJ
+preplace netloc FAN_OUT<net_container>nios2_sytem</net_container>(SLAVE)timer_0.irq,(SLAVE)uart.irq,(SLAVE)jtag_uart.irq,(MASTER)cpu.irq,(SLAVE)keys.irq,(SLAVE)timer_1.irq) 1 2 1 890
+preplace netloc POINT_TO_POINT<net_container>nios2_sytem</net_container>(MASTER)clk_0.clk,(SLAVE)sdram_pll.ref_clk) 1 1 2 NJ 1060 850
+preplace netloc EXPORT<net_container>nios2_sytem</net_container>(SLAVE)nios2_sytem.uart_external_connection,(SLAVE)uart.external_connection) 1 0 3 NJ 1100 NJ 1100 NJ
+preplace netloc EXPORT<net_container>nios2_sytem</net_container>(SLAVE)nios2_sytem.leds_red_external_connection,(SLAVE)leds_red.external_connection) 1 0 3 NJ 260 NJ 260 NJ
+preplace netloc FAN_OUT<net_container>nios2_sytem</net_container>(SLAVE)onchip_mem.clk1,(SLAVE)uart.clk,(SLAVE)timer_1.clk,(SLAVE)switches.clk,(SLAVE)jtag_uart.clk,(SLAVE)keys.clk,(SLAVE)sdram.clk,(SLAVE)lcd.clk,(SLAVE)timer_0.clk,(MASTER)sdram_pll.sys_clk,(SLAVE)leds_red.clk,(SLAVE)cpu.clk,(SLAVE)leds_green.clk) 1 1 3 430 1020 830 1280 1150
+preplace netloc EXPORT<net_container>nios2_sytem</net_container>(SLAVE)switches.external_connection,(SLAVE)nios2_sytem.switches_external_connection) 1 0 3 NJ 460 NJ 460 NJ
+preplace netloc EXPORT<net_container>nios2_sytem</net_container>(MASTER)sdram_pll.sdram_clk,(MASTER)nios2_sytem.sdram_pll_sdram_clk) 1 3 1 N
+levelinfo -pg 1 0 200 1320
+levelinfo -hier nios2_sytem 210 240 570 990 1170

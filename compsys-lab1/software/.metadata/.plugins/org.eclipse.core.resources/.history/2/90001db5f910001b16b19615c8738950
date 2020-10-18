@@ -1,0 +1,182 @@
+/*
+ * "Hello World" example.
+ *
+ * This example prints 'Hello from Nios II' to the STDOUT stream. It runs on
+ * the Nios II 'standard', 'full_featured', 'fast', and 'low_cost' example
+ * designs. It runs with or without the MicroC/OS-II RTOS and requires a STDOUT
+ * device in your system's hardware.
+ * The memory footprint of this hosted application is ~69 kbytes by default
+ * using the standard reference design.
+ *
+ * For a reduced footprint version of this template, and an explanation of how
+ * to reduce the memory footprint for a given application, see the
+ * "small_hello_world" template.
+ *
+ */
+
+#include <stdio.h>
+#include <altera_avalon_pio_regs.h>
+#include "sys/alt_alarm.h"
+
+#include"system.h"
+#include "FSM.h"
+
+# define AVI_VALUE 250
+# define AEI_VALUE 800
+# define PVARP_VALUE 300
+# define VRP_VALUE 150
+# define LRI_VALUE 950
+# define URI_VALUE 900
+
+alt_u32 timer_AVI (void* context)
+{
+	printf("1\n");
+	AVI_ex = 1;
+	printf("timer AVI counting \n");
+	return 0;
+}
+
+alt_u32 timer_PVARP (void* context)
+{
+	printf("2\n");
+	PVARP_ex = 1;
+	return 0;
+}
+
+alt_u32 timer_VRP (void* context)
+{
+	printf("3\n");
+	VRP_ex = 1;
+	return 0;
+}
+
+alt_u32 timer_AEI (void* context)
+{
+	printf("4\n");
+	AEI_ex = 1;
+	return 0;
+}
+
+alt_u32 timer_LRI (void* context)
+{
+	printf("5\n");
+	LRI_ex = 1;
+	return 0;
+}
+
+alt_u32 timer_URI (void* context)
+{
+	printf("6\n");
+	URI_ex = 1;
+	return 0;
+}
+
+int main()
+{
+
+ IOWR_ALTERA_AVALON_PIO_DATA(LEDS_RED_BASE,0xFFFF);
+ IOWR_ALTERA_AVALON_PIO_DATA(LEDS_GREEN_BASE,0xFFFF);
+
+ alt_alarm AVI;
+ alt_alarm PVARP;
+ alt_alarm VRP;
+ alt_alarm AEI;
+ alt_alarm LRI;
+ alt_alarm URI;
+
+  reset();
+
+ Vsense = 1;
+
+  while(1)
+  {
+
+	  if(start_AVI == 1)
+	  {
+
+		  alt_alarm_start(&AVI,AVI_VALUE,timer_AVI,NULL);
+		  printf("AVI timer entered \n");
+	  }
+
+	  //printf("AVI timer exited \n");
+
+	  if(stop_AVI)
+	  {
+		  alt_alarm_stop(&AVI);
+	  }
+	  if (start_PVARP)
+	  {
+		  alt_alarm_start(&PVARP,PVARP_VALUE,timer_PVARP,NULL);
+	  }
+	  if(stop_PVARP)
+	  {
+		  alt_alarm_stop(&PVARP);
+	  }
+	  if (start_AEI)
+	  {
+	  	alt_alarm_start(&AEI,AEI_VALUE,timer_AEI,NULL);
+	  }
+	  if(stop_AEI)
+	  {
+	  	alt_alarm_stop(&AEI);
+	  }
+	  if (start_VRP)
+	  {
+	  	alt_alarm_start(&VRP,VRP_VALUE,timer_VRP,NULL);
+	  }
+	  if(stop_VRP)
+	  {
+	  	alt_alarm_stop(&VRP);
+	  }
+	  if (start_LRI)
+	  {
+	  	alt_alarm_start(&LRI,LRI_VALUE,timer_LRI,NULL);
+	  }
+	  if(stop_LRI)
+	  {
+	  	alt_alarm_stop(&LRI);
+	  }
+	  if (start_URI)
+	  {
+	  	alt_alarm_start(&URI,URI_VALUE,timer_URI,NULL);
+	  }
+	  if(stop_URI)
+	  {
+	  	alt_alarm_stop(&URI);
+	  }
+
+	  tick();
+
+
+	 // int green_led_reg_value = IORD_ALTERA_AVALON_PIO_DATA(LEDS_GREEN_BASE);
+	  if (Vpace)
+	  {
+		  //led
+		  IOWR_ALTERA_AVALON_PIO_DATA(LEDS_GREEN_BASE,0 );
+		  IOWR_ALTERA_AVALON_PIO_DATA(LEDS_GREEN_BASE,1);
+	  }
+	  if (!Vpace)
+	  {
+		  //led off
+		  IOWR_ALTERA_AVALON_PIO_DATA(LEDS_GREEN_BASE,0 );
+	  }
+
+	  if(!Apace)
+	  {
+		  //led off
+		  IOWR_ALTERA_AVALON_PIO_DATA(LEDS_GREEN_BASE,0 );
+	  }
+
+	  if (Apace)
+	  {
+		  //led
+		  IOWR_ALTERA_AVALON_PIO_DATA(LEDS_GREEN_BASE,0 );
+		  IOWR_ALTERA_AVALON_PIO_DATA(LEDS_GREEN_BASE,2);
+	  }
+
+
+
+  }
+
+  return 0;
+}

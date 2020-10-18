@@ -1,0 +1,457 @@
+/*
+ * FSM.c
+ *
+ *  Created on: 17/10/2020
+ *      Author: ambib
+ */
+
+
+
+
+/*****************************************************************************/
+/*                 G E N E R A T E D       C    C O D E                      */
+/*****************************************************************************/
+/* KIELER - Kiel Integrated Environment for Layout Eclipse RichClient        */
+/*                                                                           */
+/* http://www.informatik.uni-kiel.de/rtsys/kieler/                           */
+/* Copyright 2014 by                                                         */
+/* + Kiel University                                                         */
+/*   + Department of Computer Science                                        */
+/*     + Real-Time and Embedded Systems Group                                */
+/*                                                                           */
+/* This code is provided under the terms of the Eclipse Public License (EPL).*/
+/*****************************************************************************/
+char URI_ex;
+char LRI_stop;
+char Vsense;
+char Asense;
+char AVI_ex;
+char PVARP_ex;
+char AEI_ex;
+char VRP_ex;
+char LRI_ex;
+char stop_LRI;
+char stop_AEI;
+char stop_AVI;
+char start_AVI;
+char Vpace;
+char start_PVARP;
+char start_AEI;
+char Apace;
+char start_VRP;
+char start_LRI;
+char start_URI;
+char g0;
+char g1;
+char g2;
+char g3;
+char g4;
+char g5;
+char PRE_g5;
+char g6;
+char g7;
+char g8;
+char PRE_g8;
+char g9;
+char g10;
+char PRE_g10;
+char g11;
+char g12;
+char PRE_g12;
+char g13;
+char g14;
+char g15;
+char g16;
+char g17;
+char g18;
+char g19;
+char g20;
+char g21;
+char g22;
+char g23;
+char g24;
+char g25;
+char g26;
+char g27;
+char g28;
+char PRE_g28;
+char g29;
+char g30;
+char g31;
+char g31b;
+char g32;
+char g33;
+char g34;
+char PRE_g34;
+char g35;
+char g35b;
+char g36;
+char g37;
+char PRE_g37;
+char g38;
+char g39;
+char PRE_g39;
+char g40;
+char g41;
+char g42;
+char g43;
+char g44;
+char g45;
+char g46;
+char g47;
+char g48;
+char PRE_g48;
+char g49;
+char g50;
+char g51;
+char PRE_g51;
+char g52;
+char g53;
+char g54;
+char g55;
+char g56;
+char g57;
+char PRE_g57;
+char g58;
+char g59;
+char g60;
+char PRE_g60;
+char g61;
+char g62;
+char g63;
+char g64;
+char g65;
+char g66;
+char PRE_g66;
+char g67;
+char g68;
+char g69;
+char PRE_g69;
+char g70;
+char g71;
+char PRE_g71;
+char g72;
+char g73;
+char g74;
+char PRE_g74;
+char g75;
+char g75b;
+char g76;
+char g77;
+char g78;
+char g79;
+char g80;
+char PRE_g80;
+char g81;
+char g82;
+char g83;
+char PRE_g83;
+char g84;
+char g85;
+char g86;
+char g87;
+char g88;
+char g89;
+char g90;
+char PRE_g90;
+char g91;
+char g92;
+char g93;
+char _GO;
+char _cg25;
+char _cg6;
+char _cg16;
+char _cg17;
+char _cg24;
+char _cg9;
+char _cg21;
+char _cg11;
+char _cg18;
+char _cg23;
+char _cg13;
+char _cg19;
+char _cg29;
+char _cg44;
+char _cg35;
+char _cg38;
+char _cg42;
+char _cg40;
+char _cg52;
+char _cg53;
+char _cg49;
+char _cg61;
+char _cg62;
+char _cg58;
+char _cg67;
+char _cg70;
+char _cg76;
+char _cg72;
+char _cg84;
+char _cg85;
+char _cg81;
+char g15_e1;
+char g30_e2;
+char g32_e1;
+char g46_e2;
+char g55_e3;
+char g64_e4;
+char g78_e5;
+char g87_e6;
+char g88_e1_fix;
+char g88_e1;
+char g92_e2;
+int _PRE_GO;
+void reset(){
+   _GO = 1;
+   _PRE_GO = 0;
+   PRE_g5 = 0;
+   PRE_g8 = 0;
+   PRE_g10 = 0;
+   PRE_g12 = 0;
+   PRE_g28 = 0;
+   PRE_g34 = 0;
+   PRE_g37 = 0;
+   PRE_g39 = 0;
+   PRE_g48 = 0;
+   PRE_g51 = 0;
+   PRE_g57 = 0;
+   PRE_g60 = 0;
+   PRE_g66 = 0;
+   PRE_g69 = 0;
+   PRE_g71 = 0;
+   PRE_g74 = 0;
+   PRE_g80 = 0;
+   PRE_g83 = 0;
+   PRE_g90 = 0;
+   return;
+}
+void tick(){
+   if(_PRE_GO == 1){
+      _GO = 0;
+   }
+   {
+      g0 = _GO;
+      g1 = g0;
+      g2 = g1;
+      g91 =(PRE_g90);
+      g89 = g0;
+      g90 =(g91||g89);
+      if(g90){
+         stop_AVI = 0;
+         start_AVI = 0;
+         Vpace = 0;
+         start_PVARP = 0;
+         start_AEI = 0;
+         Apace = 0;
+         start_VRP = 0;
+         start_LRI = 0;
+         start_URI = 0;
+         LRI_stop = 0;
+      }
+      g6 =(PRE_g5);
+      g9 =(PRE_g8);
+      g11 =(PRE_g10);
+      g13 =(PRE_g12);
+      g15_e1 =(!((g6||g9||g11||g13)));
+      _cg13 = Vsense;
+      g14 =(g13&&_cg13);
+      if(g14){
+         stop_AVI =(stop_AVI||1);
+      }
+      g40 =(PRE_g39);
+      _cg40 = Asense;
+      g42 =(g40&&(!(_cg40)));
+      _cg42 = AEI_ex;
+      g43 =(g42&&_cg42);
+      if(g43){
+         Apace =(Apace||1);
+      }
+      g16 =(g13&&(!(_cg13)));
+      _cg16 = Asense;
+      g17 =(g16&&(!(_cg16)));
+      _cg17 = Apace;
+      g18 =(g17&&(!(_cg17)));
+      _cg18 = AVI_ex;
+      _cg9 = PVARP_ex;
+      g23 =(g9&&(!(_cg9)));
+      _cg23 = VRP_ex;
+      g24 =(g23&&(!(_cg23)));
+      _cg24 = AVI_ex;
+      g15 =(g14||(g18&&_cg18)||(g24&&_cg24));
+      g29 =(PRE_g28);
+      g30_e2 =(!(g29));
+      _cg29 = URI_ex;
+      g30 =(g29&&_cg29);
+      g31 =((g15_e1||g15)&&(g30_e2||g30)&&(g15||g30));
+      g31b = g31;
+      if(g31b){
+         Vpace =(Vpace||1);
+      }
+      g3 =(g2||g31b);
+      g4 = g3;
+      _cg6 = Asense;
+      g25 =(g6&&(!(_cg6)));
+      _cg25 = Apace;
+      g5 =(g4||(g25&&(!(_cg25))));
+      g7 =(g6&&_cg6);
+      if(g7){
+         start_AVI =(start_AVI||1);
+      }
+      _cg11 = VRP_ex;
+      g19 =(g11&&(!(_cg11)));
+      _cg19 = Asense;
+      g21 =(g19&&(!(_cg19)));
+      _cg21 = Apace;
+      g22 =(g21&&_cg21);
+      if(g22){
+         start_AVI =(start_AVI||1);
+      }
+      g20 =(g19&&_cg19);
+      if(g20){
+         start_AVI =(start_AVI||1);
+      }
+      g26 =(g25&&_cg25);
+      if(g26){
+         start_AVI =(start_AVI||1);
+      }
+      g8 =((g24&&(!(_cg24)))||g22||g7||(g16&&_cg16)||g20||g26||(g17&&_cg17));
+      g10 =((g9&&_cg9)||(g21&&(!(_cg21))));
+      g12 =((g11&&_cg11)||(g23&&_cg23)||(g18&&(!(_cg18))));
+      g27 = g3;
+      g28 =(g27||(g29&&(!(_cg29))));
+      g33 = g1;
+      g72 =(PRE_g71);
+      _cg72 = LRI_ex;
+      g73 =(g72&&_cg72);
+      if(g73){
+         Vpace =(Vpace||1);
+      }
+      g35 =(PRE_g34);
+      g35b = g35;
+      _cg35 = Vpace;
+      g44 =(g35b&&(!(_cg35)));
+      _cg44 = Vsense;
+      g41 =(g40&&_cg40);
+      if(g41){
+         stop_AEI =(stop_AEI||1);
+      }
+      g34 =((g44&&(!(_cg44)))||g41||g43||g33);
+      g36 =(g35b&&_cg35);
+      if(g36){
+         start_AEI =(start_AEI||1);
+      }
+      g38 =(PRE_g37);
+      _cg38 = PVARP_ex;
+      g45 =(g44&&_cg44);
+      if(g45){
+         start_AEI =(start_AEI||1);
+      }
+      g37 =((g38&&(!(_cg38)))||g36||g45);
+      g39 =((g38&&_cg38)||(g42&&(!(_cg42))));
+      g47 = g1;
+      g49 =(PRE_g48);
+      _cg49 = Vsense;
+      g53 =(g49&&(!(_cg49)));
+      _cg53 = Vpace;
+      g52 =(PRE_g51);
+      _cg52 = PVARP_ex;
+      g48 =((g53&&(!(_cg53)))||g47||(g52&&_cg52));
+      g50 =(g49&&_cg49);
+      if(g50){
+         start_PVARP =(start_PVARP||1);
+      }
+      g54 =(g53&&_cg53);
+      if(g54){
+         start_PVARP =(start_PVARP||1);
+      }
+      g51 =((g52&&(!(_cg52)))||g54||g50);
+      g56 = g1;
+      g61 =(PRE_g60);
+      _cg61 = VRP_ex;
+      g58 =(PRE_g57);
+      _cg58 = Vsense;
+      g62 =(g58&&(!(_cg58)));
+      _cg62 = Vpace;
+      g57 =(g56||(g61&&_cg61)||(g62&&(!(_cg62))));
+      g59 =(g58&&_cg58);
+      if(g59){
+         start_VRP =(start_VRP||1);
+      }
+      g63 =(g62&&_cg62);
+      if(g63){
+         start_VRP =(start_VRP||1);
+      }
+      g60 =((g61&&(!(_cg61)))||g63||g59);
+      g65 = g1;
+      g67 =(PRE_g66);
+      _cg67 = Vsense;
+      g66 =(g65||(g67&&(!(_cg67))));
+      g68 =(g67&&_cg67);
+      if(g68){
+         start_LRI =(start_LRI||1);
+      }
+      g70 =(PRE_g69);
+      _cg70 = VRP_ex;
+      g75 =(PRE_g74);
+      g75b = g75;
+      if(g75b){
+         start_LRI =(start_LRI||1);
+      }
+      g69 =(g68||(g70&&(!(_cg70)))||g75b);
+      g76 =(g72&&(!(_cg72)));
+      _cg76 = Vsense;
+      g71 =((g76&&(!(_cg76)))||(g70&&_cg70));
+      g77 =(g76&&_cg76);
+      if(g77){
+         LRI_stop =(LRI_stop||1);
+      }
+      g74 =(g73||g77);
+      g79 = g1;
+      g84 =(PRE_g83);
+      _cg84 = URI_ex;
+      g81 =(PRE_g80);
+      _cg81 = Vsense;
+      g85 =(g81&&(!(_cg81)));
+      _cg85 = Vpace;
+      g80 =((g84&&_cg84)||(g85&&(!(_cg85)))||g79);
+      g82 =(g81&&_cg81);
+      if(g82){
+         start_URI =(start_URI||1);
+      }
+      g86 =(g85&&_cg85);
+      if(g86){
+         start_URI =(start_URI||1);
+      }
+      g83 =(g82||(g84&&(!(_cg84)))||g86);
+      g32_e1 =(!((g6||g29||g9||g11||g13)));
+      g46_e2 =(!((g35||g38||g40)));
+      g55_e3 =(!((g49||g52)));
+      g64_e4 =(!((g58||g61)));
+      g78_e5 =(!((g67||g70||g72||g75)));
+      g87_e6 =(!((g81||g84)));
+      g88_e1_fix =(g52||g61||g70||g84||g9||g40||g72||g11||g13);
+      g88_e1 =(!((g35||g49||g58||g67||g81||g6||g29||g38||g75||g88_e1_fix)));
+      g92_e2 =(!(g91));
+   }
+   PRE_g5 = g5;
+   PRE_g8 = g8;
+   PRE_g10 = g10;
+   PRE_g12 = g12;
+   PRE_g28 = g28;
+   PRE_g34 = g34;
+   PRE_g37 = g37;
+   PRE_g39 = g39;
+   PRE_g48 = g48;
+   PRE_g51 = g51;
+   PRE_g57 = g57;
+   PRE_g60 = g60;
+   PRE_g66 = g66;
+   PRE_g69 = g69;
+   PRE_g71 = g71;
+   PRE_g74 = g74;
+   PRE_g80 = g80;
+   PRE_g83 = g83;
+   PRE_g90 = g90;
+   _PRE_GO = _GO;
+   return;
+}

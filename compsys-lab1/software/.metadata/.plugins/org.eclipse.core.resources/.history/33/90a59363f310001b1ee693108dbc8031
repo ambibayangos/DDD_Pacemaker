@@ -1,0 +1,45 @@
+/*
+ * FSM.h
+ *
+ *  Created on: 17/10/2020
+ *      Author: ambib
+ */
+
+#ifndef FSM_H_
+#define FSM_H_
+
+//Funtions
+void reset();
+void tick();
+
+
+//Inputs
+extern char Vsense;
+extern char Asense;
+extern char AVI_ex;
+extern char PVARP_ex;
+extern char AEI_ex;
+extern char VRP_ex;
+extern char LRI_ex;
+extern char stop_LRI;
+extern char stop_AEI;
+extern char URI_ex;
+
+//Outpus
+extern char stop_URI
+extern charstop_VRP;
+extern charstop_PVARP;
+extern charstop_AVI;
+extern charstart_AVI;
+extern charVpace;
+extern charstart_PVARP;
+extern charstart_AEI;
+extern charApace;
+extern charstart_VRP;
+extern charstart_LRI;
+extern charstart_URI;
+extern charLRI_stop;
+
+
+
+#endif /* FSM_H_ */

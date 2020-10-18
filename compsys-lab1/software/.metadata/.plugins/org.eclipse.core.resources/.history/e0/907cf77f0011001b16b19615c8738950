@@ -1,0 +1,104 @@
+/*
+ * "Hello World" example.
+ *
+ * This example prints 'Hello from Nios II' to the STDOUT stream. It runs on
+ * the Nios II 'standard', 'full_featured', 'fast', and 'low_cost' example
+ * designs. It runs with or without the MicroC/OS-II RTOS and requires a STDOUT
+ * device in your system's hardware.
+ * The memory footprint of this hosted application is ~69 kbytes by default
+ * using the standard reference design.
+ *
+ * For a reduced footprint version of this template, and an explanation of how
+ * to reduce the memory footprint for a given application, see the
+ * "small_hello_world" template.
+ *
+ */
+
+#include <stdio.h>
+#include <altera_avalon_pio_regs.h>
+#include "sys/alt_alarm.h"
+
+#include"system.h"
+#include "FSM.h"
+
+# define AVI_VALUE 250
+# define AEI_VALUE 800
+# define PVARP_VALUE 300
+# define VRP_VALUE 150
+# define LRI_VALUE 950
+# define URI_VALUE 900
+
+
+int main()
+{
+
+// Initialize the pacemaker FSM
+reset();
+
+// Force Vsense to occur TODO: REMOVE THIS LATER!
+ Vsense = 1;
+  while(1)
+  {
+	  printf("%d \n",alt_nticks());
+
+	  if(start_AVI) // timer is started
+	  {
+		  // get 1st tick value
+		 int tick = alt_n_ticks();
+
+		 int tick2 = alt_n_ticks();
+
+		 int tick3 =  tick2 - tick;
+
+		 if(tick3 >= 112)
+		 {
+			 return 1;
+		 }
+
+		 return 0;
+		  // get 2nd tick value and return a timeout or not
+	  }
+	  tick();
+
+
+	 // int green_led_reg_value = IORD_ALTERA_AVALON_PIO_DATA(LEDS_GREEN_BASE);
+	  if (Vpace)
+	  {
+		  //led
+		  IOWR_ALTERA_AVALON_PIO_DATA(LEDS_GREEN_BASE,0 );
+		  IOWR_ALTERA_AVALON_PIO_DATA(LEDS_GREEN_BASE,1);
+	  }
+	  if (!Vpace)
+	  {
+		  //led off
+		  IOWR_ALTERA_AVALON_PIO_DATA(LEDS_GREEN_BASE,0);
+	  }
+
+	  if(!Apace)
+	  {
+		  //led off
+		  IOWR_ALTERA_AVALON_PIO_DATA(LEDS_GREEN_BASE,0);
+	  }
+
+	  if (Apace)
+	  {
+		  //led
+		  IOWR_ALTERA_AVALON_PIO_DATA(LEDS_GREEN_BASE,0 );
+		  IOWR_ALTERA_AVALON_PIO_DATA(LEDS_GREEN_BASE,2);
+	  }
+
+  }
+
+  return 0;
+}
+
+int check_time(int initial_time,int timeout_at)
+{
+	int diff = alt_n_ticks() - initial_time;
+	if(diff >= timeout_at)
+	{
+		return 1; // timer has timeout
+	}
+
+	return 0;
+}

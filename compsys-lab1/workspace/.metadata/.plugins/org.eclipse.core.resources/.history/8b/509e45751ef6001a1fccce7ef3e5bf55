@@ -1,0 +1,126 @@
+/*
+ * "Hello World" example.
+ *
+ * This example prints 'Hello from Nios II' to the STDOUT stream. It runs on
+ * the Nios II 'standard', 'full_featured', 'fast', and 'low_cost' example
+ * designs. It runs with or without the MicroC/OS-II RTOS and requires a STDOUT
+ * device in your system's hardware.
+ * The memory footprint of this hosted application is ~69 kbytes by default
+ * using the standard reference design.
+ *
+ * For a reduced footprint version of this template, and an explanation of how
+ * to reduce the memory footprint for a given application, see the
+ * "small_hello_world" template.
+ *
+ */
+
+#include <stdio.h>
+#include "sys/alt_alarm.h"
+#include "system.h"
+#include <altera_avalon_pio_regs.h>
+
+//GREEN LED SETTINGS
+#define RR 0b00100100
+#define GR 0b00100001
+#define YR 0b00100010
+#define RG 0b00001100
+#define RY 0b00010100
+#define NSPED 0b01100001
+#define EWPED 0b10001100
+
+//RED LED SETTINGS
+#define NSPED_RED 0b01
+#define EWPED_RED 0b10
+#define NSEWPED_RED 0b11
+
+int index = 0;
+int timerExpiresAt[] = {500, 600, 2000, 500, 6000, 2000};
+int trafficLight[] = {RR, GR, YR, RR, RG, RY, RR};
+
+int state = 1;
+int pedNS = 0;
+int pedEW = 0;
+
+alt_u32 tlc_timer_isr(void* context)
+{
+	printf("indexCopy = %i ",  indexCopy);
+	int indexCopy = index;
+	index = (index++)%7;
+	IOWR_ALTERA_AVALON_PIO_DATA(LEDS_GREEN_BASE, trafficLight[indexCopy]);
+	return timerExpiresAt[indexCopy];
+}
+
+
+void NSEW_ped_isr (void* context, alt_u32 ID)
+{
+	int buttonsValue = IORD_ALTERA_AVALON_PIO_DATA(BUTTONS_BASE);
+
+	if(buttonsValue == 0b110)
+	{
+		pedNS = 1;
+		IOWR_ALTERA_AVALON_PIO_DATA(LEDS_RED_BASE, NSPED_RED);
+	}
+	else if(buttonsValue == 0b101)
+	{
+		pedEW = 1;
+		IOWR_ALTERA_AVALON_PIO_DATA(LEDS_RED_BASE, EWPED_RED);
+	}
+	else if(buttonsValue == 0b100)
+	{
+		pedNS = 1;
+		pedEW = 1;
+		IOWR_ALTERA_AVALON_PIO_DATA(LEDS_RED_BASE , NSEWPED_RED);
+	}
+
+	printf("button pressed %i\n" , buttonsValue);
+
+	// clear the edge capture register
+	IOWR_ALTERA_AVALON_PIO_EDGE_CAP(BUTTONS_BASE, 0);
+}
+
+
+void init_buttons_pio()
+{
+	// clear the edge capture register
+	IOWR_ALTERA_AVALON_PIO_EDGE_CAP(BUTTONS_BASE, 0);
+	// enable interrupts for all buttons
+	IOWR_ALTERA_AVALON_PIO_IRQ_MASK(BUTTONS_BASE, 0b11);
+	// register button ISR
+	alt_irq_register (BUTTONS_IRQ, NULL , NSEW_ped_isr);
+}
+
+
+int main()
+{
+   //initialize LCD
+   FILE* lcd;
+   lcd = fopen(LCD_NAME, "w");
+   void* lcdContext = (void*) lcd;
+
+
+  // set up a timer
+  alt_alarm timer;
+  // start a timer
+  alt_alarm_start(&timer, 1000, tlc_timer_isr, lcdContext);
+
+
+
+
+  // initialise button isr
+  init_buttons_pio();
+
+  int prevMode = 0;
+  int mode = 0;
+  while(1)
+  {
+	  mode = IORD_ALTERA_AVALON_PIO_DATA(SWITCHES_BASE);
+	  if(mode != prevMode)
+	  {
+		  printf("Mode :  %i\n", mode);
+		  prevMode = mode;
+	  }
+
+  }
+
+  return 0;
+}

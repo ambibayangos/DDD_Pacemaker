@@ -1,0 +1,274 @@
+/*
+ * "Hello World" example.
+ *
+ * This example prints 'Hello from Nios II' to the STDOUT stream. It runs on
+ * the Nios II 'standard', 'full_featured', 'fast', and 'low_cost' example
+ * designs. It runs with or without the MicroC/OS-II RTOS and requires a STDOUT
+ * device in your system's hardware.
+ * The memory footprint of this hosted application is ~69 kbytes by default
+ * using the standard reference design.
+ *
+ * For a reduced footprint version of this template, and an explanation of how
+ * to reduce the memory footprint for a given application, see the
+ * "small_hello_world" template.
+ *
+ */
+
+#include <stdio.h>
+#include "sys/alt_alarm.h"
+#include "system.h"
+#include <altera_avalon_pio_regs.h>
+
+//GREEN LED SETTINGS
+#define RR 0b00100100
+#define GR 0b00100001
+#define YR 0b00100010
+#define RG 0b00001100
+#define RY 0b00010100
+#define NSPED_GREEN 0b01100001
+#define EWPED_GREEN 0b10001100
+
+//RED LED SETTINGS
+#define NSPED_RED 0b01
+#define EWPED_RED 0b10
+#define NSEWPED_RED 0b11
+
+int index = 0;
+int timerExpiresAt[] = {500, 6000, 2000, 500, 6000, 2000};
+int trafficLight[] = {RR, GR, YR, RR, RG, RY, RR};
+
+int mode = 0;
+
+
+int state = 1;
+int pedNS = 0;
+int pedEW = 0;
+
+
+alt_u32 tlc_timer_isr(void* context)
+{
+	//------------------------------- simple tlc start
+	int indexCopy = index;
+	index = (++index)%7;
+	IOWR_ALTERA_AVALON_PIO_DATA(LEDS_GREEN_BASE, trafficLight[indexCopy]);
+	//------------------------------- simple tlc end
+
+	//******************************** Mode 2 starts
+	if(mode == 0b0010)
+	{
+
+		if(indexCopy == 1 && pedNS == 1)
+		{
+			IOWR_ALTERA_AVALON_PIO_IRQ_MASK(BUTTONS_BASE, 0b00);
+			pedNS = 0;
+			IOWR_ALTERA_AVALON_PIO_IRQ_MASK(BUTTONS_BASE, 0b11);
+
+			int redLEDs = IORD_ALTERA_AVALON_PIO_DATA(LEDS_RED_BASE);
+			IOWR_ALTERA_AVALON_PIO_DATA(LEDS_RED_BASE, redLEDs & 0b10);
+			IOWR_ALTERA_AVALON_PIO_DATA(LEDS_GREEN_BASE, NSPED_GREEN);
+		}
+		else if(indexCopy == 4 && pedEW == 1)
+		{
+			IOWR_ALTERA_AVALON_PIO_IRQ_MASK(BUTTONS_BASE, 0b00);
+			pedEW = 0;
+			IOWR_ALTERA_AVALON_PIO_IRQ_MASK(BUTTONS_BASE, 0b11);
+
+			int redLEDs = IORD_ALTERA_AVALON_PIO_DATA(LEDS_RED_BASE);
+			IOWR_ALTERA_AVALON_PIO_DATA(LEDS_RED_BASE, redLEDs & 0b01);
+			IOWR_ALTERA_AVALON_PIO_DATA(LEDS_GREEN_BASE, EWPED_GREEN);
+		}
+	}
+	//********************************** Mode 2 end
+
+
+
+
+	return timerExpiresAt[indexCopy];
+}
+
+
+void NSEW_ped_isr (void* context, alt_u32 ID)
+{
+	int buttonsValue = IORD_ALTERA_AVALON_PIO_DATA(BUTTONS_BASE);
+
+
+	if(buttonsValue == 0b110)
+	{
+		pedNS = 1;
+		IOWR_ALTERA_AVALON_PIO_DATA(LEDS_RED_BASE, NSPED_RED);
+	}
+	else if(buttonsValue == 0b101)
+	{
+		pedEW = 1;
+		IOWR_ALTERA_AVALON_PIO_DATA(LEDS_RED_BASE, EWPED_RED);
+	}
+	else if(buttonsValue == 0b100)
+	{
+		pedNS = 1;
+		pedEW = 1;
+		IOWR_ALTERA_AVALON_PIO_DATA(LEDS_RED_BASE , NSEWPED_RED);
+	}
+
+	printf("button pressed %i\n" , buttonsValue);
+
+	// clear the edge capture register
+	IOWR_ALTERA_AVALON_PIO_EDGE_CAP(BUTTONS_BASE, 0);
+}
+
+
+void init_buttons_pio()
+{
+	// clear the edge capture register
+	IOWR_ALTERA_AVALON_PIO_EDGE_CAP(BUTTONS_BASE, 0);
+	// enable interrupts for all buttons
+	IOWR_ALTERA_AVALON_PIO_IRQ_MASK(BUTTONS_BASE, 0b11);
+	// register button ISR
+	alt_irq_register (BUTTONS_IRQ, NULL , NSEW_ped_isr);
+}
+
+
+int main()
+{
+   //initialize LCD
+   FILE* lcd;
+   FILE* uart;
+
+   uart = fopen(UART_NAME , "r+");
+   lcd = fopen(LCD_NAME, "w");
+
+   fprintf(uart,"uart opened\n");
+
+  // set up a timer
+  alt_alarm timer;
+  // start a timer
+  alt_alarm_start(&timer, 1000, tlc_timer_isr, NULL);
+
+  int input;
+  int prevInput = -1;
+  int buffer[30];
+  int indx = 0;
+  int sepCount = 0;
+  int digitCount = 0;
+  do {
+        input =  fgetc (uart);
+
+        if(!((input >= 48 && input <= 57) || input == 44 || input == 13)
+        	||(indx == 0 && input == 44) ||(prevInput == input && input == 44)
+        	|| (digitCount == 5 && input != 44)|| (sepCount == 5 && prevInput == 44 && input == 13)
+        	|| (input == 13 && sepCount < 5) || (sepCount == 5 && input == 44))
+        {
+        	fprintf(uart ," Error ----------------> Invalid Input\n");
+        	sepCount = 0;
+        	digitCount = 0;
+        	indx = 0;
+        	prevInput = -1;
+        }
+        else
+        {
+
+        	if(input == 44)
+        	{
+        		sepCount++;
+        		digitCount = 0;
+        	}
+
+        	digitCount++;
+        	prevInput = input;
+        	buffer[indx] = input;
+        	printf("BUFFER VAL: %i\n", buffer[indx]);
+        	indx++;
+        }
+      } while (!(input == 13 && sepCount == 5));
+
+
+  	  for(int i = 0 ; i <= indx;i++)
+  	  {
+  		  printf("Buffer values: %i\n",buffer[i]);
+  	  }
+
+
+  	  //Let the parsing begins
+  	  int multiple = 1;
+  	  int value = 0;
+  	  int newTimeout[6] = {0,0,0,0,0,0};
+  	  int newTimeoutIndx = 6;
+  	  for(int i = indx-2; i >= 0 ; i--)
+  	  {
+
+  		  if(buffer[i] == 44 || i == 0)
+  		  {
+  			 if(i == 0)
+  			  {
+  			  	value =  value + multiple*(buffer[i] - 48);
+  			  	newTimeout[newTimeoutIndx] = value;
+
+  			  }
+  			  else
+  			  {
+
+  			  printf("-------VALUE: %i\n" ,value);
+  			  newTimeout[newTimeoutIndx] = value;
+  			  newTimeoutIndx--;
+  			  multiple = 1;
+  			  value = 0;
+
+  			  }
+
+
+
+  		  }
+  		  else
+  		  {
+  			  value =  value + multiple*(buffer[i] - 48);
+  			  multiple = multiple*10;
+  			  printf("-------index: %i\n" ,i);
+  		  }
+
+  	  }
+
+  	  for(int i = 0 ; i <= 6  ; i++)
+  	  {
+  		  printf("New Value time%i: %i\n",i,newTimeout[i]);
+  	  }
+
+
+  // initialise button ISR
+  init_buttons_pio();
+
+  int swicthValue = 0;
+  while(1)
+  {
+	  swicthValue = IORD_ALTERA_AVALON_PIO_DATA(SWITCHES_BASE);
+	  if((mode != swicthValue) && (index == 0 || index == 3))
+	  {
+		  mode = swicthValue;
+		  switch(mode)
+		  {
+		  	case 0b0001:
+		  		fprintf(lcd , "Mode 1\n");
+		  		fprintf(lcd , "\n");
+		  		IOWR_ALTERA_AVALON_PIO_IRQ_MASK(BUTTONS_BASE, 0b00);
+		  		break;
+		  	case 0b0010:
+		  		fprintf(lcd , "Mode 2\n");
+		  		fprintf(lcd , "\n");
+		  		IOWR_ALTERA_AVALON_PIO_IRQ_MASK(BUTTONS_BASE, 0b11);
+		  		break;
+		  	case 0b0100:
+		  		fprintf(lcd , "Mode 3\n");
+		  		fprintf(lcd , "\n");
+		  		IOWR_ALTERA_AVALON_PIO_IRQ_MASK(BUTTONS_BASE, 0b00);
+		  		break;
+		  	case 0b1000:
+		  		fprintf(lcd , "Mode 4\n");
+		  		fprintf(lcd , "\n");
+		  		IOWR_ALTERA_AVALON_PIO_IRQ_MASK(BUTTONS_BASE, 0b00);
+		  		break;
+
+		  	}
+
+	}
+  }
+
+  return 0;
+}

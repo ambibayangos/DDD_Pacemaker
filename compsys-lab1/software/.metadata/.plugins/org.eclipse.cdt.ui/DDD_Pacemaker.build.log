@@ -1,0 +1,9 @@
+16:57:18 **** Build of configuration Nios II for project DDD_Pacemaker ****
+make all 
+Info: Building ../DDD_Pacemaker_bsp/
+C:/intelFPGA_lite/16.1/nios2eds/bin/gnu/H-x86_64-mingw32/bin/make --no-print-directory -C ../DDD_Pacemaker_bsp/
+[BSP build complete]
+[DDD_Pacemaker build complete]
+
+16:57:19 Build Finished (took 1s.296ms)
+

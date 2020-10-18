@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename resource &apos;Pacemaker/FMS.h&apos; to &apos;FSM.h&apos;" description="Rename resource &apos;FMS.h&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="FMS.h" name="FSM.h" stamp="1602907563092" updateReferences="true"/>
+</session>
