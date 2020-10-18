@@ -7984,3 +7984,789 @@ java.lang.NullPointerException
 !ENTRY de.cau.cs.kieler.sccharts.sim.java 4 4 2020-10-18 15:33:33.839
 !MESSAGE There are unsaved changes of the model opened in the editor to simulate.
 You should save these changes before starting any simulation/execution! (de.cau.cs.kieler.sccharts.sim.java)
+
+!ENTRY de.cau.cs.kieler.klighd 4 0 2020-10-18 18:44:14.242
+!MESSAGE KLighD: Execution of diagram synthesis de.cau.cs.kieler.klighd.syntheses.ReinitializingDiagramSynthesisProxy failed for input model de.cau.cs.kieler.sccharts.impl.StateImpl@29f9930b (id: NewModel, label: NewModel) (type: NORMAL, initial: false, final: false).
+!STACK 0
+java.lang.NullPointerException
+	at de.cau.cs.kieler.kexpressions.extensions.KExpressionsSerializeHRExtensions._serializeHR(KExpressionsSerializeHRExtensions.java:76)
+	at de.cau.cs.kieler.sccharts.extensions.SCChartsSerializeHRExtension.serializeHR(SCChartsSerializeHRExtension.java:578)
+	at de.cau.cs.kieler.sccharts.extensions.SCChartsSerializeHRExtension.serialize(SCChartsSerializeHRExtension.java:84)
+	at de.cau.cs.kieler.sccharts.extensions.SCChartsSerializeHRExtension._serializeHR(SCChartsSerializeHRExtension.java:66)
+	at de.cau.cs.kieler.sccharts.extensions.SCChartsSerializeHRExtension.serializeHR(SCChartsSerializeHRExtension.java:570)
+	at de.cau.cs.kieler.sccharts.klighd.synthesis.TransitionSynthesis.performTranformation(TransitionSynthesis.java:146)
+	at de.cau.cs.kieler.sccharts.klighd.synthesis.TransitionSynthesis.performTranformation(TransitionSynthesis.java:1)
+	at de.cau.cs.kieler.sccharts.klighd.synthesis.SubSynthesis.transform(SubSynthesis.java:67)
+	at de.cau.cs.kieler.sccharts.klighd.synthesis.StateSynthesis.performTranformation(StateSynthesis.java:281)
+	at de.cau.cs.kieler.sccharts.klighd.synthesis.StateSynthesis.performTranformation(StateSynthesis.java:1)
+	at de.cau.cs.kieler.sccharts.klighd.synthesis.SubSynthesis.transform(SubSynthesis.java:67)
+	at de.cau.cs.kieler.sccharts.klighd.synthesis.ControlflowRegionSynthesis.performTranformation(ControlflowRegionSynthesis.java:191)
+	at de.cau.cs.kieler.sccharts.klighd.synthesis.ControlflowRegionSynthesis.performTranformation(ControlflowRegionSynthesis.java:1)
+	at de.cau.cs.kieler.sccharts.klighd.synthesis.SubSynthesis.transform(SubSynthesis.java:67)
+	at de.cau.cs.kieler.sccharts.klighd.synthesis.StateSynthesis.performTranformation(StateSynthesis.java:316)
+	at de.cau.cs.kieler.sccharts.klighd.synthesis.StateSynthesis.performTranformation(StateSynthesis.java:1)
+	at de.cau.cs.kieler.sccharts.klighd.synthesis.SubSynthesis.transform(SubSynthesis.java:67)
+	at de.cau.cs.kieler.sccharts.klighd.synthesis.SCChartsSynthesis.transform(SCChartsSynthesis.java:114)
+	at de.cau.cs.kieler.sccharts.klighd.synthesis.SCChartsSynthesis.transform(SCChartsSynthesis.java:1)
+	at de.cau.cs.kieler.klighd.syntheses.AbstractDiagramSynthesis.transform(AbstractDiagramSynthesis.java:221)
+	at de.cau.cs.kieler.klighd.syntheses.ReinitializingDiagramSynthesisProxy.transform(ReinitializingDiagramSynthesisProxy.java:286)
+	at de.cau.cs.kieler.klighd.ViewContext.update(ViewContext.java:456)
+	at de.cau.cs.kieler.klighd.ViewContext.update(ViewContext.java:391)
+	at de.cau.cs.kieler.klighd.ViewContext.update(ViewContext.java:375)
+	at de.cau.cs.kieler.klighd.LightDiagramServices.updateDiagram(LightDiagramServices.java:294)
+	at de.cau.cs.kieler.klighd.LightDiagramLayoutConfig.performUpdate(LightDiagramLayoutConfig.java:355)
+	at de.cau.cs.kieler.klighd.ui.view.DiagramView.doUpdateDiagram(DiagramView.java:1106)
+	at de.cau.cs.kieler.klighd.ui.view.DiagramView.access$5(DiagramView.java:1021)
+	at de.cau.cs.kieler.klighd.ui.view.DiagramView$10.runInUIThread(DiagramView.java:998)
+	at org.eclipse.ui.progress.UIJob$1.run(UIJob.java:97)
+	at org.eclipse.swt.widgets.RunnableLock.run(RunnableLock.java:35)
+	at org.eclipse.swt.widgets.Synchronizer.runAsyncMessages(Synchronizer.java:182)
+	at org.eclipse.swt.widgets.Display.runAsyncMessages(Display.java:4203)
+	at org.eclipse.swt.widgets.Display.readAndDispatch(Display.java:3819)
+	at org.eclipse.elk.core.service.util.MonitoredOperation.runUnmonitored(MonitoredOperation.java:246)
+	at org.eclipse.elk.core.service.util.MonitoredOperation.runUnmonitored(MonitoredOperation.java:157)
+	at org.eclipse.elk.core.service.DiagramLayoutEngine.layout(DiagramLayoutEngine.java:436)
+	at org.eclipse.elk.core.service.DiagramLayoutEngine.invokeLayout(DiagramLayoutEngine.java:291)
+	at de.cau.cs.kieler.klighd.LightDiagramServices.layoutDiagram(LightDiagramServices.java:974)
+	at de.cau.cs.kieler.klighd.LightDiagramLayoutConfig.performLayout(LightDiagramLayoutConfig.java:344)
+	at de.cau.cs.kieler.klighd.LightDiagramServices.updateDiagram(LightDiagramServices.java:308)
+	at de.cau.cs.kieler.klighd.LightDiagramLayoutConfig.performUpdate(LightDiagramLayoutConfig.java:355)
+	at de.cau.cs.kieler.klighd.ui.DiagramViewManager.updateView(DiagramViewManager.java:251)
+	at de.cau.cs.kieler.kico.ui.KiCoSelectionView.updateDiagram(KiCoSelectionView.java:1249)
+	at de.cau.cs.kieler.kico.ui.KiCoSelectionView.updateView(KiCoSelectionView.java:769)
+	at de.cau.cs.kieler.kico.ui.KiCoSelectionView.updateView(KiCoSelectionView.java:810)
+	at de.cau.cs.kieler.kico.ui.KiCoSelectionView$1.partActivated(KiCoSelectionView.java:885)
+	at org.eclipse.ui.internal.WorkbenchPage$15.run(WorkbenchPage.java:4986)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.ui.internal.WorkbenchPage.firePartActivated(WorkbenchPage.java:4983)
+	at org.eclipse.ui.internal.WorkbenchPage.access$19(WorkbenchPage.java:4962)
+	at org.eclipse.ui.internal.WorkbenchPage$E4PartListener.partActivated(WorkbenchPage.java:210)
+	at org.eclipse.e4.ui.internal.workbench.PartServiceImpl$3.run(PartServiceImpl.java:250)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.e4.ui.internal.workbench.PartServiceImpl.firePartActivated(PartServiceImpl.java:247)
+	at org.eclipse.e4.ui.internal.workbench.PartServiceImpl.activate(PartServiceImpl.java:757)
+	at org.eclipse.e4.ui.internal.workbench.PartServiceImpl.activate(PartServiceImpl.java:682)
+	at org.eclipse.e4.ui.internal.workbench.PartServiceImpl.activate(PartServiceImpl.java:677)
+	at org.eclipse.ui.internal.WorkbenchPage.busyOpenEditor(WorkbenchPage.java:3269)
+	at org.eclipse.ui.internal.WorkbenchPage.access$25(WorkbenchPage.java:3176)
+	at org.eclipse.ui.internal.WorkbenchPage$10.run(WorkbenchPage.java:3158)
+	at org.eclipse.swt.custom.BusyIndicator.showWhile(BusyIndicator.java:70)
+	at org.eclipse.ui.internal.WorkbenchPage.openEditor(WorkbenchPage.java:3153)
+	at org.eclipse.ui.internal.WorkbenchPage.openEditor(WorkbenchPage.java:3117)
+	at org.eclipse.ui.internal.WorkbenchPage.openEditor(WorkbenchPage.java:3107)
+	at org.eclipse.ui.ide.IDE.openEditor(IDE.java:563)
+	at org.eclipse.ui.ide.IDE.openEditor(IDE.java:518)
+	at org.eclipse.jdt.internal.ui.javaeditor.EditorUtility.openInEditor(EditorUtility.java:360)
+	at org.eclipse.jdt.internal.ui.javaeditor.EditorUtility.openInEditor(EditorUtility.java:167)
+	at org.eclipse.jdt.ui.actions.OpenAction.run(OpenAction.java:256)
+	at org.eclipse.jdt.ui.actions.OpenAction.run(OpenAction.java:221)
+	at org.eclipse.jdt.ui.actions.SelectionDispatchAction.dispatchRun(SelectionDispatchAction.java:271)
+	at org.eclipse.jdt.ui.actions.SelectionDispatchAction.run(SelectionDispatchAction.java:249)
+	at org.eclipse.jdt.internal.ui.navigator.OpenAndExpand.run(OpenAndExpand.java:50)
+	at org.eclipse.ui.actions.RetargetAction.run(RetargetAction.java:225)
+	at org.eclipse.ui.navigator.CommonNavigatorManager$2.open(CommonNavigatorManager.java:191)
+	at org.eclipse.ui.OpenAndLinkWithEditorHelper$InternalListener.open(OpenAndLinkWithEditorHelper.java:46)
+	at org.eclipse.jface.viewers.StructuredViewer$2.run(StructuredViewer.java:855)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.ui.internal.JFaceUtil$1.run(JFaceUtil.java:50)
+	at org.eclipse.jface.util.SafeRunnable.run(SafeRunnable.java:173)
+	at org.eclipse.jface.viewers.StructuredViewer.fireOpen(StructuredViewer.java:852)
+	at org.eclipse.jface.viewers.StructuredViewer.handleOpen(StructuredViewer.java:1169)
+	at org.eclipse.ui.navigator.CommonViewer.handleOpen(CommonViewer.java:451)
+	at org.eclipse.jface.util.OpenStrategy.fireOpenEvent(OpenStrategy.java:278)
+	at org.eclipse.jface.util.OpenStrategy.access$2(OpenStrategy.java:272)
+	at org.eclipse.jface.util.OpenStrategy$1.handleEvent(OpenStrategy.java:313)
+	at org.eclipse.swt.widgets.EventTable.sendEvent(EventTable.java:84)
+	at org.eclipse.swt.widgets.Display.sendEvent(Display.java:4410)
+	at org.eclipse.swt.widgets.Widget.sendEvent(Widget.java:1079)
+	at org.eclipse.swt.widgets.Display.runDeferredEvents(Display.java:4228)
+	at org.eclipse.swt.widgets.Display.readAndDispatch(Display.java:3816)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine$4.run(PartRenderingEngine.java:1121)
+	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:336)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.run(PartRenderingEngine.java:1022)
+	at org.eclipse.e4.ui.internal.workbench.E4Workbench.createAndRunUI(E4Workbench.java:150)
+	at org.eclipse.ui.internal.Workbench$5.run(Workbench.java:687)
+	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:336)
+	at org.eclipse.ui.internal.Workbench.createAndRunWorkbench(Workbench.java:604)
+	at org.eclipse.ui.PlatformUI.createAndRunWorkbench(PlatformUI.java:148)
+	at org.eclipse.ui.internal.ide.application.IDEApplication.start(IDEApplication.java:138)
+	at org.eclipse.equinox.internal.app.EclipseAppHandle.run(EclipseAppHandle.java:196)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.runApplication(EclipseAppLauncher.java:134)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.start(EclipseAppLauncher.java:104)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:388)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:243)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.eclipse.equinox.launcher.Main.invokeFramework(Main.java:673)
+	at org.eclipse.equinox.launcher.Main.basicRun(Main.java:610)
+	at org.eclipse.equinox.launcher.Main.run(Main.java:1519)
+
+!ENTRY de.cau.cs.kieler.klighd.incremental 1 0 2020-10-18 18:44:14.279
+!MESSAGE Fallback to simple update. Reason: Empty base model.
+
+!ENTRY de.cau.cs.kieler.klighd.incremental 1 0 2020-10-18 18:45:15.125
+!MESSAGE Fallback to simple update. Reason: Empty base model.
+
+!ENTRY de.cau.cs.kieler.klighd 4 0 2020-10-18 18:45:19.791
+!MESSAGE KLighD: Execution of diagram synthesis de.cau.cs.kieler.klighd.syntheses.ReinitializingDiagramSynthesisProxy failed for input model de.cau.cs.kieler.sccharts.impl.StateImpl@558477b5 (id: NewModel, label: NewModel) (type: NORMAL, initial: false, final: false).
+!STACK 0
+java.lang.NullPointerException
+	at de.cau.cs.kieler.sccharts.klighd.synthesis.StateSynthesis$5.apply(StateSynthesis.java:286)
+	at de.cau.cs.kieler.sccharts.klighd.synthesis.StateSynthesis$5.apply(StateSynthesis.java:1)
+	at org.eclipse.xtext.xbase.lib.ObjectExtensions.operator_doubleArrow(ObjectExtensions.java:139)
+	at de.cau.cs.kieler.sccharts.klighd.synthesis.StateSynthesis.performTranformation(StateSynthesis.java:307)
+	at de.cau.cs.kieler.sccharts.klighd.synthesis.StateSynthesis.performTranformation(StateSynthesis.java:1)
+	at de.cau.cs.kieler.sccharts.klighd.synthesis.SubSynthesis.transform(SubSynthesis.java:67)
+	at de.cau.cs.kieler.sccharts.klighd.synthesis.ControlflowRegionSynthesis.performTranformation(ControlflowRegionSynthesis.java:191)
+	at de.cau.cs.kieler.sccharts.klighd.synthesis.ControlflowRegionSynthesis.performTranformation(ControlflowRegionSynthesis.java:1)
+	at de.cau.cs.kieler.sccharts.klighd.synthesis.SubSynthesis.transform(SubSynthesis.java:67)
+	at de.cau.cs.kieler.sccharts.klighd.synthesis.StateSynthesis.performTranformation(StateSynthesis.java:316)
+	at de.cau.cs.kieler.sccharts.klighd.synthesis.StateSynthesis.performTranformation(StateSynthesis.java:1)
+	at de.cau.cs.kieler.sccharts.klighd.synthesis.SubSynthesis.transform(SubSynthesis.java:67)
+	at de.cau.cs.kieler.sccharts.klighd.synthesis.SCChartsSynthesis.transform(SCChartsSynthesis.java:114)
+	at de.cau.cs.kieler.sccharts.klighd.synthesis.SCChartsSynthesis.transform(SCChartsSynthesis.java:1)
+	at de.cau.cs.kieler.klighd.syntheses.AbstractDiagramSynthesis.transform(AbstractDiagramSynthesis.java:221)
+	at de.cau.cs.kieler.klighd.syntheses.ReinitializingDiagramSynthesisProxy.transform(ReinitializingDiagramSynthesisProxy.java:286)
+	at de.cau.cs.kieler.klighd.ViewContext.update(ViewContext.java:456)
+	at de.cau.cs.kieler.klighd.ViewContext.update(ViewContext.java:391)
+	at de.cau.cs.kieler.klighd.ViewContext.update(ViewContext.java:375)
+	at de.cau.cs.kieler.klighd.LightDiagramServices.updateDiagram(LightDiagramServices.java:294)
+	at de.cau.cs.kieler.klighd.LightDiagramLayoutConfig.performUpdate(LightDiagramLayoutConfig.java:355)
+	at de.cau.cs.kieler.klighd.ui.view.DiagramView.doUpdateDiagram(DiagramView.java:1106)
+	at de.cau.cs.kieler.klighd.ui.view.DiagramView.access$5(DiagramView.java:1021)
+	at de.cau.cs.kieler.klighd.ui.view.DiagramView$10.runInUIThread(DiagramView.java:998)
+	at org.eclipse.ui.progress.UIJob$1.run(UIJob.java:97)
+	at org.eclipse.swt.widgets.RunnableLock.run(RunnableLock.java:35)
+	at org.eclipse.swt.widgets.Synchronizer.runAsyncMessages(Synchronizer.java:182)
+	at org.eclipse.swt.widgets.Display.runAsyncMessages(Display.java:4203)
+	at org.eclipse.swt.widgets.Display.readAndDispatch(Display.java:3819)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine$4.run(PartRenderingEngine.java:1121)
+	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:336)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.run(PartRenderingEngine.java:1022)
+	at org.eclipse.e4.ui.internal.workbench.E4Workbench.createAndRunUI(E4Workbench.java:150)
+	at org.eclipse.ui.internal.Workbench$5.run(Workbench.java:687)
+	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:336)
+	at org.eclipse.ui.internal.Workbench.createAndRunWorkbench(Workbench.java:604)
+	at org.eclipse.ui.PlatformUI.createAndRunWorkbench(PlatformUI.java:148)
+	at org.eclipse.ui.internal.ide.application.IDEApplication.start(IDEApplication.java:138)
+	at org.eclipse.equinox.internal.app.EclipseAppHandle.run(EclipseAppHandle.java:196)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.runApplication(EclipseAppLauncher.java:134)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.start(EclipseAppLauncher.java:104)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:388)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:243)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.eclipse.equinox.launcher.Main.invokeFramework(Main.java:673)
+	at org.eclipse.equinox.launcher.Main.basicRun(Main.java:610)
+	at org.eclipse.equinox.launcher.Main.run(Main.java:1519)
+
+!ENTRY de.cau.cs.kieler.klighd.incremental 1 0 2020-10-18 18:45:19.822
+!MESSAGE Fallback to simple update. Reason: Empty base model.
+
+!ENTRY de.cau.cs.kieler.klighd.incremental 1 0 2020-10-18 18:45:26.935
+!MESSAGE Fallback to simple update. Reason: Empty base model.
+
+!ENTRY de.cau.cs.kieler.klighd 4 0 2020-10-18 18:45:46.943
+!MESSAGE KLighD: Execution of diagram synthesis de.cau.cs.kieler.klighd.syntheses.ReinitializingDiagramSynthesisProxy failed for input model de.cau.cs.kieler.sccharts.impl.StateImpl@3b3c891d (id: NewModel, label: NewModel) (type: NORMAL, initial: false, final: false).
+!STACK 0
+java.lang.NullPointerException
+	at de.cau.cs.kieler.sccharts.klighd.synthesis.StateSynthesis$5.apply(StateSynthesis.java:286)
+	at de.cau.cs.kieler.sccharts.klighd.synthesis.StateSynthesis$5.apply(StateSynthesis.java:1)
+	at org.eclipse.xtext.xbase.lib.ObjectExtensions.operator_doubleArrow(ObjectExtensions.java:139)
+	at de.cau.cs.kieler.sccharts.klighd.synthesis.StateSynthesis.performTranformation(StateSynthesis.java:307)
+	at de.cau.cs.kieler.sccharts.klighd.synthesis.StateSynthesis.performTranformation(StateSynthesis.java:1)
+	at de.cau.cs.kieler.sccharts.klighd.synthesis.SubSynthesis.transform(SubSynthesis.java:67)
+	at de.cau.cs.kieler.sccharts.klighd.synthesis.ControlflowRegionSynthesis.performTranformation(ControlflowRegionSynthesis.java:191)
+	at de.cau.cs.kieler.sccharts.klighd.synthesis.ControlflowRegionSynthesis.performTranformation(ControlflowRegionSynthesis.java:1)
+	at de.cau.cs.kieler.sccharts.klighd.synthesis.SubSynthesis.transform(SubSynthesis.java:67)
+	at de.cau.cs.kieler.sccharts.klighd.synthesis.StateSynthesis.performTranformation(StateSynthesis.java:316)
+	at de.cau.cs.kieler.sccharts.klighd.synthesis.StateSynthesis.performTranformation(StateSynthesis.java:1)
+	at de.cau.cs.kieler.sccharts.klighd.synthesis.SubSynthesis.transform(SubSynthesis.java:67)
+	at de.cau.cs.kieler.sccharts.klighd.synthesis.SCChartsSynthesis.transform(SCChartsSynthesis.java:114)
+	at de.cau.cs.kieler.sccharts.klighd.synthesis.SCChartsSynthesis.transform(SCChartsSynthesis.java:1)
+	at de.cau.cs.kieler.klighd.syntheses.AbstractDiagramSynthesis.transform(AbstractDiagramSynthesis.java:221)
+	at de.cau.cs.kieler.klighd.syntheses.ReinitializingDiagramSynthesisProxy.transform(ReinitializingDiagramSynthesisProxy.java:286)
+	at de.cau.cs.kieler.klighd.ViewContext.update(ViewContext.java:456)
+	at de.cau.cs.kieler.klighd.ViewContext.update(ViewContext.java:391)
+	at de.cau.cs.kieler.klighd.ViewContext.update(ViewContext.java:375)
+	at de.cau.cs.kieler.klighd.LightDiagramServices.updateDiagram(LightDiagramServices.java:294)
+	at de.cau.cs.kieler.klighd.LightDiagramLayoutConfig.performUpdate(LightDiagramLayoutConfig.java:355)
+	at de.cau.cs.kieler.klighd.ui.view.DiagramView.doUpdateDiagram(DiagramView.java:1106)
+	at de.cau.cs.kieler.klighd.ui.view.DiagramView.access$5(DiagramView.java:1021)
+	at de.cau.cs.kieler.klighd.ui.view.DiagramView$10.runInUIThread(DiagramView.java:998)
+	at org.eclipse.ui.progress.UIJob$1.run(UIJob.java:97)
+	at org.eclipse.swt.widgets.RunnableLock.run(RunnableLock.java:35)
+	at org.eclipse.swt.widgets.Synchronizer.runAsyncMessages(Synchronizer.java:182)
+	at org.eclipse.swt.widgets.Display.runAsyncMessages(Display.java:4203)
+	at org.eclipse.swt.widgets.Display.readAndDispatch(Display.java:3819)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine$4.run(PartRenderingEngine.java:1121)
+	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:336)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.run(PartRenderingEngine.java:1022)
+	at org.eclipse.e4.ui.internal.workbench.E4Workbench.createAndRunUI(E4Workbench.java:150)
+	at org.eclipse.ui.internal.Workbench$5.run(Workbench.java:687)
+	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:336)
+	at org.eclipse.ui.internal.Workbench.createAndRunWorkbench(Workbench.java:604)
+	at org.eclipse.ui.PlatformUI.createAndRunWorkbench(PlatformUI.java:148)
+	at org.eclipse.ui.internal.ide.application.IDEApplication.start(IDEApplication.java:138)
+	at org.eclipse.equinox.internal.app.EclipseAppHandle.run(EclipseAppHandle.java:196)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.runApplication(EclipseAppLauncher.java:134)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.start(EclipseAppLauncher.java:104)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:388)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:243)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.eclipse.equinox.launcher.Main.invokeFramework(Main.java:673)
+	at org.eclipse.equinox.launcher.Main.basicRun(Main.java:610)
+	at org.eclipse.equinox.launcher.Main.run(Main.java:1519)
+
+!ENTRY de.cau.cs.kieler.klighd.incremental 1 0 2020-10-18 18:45:46.970
+!MESSAGE Fallback to simple update. Reason: Empty base model.
+
+!ENTRY de.cau.cs.kieler.klighd 4 0 2020-10-18 18:45:47.832
+!MESSAGE KLighD: Execution of diagram synthesis de.cau.cs.kieler.klighd.syntheses.ReinitializingDiagramSynthesisProxy failed for input model de.cau.cs.kieler.sccharts.impl.StateImpl@6d4dffdb (id: NewModel, label: NewModel) (type: NORMAL, initial: false, final: false).
+!STACK 0
+java.lang.NullPointerException
+	at de.cau.cs.kieler.sccharts.klighd.synthesis.StateSynthesis$5.apply(StateSynthesis.java:286)
+	at de.cau.cs.kieler.sccharts.klighd.synthesis.StateSynthesis$5.apply(StateSynthesis.java:1)
+	at org.eclipse.xtext.xbase.lib.ObjectExtensions.operator_doubleArrow(ObjectExtensions.java:139)
+	at de.cau.cs.kieler.sccharts.klighd.synthesis.StateSynthesis.performTranformation(StateSynthesis.java:307)
+	at de.cau.cs.kieler.sccharts.klighd.synthesis.StateSynthesis.performTranformation(StateSynthesis.java:1)
+	at de.cau.cs.kieler.sccharts.klighd.synthesis.SubSynthesis.transform(SubSynthesis.java:67)
+	at de.cau.cs.kieler.sccharts.klighd.synthesis.ControlflowRegionSynthesis.performTranformation(ControlflowRegionSynthesis.java:191)
+	at de.cau.cs.kieler.sccharts.klighd.synthesis.ControlflowRegionSynthesis.performTranformation(ControlflowRegionSynthesis.java:1)
+	at de.cau.cs.kieler.sccharts.klighd.synthesis.SubSynthesis.transform(SubSynthesis.java:67)
+	at de.cau.cs.kieler.sccharts.klighd.synthesis.StateSynthesis.performTranformation(StateSynthesis.java:316)
+	at de.cau.cs.kieler.sccharts.klighd.synthesis.StateSynthesis.performTranformation(StateSynthesis.java:1)
+	at de.cau.cs.kieler.sccharts.klighd.synthesis.SubSynthesis.transform(SubSynthesis.java:67)
+	at de.cau.cs.kieler.sccharts.klighd.synthesis.SCChartsSynthesis.transform(SCChartsSynthesis.java:114)
+	at de.cau.cs.kieler.sccharts.klighd.synthesis.SCChartsSynthesis.transform(SCChartsSynthesis.java:1)
+	at de.cau.cs.kieler.klighd.syntheses.AbstractDiagramSynthesis.transform(AbstractDiagramSynthesis.java:221)
+	at de.cau.cs.kieler.klighd.syntheses.ReinitializingDiagramSynthesisProxy.transform(ReinitializingDiagramSynthesisProxy.java:286)
+	at de.cau.cs.kieler.klighd.ViewContext.update(ViewContext.java:456)
+	at de.cau.cs.kieler.klighd.ViewContext.update(ViewContext.java:391)
+	at de.cau.cs.kieler.klighd.ViewContext.update(ViewContext.java:348)
+	at de.cau.cs.kieler.klighd.ViewContext.update(ViewContext.java:333)
+	at de.cau.cs.kieler.klighd.ui.parts.DiagramViewPart.initialize(DiagramViewPart.java:201)
+	at de.cau.cs.kieler.klighd.ui.view.DiagramView.doUpdateDiagram(DiagramView.java:1075)
+	at de.cau.cs.kieler.klighd.ui.view.DiagramView.access$5(DiagramView.java:1021)
+	at de.cau.cs.kieler.klighd.ui.view.DiagramView$10.runInUIThread(DiagramView.java:998)
+	at org.eclipse.ui.progress.UIJob$1.run(UIJob.java:97)
+	at org.eclipse.swt.widgets.RunnableLock.run(RunnableLock.java:35)
+	at org.eclipse.swt.widgets.Synchronizer.runAsyncMessages(Synchronizer.java:182)
+	at org.eclipse.swt.widgets.Display.runAsyncMessages(Display.java:4203)
+	at org.eclipse.swt.widgets.Display.readAndDispatch(Display.java:3819)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine$4.run(PartRenderingEngine.java:1121)
+	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:336)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.run(PartRenderingEngine.java:1022)
+	at org.eclipse.e4.ui.internal.workbench.E4Workbench.createAndRunUI(E4Workbench.java:150)
+	at org.eclipse.ui.internal.Workbench$5.run(Workbench.java:687)
+	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:336)
+	at org.eclipse.ui.internal.Workbench.createAndRunWorkbench(Workbench.java:604)
+	at org.eclipse.ui.PlatformUI.createAndRunWorkbench(PlatformUI.java:148)
+	at org.eclipse.ui.internal.ide.application.IDEApplication.start(IDEApplication.java:138)
+	at org.eclipse.equinox.internal.app.EclipseAppHandle.run(EclipseAppHandle.java:196)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.runApplication(EclipseAppLauncher.java:134)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.start(EclipseAppLauncher.java:104)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:388)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:243)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.eclipse.equinox.launcher.Main.invokeFramework(Main.java:673)
+	at org.eclipse.equinox.launcher.Main.basicRun(Main.java:610)
+	at org.eclipse.equinox.launcher.Main.run(Main.java:1519)
+
+!ENTRY de.cau.cs.kieler.klighd.incremental 1 0 2020-10-18 18:45:47.989
+!MESSAGE Fallback to simple update. Reason: Empty base model.
+
+!ENTRY de.cau.cs.kieler.klighd 4 0 2020-10-18 18:46:00.579
+!MESSAGE KLighD: Execution of diagram synthesis de.cau.cs.kieler.klighd.syntheses.ReinitializingDiagramSynthesisProxy failed for input model de.cau.cs.kieler.sccharts.impl.StateImpl@6d4dffdb (id: NewModel, label: NewModel) (type: NORMAL, initial: false, final: false).
+!STACK 0
+java.lang.NullPointerException
+	at de.cau.cs.kieler.sccharts.klighd.synthesis.StateSynthesis$5.apply(StateSynthesis.java:286)
+	at de.cau.cs.kieler.sccharts.klighd.synthesis.StateSynthesis$5.apply(StateSynthesis.java:1)
+	at org.eclipse.xtext.xbase.lib.ObjectExtensions.operator_doubleArrow(ObjectExtensions.java:139)
+	at de.cau.cs.kieler.sccharts.klighd.synthesis.StateSynthesis.performTranformation(StateSynthesis.java:307)
+	at de.cau.cs.kieler.sccharts.klighd.synthesis.StateSynthesis.performTranformation(StateSynthesis.java:1)
+	at de.cau.cs.kieler.sccharts.klighd.synthesis.SubSynthesis.transform(SubSynthesis.java:67)
+	at de.cau.cs.kieler.sccharts.klighd.synthesis.ControlflowRegionSynthesis.performTranformation(ControlflowRegionSynthesis.java:191)
+	at de.cau.cs.kieler.sccharts.klighd.synthesis.ControlflowRegionSynthesis.performTranformation(ControlflowRegionSynthesis.java:1)
+	at de.cau.cs.kieler.sccharts.klighd.synthesis.SubSynthesis.transform(SubSynthesis.java:67)
+	at de.cau.cs.kieler.sccharts.klighd.synthesis.StateSynthesis.performTranformation(StateSynthesis.java:316)
+	at de.cau.cs.kieler.sccharts.klighd.synthesis.StateSynthesis.performTranformation(StateSynthesis.java:1)
+	at de.cau.cs.kieler.sccharts.klighd.synthesis.SubSynthesis.transform(SubSynthesis.java:67)
+	at de.cau.cs.kieler.sccharts.klighd.synthesis.SCChartsSynthesis.transform(SCChartsSynthesis.java:114)
+	at de.cau.cs.kieler.sccharts.klighd.synthesis.SCChartsSynthesis.transform(SCChartsSynthesis.java:1)
+	at de.cau.cs.kieler.klighd.syntheses.AbstractDiagramSynthesis.transform(AbstractDiagramSynthesis.java:221)
+	at de.cau.cs.kieler.klighd.syntheses.ReinitializingDiagramSynthesisProxy.transform(ReinitializingDiagramSynthesisProxy.java:286)
+	at de.cau.cs.kieler.klighd.ViewContext.update(ViewContext.java:456)
+	at de.cau.cs.kieler.klighd.ViewContext.update(ViewContext.java:391)
+	at de.cau.cs.kieler.klighd.ViewContext.update(ViewContext.java:348)
+	at de.cau.cs.kieler.klighd.ViewContext.update(ViewContext.java:333)
+	at de.cau.cs.kieler.klighd.ui.parts.DiagramViewPart.initialize(DiagramViewPart.java:201)
+	at de.cau.cs.kieler.klighd.ui.view.DiagramView.doUpdateDiagram(DiagramView.java:1075)
+	at de.cau.cs.kieler.klighd.ui.view.DiagramView.access$5(DiagramView.java:1021)
+	at de.cau.cs.kieler.klighd.ui.view.DiagramView$10.runInUIThread(DiagramView.java:998)
+	at org.eclipse.ui.progress.UIJob$1.run(UIJob.java:97)
+	at org.eclipse.swt.widgets.RunnableLock.run(RunnableLock.java:35)
+	at org.eclipse.swt.widgets.Synchronizer.runAsyncMessages(Synchronizer.java:182)
+	at org.eclipse.swt.widgets.Display.runAsyncMessages(Display.java:4203)
+	at org.eclipse.swt.widgets.Display.readAndDispatch(Display.java:3819)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine$4.run(PartRenderingEngine.java:1121)
+	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:336)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.run(PartRenderingEngine.java:1022)
+	at org.eclipse.e4.ui.internal.workbench.E4Workbench.createAndRunUI(E4Workbench.java:150)
+	at org.eclipse.ui.internal.Workbench$5.run(Workbench.java:687)
+	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:336)
+	at org.eclipse.ui.internal.Workbench.createAndRunWorkbench(Workbench.java:604)
+	at org.eclipse.ui.PlatformUI.createAndRunWorkbench(PlatformUI.java:148)
+	at org.eclipse.ui.internal.ide.application.IDEApplication.start(IDEApplication.java:138)
+	at org.eclipse.equinox.internal.app.EclipseAppHandle.run(EclipseAppHandle.java:196)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.runApplication(EclipseAppLauncher.java:134)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.start(EclipseAppLauncher.java:104)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:388)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:243)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.eclipse.equinox.launcher.Main.invokeFramework(Main.java:673)
+	at org.eclipse.equinox.launcher.Main.basicRun(Main.java:610)
+	at org.eclipse.equinox.launcher.Main.run(Main.java:1519)
+
+!ENTRY de.cau.cs.kieler.klighd.incremental 1 0 2020-10-18 18:46:00.738
+!MESSAGE Fallback to simple update. Reason: Empty base model.
+
+!ENTRY de.cau.cs.kieler.klighd 4 0 2020-10-18 18:46:03.243
+!MESSAGE KLighD: Execution of diagram synthesis de.cau.cs.kieler.klighd.syntheses.ReinitializingDiagramSynthesisProxy failed for input model de.cau.cs.kieler.sccharts.impl.StateImpl@2446ff3d (id: NewModel, label: NewModel) (type: NORMAL, initial: false, final: false).
+!STACK 0
+java.lang.NullPointerException
+	at de.cau.cs.kieler.sccharts.klighd.synthesis.StateSynthesis$5.apply(StateSynthesis.java:286)
+	at de.cau.cs.kieler.sccharts.klighd.synthesis.StateSynthesis$5.apply(StateSynthesis.java:1)
+	at org.eclipse.xtext.xbase.lib.ObjectExtensions.operator_doubleArrow(ObjectExtensions.java:139)
+	at de.cau.cs.kieler.sccharts.klighd.synthesis.StateSynthesis.performTranformation(StateSynthesis.java:307)
+	at de.cau.cs.kieler.sccharts.klighd.synthesis.StateSynthesis.performTranformation(StateSynthesis.java:1)
+	at de.cau.cs.kieler.sccharts.klighd.synthesis.SubSynthesis.transform(SubSynthesis.java:67)
+	at de.cau.cs.kieler.sccharts.klighd.synthesis.ControlflowRegionSynthesis.performTranformation(ControlflowRegionSynthesis.java:191)
+	at de.cau.cs.kieler.sccharts.klighd.synthesis.ControlflowRegionSynthesis.performTranformation(ControlflowRegionSynthesis.java:1)
+	at de.cau.cs.kieler.sccharts.klighd.synthesis.SubSynthesis.transform(SubSynthesis.java:67)
+	at de.cau.cs.kieler.sccharts.klighd.synthesis.StateSynthesis.performTranformation(StateSynthesis.java:316)
+	at de.cau.cs.kieler.sccharts.klighd.synthesis.StateSynthesis.performTranformation(StateSynthesis.java:1)
+	at de.cau.cs.kieler.sccharts.klighd.synthesis.SubSynthesis.transform(SubSynthesis.java:67)
+	at de.cau.cs.kieler.sccharts.klighd.synthesis.SCChartsSynthesis.transform(SCChartsSynthesis.java:114)
+	at de.cau.cs.kieler.sccharts.klighd.synthesis.SCChartsSynthesis.transform(SCChartsSynthesis.java:1)
+	at de.cau.cs.kieler.klighd.syntheses.AbstractDiagramSynthesis.transform(AbstractDiagramSynthesis.java:221)
+	at de.cau.cs.kieler.klighd.syntheses.ReinitializingDiagramSynthesisProxy.transform(ReinitializingDiagramSynthesisProxy.java:286)
+	at de.cau.cs.kieler.klighd.ViewContext.update(ViewContext.java:456)
+	at de.cau.cs.kieler.klighd.ViewContext.update(ViewContext.java:391)
+	at de.cau.cs.kieler.klighd.ViewContext.update(ViewContext.java:348)
+	at de.cau.cs.kieler.klighd.ViewContext.update(ViewContext.java:333)
+	at de.cau.cs.kieler.klighd.ui.parts.DiagramViewPart.initialize(DiagramViewPart.java:201)
+	at de.cau.cs.kieler.klighd.ui.view.DiagramView.doUpdateDiagram(DiagramView.java:1075)
+	at de.cau.cs.kieler.klighd.ui.view.DiagramView.access$5(DiagramView.java:1021)
+	at de.cau.cs.kieler.klighd.ui.view.DiagramView$10.runInUIThread(DiagramView.java:998)
+	at org.eclipse.ui.progress.UIJob$1.run(UIJob.java:97)
+	at org.eclipse.swt.widgets.RunnableLock.run(RunnableLock.java:35)
+	at org.eclipse.swt.widgets.Synchronizer.runAsyncMessages(Synchronizer.java:182)
+	at org.eclipse.swt.widgets.Display.runAsyncMessages(Display.java:4203)
+	at org.eclipse.swt.widgets.Display.readAndDispatch(Display.java:3819)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine$4.run(PartRenderingEngine.java:1121)
+	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:336)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.run(PartRenderingEngine.java:1022)
+	at org.eclipse.e4.ui.internal.workbench.E4Workbench.createAndRunUI(E4Workbench.java:150)
+	at org.eclipse.ui.internal.Workbench$5.run(Workbench.java:687)
+	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:336)
+	at org.eclipse.ui.internal.Workbench.createAndRunWorkbench(Workbench.java:604)
+	at org.eclipse.ui.PlatformUI.createAndRunWorkbench(PlatformUI.java:148)
+	at org.eclipse.ui.internal.ide.application.IDEApplication.start(IDEApplication.java:138)
+	at org.eclipse.equinox.internal.app.EclipseAppHandle.run(EclipseAppHandle.java:196)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.runApplication(EclipseAppLauncher.java:134)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.start(EclipseAppLauncher.java:104)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:388)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:243)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.eclipse.equinox.launcher.Main.invokeFramework(Main.java:673)
+	at org.eclipse.equinox.launcher.Main.basicRun(Main.java:610)
+	at org.eclipse.equinox.launcher.Main.run(Main.java:1519)
+
+!ENTRY de.cau.cs.kieler.klighd.incremental 1 0 2020-10-18 18:46:03.402
+!MESSAGE Fallback to simple update. Reason: Empty base model.
+
+!ENTRY de.cau.cs.kieler.klighd.incremental 1 0 2020-10-18 18:46:23.929
+!MESSAGE Fallback to simple update. Reason: Empty base model.
+
+!ENTRY de.cau.cs.kieler.klighd 4 0 2020-10-18 18:46:28.056
+!MESSAGE KLighD: Execution of diagram synthesis de.cau.cs.kieler.klighd.syntheses.ReinitializingDiagramSynthesisProxy failed for input model de.cau.cs.kieler.sccharts.impl.StateImpl@2b5c37d2 (id: NewModel, label: NewModel) (type: NORMAL, initial: false, final: false).
+!STACK 0
+java.lang.NullPointerException
+	at de.cau.cs.kieler.kexpressions.extensions.KExpressionsSerializeHRExtensions._serializeHR(KExpressionsSerializeHRExtensions.java:76)
+	at de.cau.cs.kieler.sccharts.extensions.SCChartsSerializeHRExtension.serializeHR(SCChartsSerializeHRExtension.java:578)
+	at de.cau.cs.kieler.sccharts.extensions.SCChartsSerializeHRExtension.serialize(SCChartsSerializeHRExtension.java:84)
+	at de.cau.cs.kieler.sccharts.extensions.SCChartsSerializeHRExtension._serializeHR(SCChartsSerializeHRExtension.java:66)
+	at de.cau.cs.kieler.sccharts.extensions.SCChartsSerializeHRExtension.serializeHR(SCChartsSerializeHRExtension.java:570)
+	at de.cau.cs.kieler.sccharts.klighd.synthesis.TransitionSynthesis.performTranformation(TransitionSynthesis.java:146)
+	at de.cau.cs.kieler.sccharts.klighd.synthesis.TransitionSynthesis.performTranformation(TransitionSynthesis.java:1)
+	at de.cau.cs.kieler.sccharts.klighd.synthesis.SubSynthesis.transform(SubSynthesis.java:67)
+	at de.cau.cs.kieler.sccharts.klighd.synthesis.StateSynthesis.performTranformation(StateSynthesis.java:281)
+	at de.cau.cs.kieler.sccharts.klighd.synthesis.StateSynthesis.performTranformation(StateSynthesis.java:1)
+	at de.cau.cs.kieler.sccharts.klighd.synthesis.SubSynthesis.transform(SubSynthesis.java:67)
+	at de.cau.cs.kieler.sccharts.klighd.synthesis.ControlflowRegionSynthesis.performTranformation(ControlflowRegionSynthesis.java:191)
+	at de.cau.cs.kieler.sccharts.klighd.synthesis.ControlflowRegionSynthesis.performTranformation(ControlflowRegionSynthesis.java:1)
+	at de.cau.cs.kieler.sccharts.klighd.synthesis.SubSynthesis.transform(SubSynthesis.java:67)
+	at de.cau.cs.kieler.sccharts.klighd.synthesis.StateSynthesis.performTranformation(StateSynthesis.java:316)
+	at de.cau.cs.kieler.sccharts.klighd.synthesis.StateSynthesis.performTranformation(StateSynthesis.java:1)
+	at de.cau.cs.kieler.sccharts.klighd.synthesis.SubSynthesis.transform(SubSynthesis.java:67)
+	at de.cau.cs.kieler.sccharts.klighd.synthesis.SCChartsSynthesis.transform(SCChartsSynthesis.java:114)
+	at de.cau.cs.kieler.sccharts.klighd.synthesis.SCChartsSynthesis.transform(SCChartsSynthesis.java:1)
+	at de.cau.cs.kieler.klighd.syntheses.AbstractDiagramSynthesis.transform(AbstractDiagramSynthesis.java:221)
+	at de.cau.cs.kieler.klighd.syntheses.ReinitializingDiagramSynthesisProxy.transform(ReinitializingDiagramSynthesisProxy.java:286)
+	at de.cau.cs.kieler.klighd.ViewContext.update(ViewContext.java:456)
+	at de.cau.cs.kieler.klighd.ViewContext.update(ViewContext.java:391)
+	at de.cau.cs.kieler.klighd.ViewContext.update(ViewContext.java:375)
+	at de.cau.cs.kieler.klighd.LightDiagramServices.updateDiagram(LightDiagramServices.java:294)
+	at de.cau.cs.kieler.klighd.LightDiagramLayoutConfig.performUpdate(LightDiagramLayoutConfig.java:355)
+	at de.cau.cs.kieler.klighd.ui.view.DiagramView.doUpdateDiagram(DiagramView.java:1106)
+	at de.cau.cs.kieler.klighd.ui.view.DiagramView.access$5(DiagramView.java:1021)
+	at de.cau.cs.kieler.klighd.ui.view.DiagramView$10.runInUIThread(DiagramView.java:998)
+	at org.eclipse.ui.progress.UIJob$1.run(UIJob.java:97)
+	at org.eclipse.swt.widgets.RunnableLock.run(RunnableLock.java:35)
+	at org.eclipse.swt.widgets.Synchronizer.runAsyncMessages(Synchronizer.java:182)
+	at org.eclipse.swt.widgets.Display.runAsyncMessages(Display.java:4203)
+	at org.eclipse.swt.widgets.Display.readAndDispatch(Display.java:3819)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine$4.run(PartRenderingEngine.java:1121)
+	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:336)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.run(PartRenderingEngine.java:1022)
+	at org.eclipse.e4.ui.internal.workbench.E4Workbench.createAndRunUI(E4Workbench.java:150)
+	at org.eclipse.ui.internal.Workbench$5.run(Workbench.java:687)
+	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:336)
+	at org.eclipse.ui.internal.Workbench.createAndRunWorkbench(Workbench.java:604)
+	at org.eclipse.ui.PlatformUI.createAndRunWorkbench(PlatformUI.java:148)
+	at org.eclipse.ui.internal.ide.application.IDEApplication.start(IDEApplication.java:138)
+	at org.eclipse.equinox.internal.app.EclipseAppHandle.run(EclipseAppHandle.java:196)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.runApplication(EclipseAppLauncher.java:134)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.start(EclipseAppLauncher.java:104)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:388)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:243)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.eclipse.equinox.launcher.Main.invokeFramework(Main.java:673)
+	at org.eclipse.equinox.launcher.Main.basicRun(Main.java:610)
+	at org.eclipse.equinox.launcher.Main.run(Main.java:1519)
+
+!ENTRY de.cau.cs.kieler.klighd.incremental 1 0 2020-10-18 18:46:28.087
+!MESSAGE Fallback to simple update. Reason: Empty base model.
+
+!ENTRY de.cau.cs.kieler.klighd.incremental 1 0 2020-10-18 18:46:35.192
+!MESSAGE Fallback to simple update. Reason: Empty base model.
+
+!ENTRY de.cau.cs.kieler.klighd 4 0 2020-10-18 18:49:47.303
+!MESSAGE KLighD: Execution of diagram synthesis de.cau.cs.kieler.klighd.syntheses.ReinitializingDiagramSynthesisProxy failed for input model de.cau.cs.kieler.sccharts.impl.StateImpl@35c0ca73 (id: NewModel, label: NewModel) (type: NORMAL, initial: false, final: false).
+!STACK 0
+java.lang.NullPointerException
+	at de.cau.cs.kieler.kexpressions.extensions.KExpressionsSerializeHRExtensions._serializeHR(KExpressionsSerializeHRExtensions.java:76)
+	at de.cau.cs.kieler.sccharts.extensions.SCChartsSerializeHRExtension.serializeHR(SCChartsSerializeHRExtension.java:578)
+	at de.cau.cs.kieler.sccharts.extensions.SCChartsSerializeHRExtension.serialize(SCChartsSerializeHRExtension.java:84)
+	at de.cau.cs.kieler.sccharts.extensions.SCChartsSerializeHRExtension._serializeHR(SCChartsSerializeHRExtension.java:66)
+	at de.cau.cs.kieler.sccharts.extensions.SCChartsSerializeHRExtension.serializeHR(SCChartsSerializeHRExtension.java:570)
+	at de.cau.cs.kieler.sccharts.klighd.synthesis.TransitionSynthesis.performTranformation(TransitionSynthesis.java:146)
+	at de.cau.cs.kieler.sccharts.klighd.synthesis.TransitionSynthesis.performTranformation(TransitionSynthesis.java:1)
+	at de.cau.cs.kieler.sccharts.klighd.synthesis.SubSynthesis.transform(SubSynthesis.java:67)
+	at de.cau.cs.kieler.sccharts.klighd.synthesis.StateSynthesis.performTranformation(StateSynthesis.java:281)
+	at de.cau.cs.kieler.sccharts.klighd.synthesis.StateSynthesis.performTranformation(StateSynthesis.java:1)
+	at de.cau.cs.kieler.sccharts.klighd.synthesis.SubSynthesis.transform(SubSynthesis.java:67)
+	at de.cau.cs.kieler.sccharts.klighd.synthesis.ControlflowRegionSynthesis.performTranformation(ControlflowRegionSynthesis.java:191)
+	at de.cau.cs.kieler.sccharts.klighd.synthesis.ControlflowRegionSynthesis.performTranformation(ControlflowRegionSynthesis.java:1)
+	at de.cau.cs.kieler.sccharts.klighd.synthesis.SubSynthesis.transform(SubSynthesis.java:67)
+	at de.cau.cs.kieler.sccharts.klighd.synthesis.StateSynthesis.performTranformation(StateSynthesis.java:316)
+	at de.cau.cs.kieler.sccharts.klighd.synthesis.StateSynthesis.performTranformation(StateSynthesis.java:1)
+	at de.cau.cs.kieler.sccharts.klighd.synthesis.SubSynthesis.transform(SubSynthesis.java:67)
+	at de.cau.cs.kieler.sccharts.klighd.synthesis.SCChartsSynthesis.transform(SCChartsSynthesis.java:114)
+	at de.cau.cs.kieler.sccharts.klighd.synthesis.SCChartsSynthesis.transform(SCChartsSynthesis.java:1)
+	at de.cau.cs.kieler.klighd.syntheses.AbstractDiagramSynthesis.transform(AbstractDiagramSynthesis.java:221)
+	at de.cau.cs.kieler.klighd.syntheses.ReinitializingDiagramSynthesisProxy.transform(ReinitializingDiagramSynthesisProxy.java:286)
+	at de.cau.cs.kieler.klighd.ViewContext.update(ViewContext.java:456)
+	at de.cau.cs.kieler.klighd.ViewContext.update(ViewContext.java:391)
+	at de.cau.cs.kieler.klighd.ViewContext.update(ViewContext.java:375)
+	at de.cau.cs.kieler.klighd.LightDiagramServices.updateDiagram(LightDiagramServices.java:294)
+	at de.cau.cs.kieler.klighd.LightDiagramLayoutConfig.performUpdate(LightDiagramLayoutConfig.java:355)
+	at de.cau.cs.kieler.klighd.ui.view.DiagramView.doUpdateDiagram(DiagramView.java:1106)
+	at de.cau.cs.kieler.klighd.ui.view.DiagramView.access$5(DiagramView.java:1021)
+	at de.cau.cs.kieler.klighd.ui.view.DiagramView$10.runInUIThread(DiagramView.java:998)
+	at org.eclipse.ui.progress.UIJob$1.run(UIJob.java:97)
+	at org.eclipse.swt.widgets.RunnableLock.run(RunnableLock.java:35)
+	at org.eclipse.swt.widgets.Synchronizer.runAsyncMessages(Synchronizer.java:182)
+	at org.eclipse.swt.widgets.Display.runAsyncMessages(Display.java:4203)
+	at org.eclipse.swt.widgets.Display.readAndDispatch(Display.java:3819)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine$4.run(PartRenderingEngine.java:1121)
+	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:336)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.run(PartRenderingEngine.java:1022)
+	at org.eclipse.e4.ui.internal.workbench.E4Workbench.createAndRunUI(E4Workbench.java:150)
+	at org.eclipse.ui.internal.Workbench$5.run(Workbench.java:687)
+	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:336)
+	at org.eclipse.ui.internal.Workbench.createAndRunWorkbench(Workbench.java:604)
+	at org.eclipse.ui.PlatformUI.createAndRunWorkbench(PlatformUI.java:148)
+	at org.eclipse.ui.internal.ide.application.IDEApplication.start(IDEApplication.java:138)
+	at org.eclipse.equinox.internal.app.EclipseAppHandle.run(EclipseAppHandle.java:196)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.runApplication(EclipseAppLauncher.java:134)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.start(EclipseAppLauncher.java:104)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:388)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:243)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.eclipse.equinox.launcher.Main.invokeFramework(Main.java:673)
+	at org.eclipse.equinox.launcher.Main.basicRun(Main.java:610)
+	at org.eclipse.equinox.launcher.Main.run(Main.java:1519)
+
+!ENTRY de.cau.cs.kieler.klighd.incremental 1 0 2020-10-18 18:49:47.332
+!MESSAGE Fallback to simple update. Reason: Empty base model.
+
+!ENTRY de.cau.cs.kieler.klighd.incremental 1 0 2020-10-18 18:49:55.963
+!MESSAGE Fallback to simple update. Reason: Empty base model.
+
+!ENTRY de.cau.cs.kieler.klighd 4 0 2020-10-18 19:05:57.510
+!MESSAGE KLighD: Execution of diagram synthesis de.cau.cs.kieler.klighd.syntheses.ReinitializingDiagramSynthesisProxy failed for input model de.cau.cs.kieler.sccharts.impl.StateImpl@30bca7fd (id: NewModel, label: NewModel) (type: NORMAL, initial: false, final: false).
+!STACK 0
+java.lang.NullPointerException
+	at de.cau.cs.kieler.kexpressions.keffects.extensions.KEffectsSerializeHRExtensions._serializeHR(KEffectsSerializeHRExtensions.java:58)
+	at de.cau.cs.kieler.sccharts.extensions.SCChartsSerializeHRExtension.serializeHR(SCChartsSerializeHRExtension.java:568)
+	at de.cau.cs.kieler.kexpressions.keffects.extensions.KEffectsSerializeHRExtensions._serializeHR(KEffectsSerializeHRExtensions.java:86)
+	at de.cau.cs.kieler.sccharts.extensions.SCChartsSerializeHRExtension.serializeHR(SCChartsSerializeHRExtension.java:582)
+	at de.cau.cs.kieler.sccharts.extensions.SCChartsSerializeHRExtension.serialize(SCChartsSerializeHRExtension.java:99)
+	at de.cau.cs.kieler.sccharts.extensions.SCChartsSerializeHRExtension._serializeHR(SCChartsSerializeHRExtension.java:66)
+	at de.cau.cs.kieler.sccharts.extensions.SCChartsSerializeHRExtension.serializeHR(SCChartsSerializeHRExtension.java:570)
+	at de.cau.cs.kieler.sccharts.klighd.synthesis.TransitionSynthesis.performTranformation(TransitionSynthesis.java:146)
+	at de.cau.cs.kieler.sccharts.klighd.synthesis.TransitionSynthesis.performTranformation(TransitionSynthesis.java:1)
+	at de.cau.cs.kieler.sccharts.klighd.synthesis.SubSynthesis.transform(SubSynthesis.java:67)
+	at de.cau.cs.kieler.sccharts.klighd.synthesis.StateSynthesis.performTranformation(StateSynthesis.java:281)
+	at de.cau.cs.kieler.sccharts.klighd.synthesis.StateSynthesis.performTranformation(StateSynthesis.java:1)
+	at de.cau.cs.kieler.sccharts.klighd.synthesis.SubSynthesis.transform(SubSynthesis.java:67)
+	at de.cau.cs.kieler.sccharts.klighd.synthesis.ControlflowRegionSynthesis.performTranformation(ControlflowRegionSynthesis.java:191)
+	at de.cau.cs.kieler.sccharts.klighd.synthesis.ControlflowRegionSynthesis.performTranformation(ControlflowRegionSynthesis.java:1)
+	at de.cau.cs.kieler.sccharts.klighd.synthesis.SubSynthesis.transform(SubSynthesis.java:67)
+	at de.cau.cs.kieler.sccharts.klighd.synthesis.StateSynthesis.performTranformation(StateSynthesis.java:316)
+	at de.cau.cs.kieler.sccharts.klighd.synthesis.StateSynthesis.performTranformation(StateSynthesis.java:1)
+	at de.cau.cs.kieler.sccharts.klighd.synthesis.SubSynthesis.transform(SubSynthesis.java:67)
+	at de.cau.cs.kieler.sccharts.klighd.synthesis.SCChartsSynthesis.transform(SCChartsSynthesis.java:114)
+	at de.cau.cs.kieler.sccharts.klighd.synthesis.SCChartsSynthesis.transform(SCChartsSynthesis.java:1)
+	at de.cau.cs.kieler.klighd.syntheses.AbstractDiagramSynthesis.transform(AbstractDiagramSynthesis.java:221)
+	at de.cau.cs.kieler.klighd.syntheses.ReinitializingDiagramSynthesisProxy.transform(ReinitializingDiagramSynthesisProxy.java:286)
+	at de.cau.cs.kieler.klighd.ViewContext.update(ViewContext.java:456)
+	at de.cau.cs.kieler.klighd.ViewContext.update(ViewContext.java:391)
+	at de.cau.cs.kieler.klighd.ViewContext.update(ViewContext.java:375)
+	at de.cau.cs.kieler.klighd.LightDiagramServices.updateDiagram(LightDiagramServices.java:294)
+	at de.cau.cs.kieler.klighd.LightDiagramLayoutConfig.performUpdate(LightDiagramLayoutConfig.java:355)
+	at de.cau.cs.kieler.klighd.ui.view.DiagramView.doUpdateDiagram(DiagramView.java:1106)
+	at de.cau.cs.kieler.klighd.ui.view.DiagramView.access$5(DiagramView.java:1021)
+	at de.cau.cs.kieler.klighd.ui.view.DiagramView$10.runInUIThread(DiagramView.java:998)
+	at org.eclipse.ui.progress.UIJob$1.run(UIJob.java:97)
+	at org.eclipse.swt.widgets.RunnableLock.run(RunnableLock.java:35)
+	at org.eclipse.swt.widgets.Synchronizer.runAsyncMessages(Synchronizer.java:182)
+	at org.eclipse.swt.widgets.Display.runAsyncMessages(Display.java:4203)
+	at org.eclipse.swt.widgets.Display.readAndDispatch(Display.java:3819)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine$4.run(PartRenderingEngine.java:1121)
+	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:336)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.run(PartRenderingEngine.java:1022)
+	at org.eclipse.e4.ui.internal.workbench.E4Workbench.createAndRunUI(E4Workbench.java:150)
+	at org.eclipse.ui.internal.Workbench$5.run(Workbench.java:687)
+	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:336)
+	at org.eclipse.ui.internal.Workbench.createAndRunWorkbench(Workbench.java:604)
+	at org.eclipse.ui.PlatformUI.createAndRunWorkbench(PlatformUI.java:148)
+	at org.eclipse.ui.internal.ide.application.IDEApplication.start(IDEApplication.java:138)
+	at org.eclipse.equinox.internal.app.EclipseAppHandle.run(EclipseAppHandle.java:196)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.runApplication(EclipseAppLauncher.java:134)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.start(EclipseAppLauncher.java:104)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:388)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:243)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.eclipse.equinox.launcher.Main.invokeFramework(Main.java:673)
+	at org.eclipse.equinox.launcher.Main.basicRun(Main.java:610)
+	at org.eclipse.equinox.launcher.Main.run(Main.java:1519)
+
+!ENTRY de.cau.cs.kieler.klighd.incremental 1 0 2020-10-18 19:05:57.554
+!MESSAGE Fallback to simple update. Reason: Empty base model.
+
+!ENTRY de.cau.cs.kieler.klighd.incremental 1 0 2020-10-18 19:06:10.594
+!MESSAGE Fallback to simple update. Reason: Empty base model.
+
+!ENTRY de.cau.cs.kieler.klighd 4 0 2020-10-18 19:47:19.964
+!MESSAGE KLighD: Execution of diagram synthesis de.cau.cs.kieler.klighd.syntheses.ReinitializingDiagramSynthesisProxy failed for input model de.cau.cs.kieler.sccharts.impl.StateImpl@5101d128 (id: DDD_pacemaker, label: DDD_pacemaker) (type: NORMAL, initial: false, final: false).
+!STACK 0
+java.lang.NullPointerException
+
+!ENTRY de.cau.cs.kieler.klighd.incremental 1 0 2020-10-18 19:47:19.994
+!MESSAGE Fallback to simple update. Reason: Empty base model.
+
+!ENTRY de.cau.cs.kieler.klighd 4 0 2020-10-18 19:47:27.249
+!MESSAGE KLighD: Execution of diagram synthesis de.cau.cs.kieler.klighd.syntheses.ReinitializingDiagramSynthesisProxy failed for input model de.cau.cs.kieler.sccharts.impl.StateImpl@69b7dd7 (id: DDD_pacemaker, label: DDD_pacemaker) (type: NORMAL, initial: false, final: false).
+!STACK 0
+java.lang.NullPointerException
+
+!ENTRY de.cau.cs.kieler.klighd.incremental 1 0 2020-10-18 19:47:27.415
+!MESSAGE Fallback to simple update. Reason: Empty base model.
+
+!ENTRY de.cau.cs.kieler.klighd.incremental 1 0 2020-10-18 19:47:32.612
+!MESSAGE Fallback to simple update. Reason: Empty base model.
+
+!ENTRY de.cau.cs.kieler.klighd 4 0 2020-10-18 19:48:36.991
+!MESSAGE KLighD: Execution of diagram synthesis de.cau.cs.kieler.klighd.syntheses.ReinitializingDiagramSynthesisProxy failed for input model de.cau.cs.kieler.sccharts.impl.StateImpl@65ef4120 (id: DDD_pacemaker, label: DDD_pacemaker) (type: NORMAL, initial: false, final: false).
+!STACK 0
+java.lang.NullPointerException
+
+!ENTRY de.cau.cs.kieler.klighd.incremental 1 0 2020-10-18 19:48:37.018
+!MESSAGE Fallback to simple update. Reason: Empty base model.
+
+!ENTRY de.cau.cs.kieler.klighd.incremental 1 0 2020-10-18 19:48:47.040
+!MESSAGE Fallback to simple update. Reason: Empty base model.
+
+!ENTRY de.cau.cs.kieler.klighd 4 0 2020-10-18 19:51:10.591
+!MESSAGE KLighD: Execution of diagram synthesis de.cau.cs.kieler.klighd.syntheses.ReinitializingDiagramSynthesisProxy failed for input model de.cau.cs.kieler.sccharts.impl.StateImpl@5933f31b (id: DDD_pacemaker, label: DDD_pacemaker) (type: NORMAL, initial: false, final: false).
+!STACK 0
+java.lang.NullPointerException
+
+!ENTRY de.cau.cs.kieler.klighd.incremental 1 0 2020-10-18 19:51:10.619
+!MESSAGE Fallback to simple update. Reason: Empty base model.
+
+!ENTRY de.cau.cs.kieler.klighd.incremental 1 0 2020-10-18 19:51:19.429
+!MESSAGE Fallback to simple update. Reason: Empty base model.
+
+!ENTRY de.cau.cs.kieler.klighd 4 0 2020-10-18 19:52:44.977
+!MESSAGE KLighD: Execution of diagram synthesis de.cau.cs.kieler.klighd.syntheses.ReinitializingDiagramSynthesisProxy failed for input model de.cau.cs.kieler.sccharts.impl.StateImpl@48b75ab1 (id: DDD_pacemaker, label: DDD_pacemaker) (type: NORMAL, initial: false, final: false).
+!STACK 0
+java.lang.NullPointerException
+
+!ENTRY de.cau.cs.kieler.klighd.incremental 1 0 2020-10-18 19:52:45.006
+!MESSAGE Fallback to simple update. Reason: Empty base model.
+
+!ENTRY de.cau.cs.kieler.klighd 4 0 2020-10-18 19:52:52.478
+!MESSAGE KLighD: Execution of diagram synthesis de.cau.cs.kieler.klighd.syntheses.ReinitializingDiagramSynthesisProxy failed for input model de.cau.cs.kieler.sccharts.impl.StateImpl@69eada51 (id: DDD_pacemaker, label: DDD_pacemaker) (type: NORMAL, initial: false, final: false).
+!STACK 0
+java.lang.NullPointerException
+
+!ENTRY de.cau.cs.kieler.klighd.incremental 1 0 2020-10-18 19:52:52.638
+!MESSAGE Fallback to simple update. Reason: Empty base model.
+
+!ENTRY de.cau.cs.kieler.klighd.incremental 1 0 2020-10-18 19:52:57.374
+!MESSAGE Fallback to simple update. Reason: Empty base model.
+
+!ENTRY de.cau.cs.kieler.klighd.incremental 2 0 2020-10-18 19:53:38.975
+!MESSAGE Fallback to simple update. Reason: Duplicate UID in new model.
+
+!ENTRY de.cau.cs.kieler.klighd.incremental 2 0 2020-10-18 19:54:08.749
+!MESSAGE Fallback to simple update. Reason: Duplicate UID in base model.
+
+!ENTRY de.cau.cs.kieler.klighd.incremental 2 0 2020-10-18 19:54:34.757
+!MESSAGE Fallback to simple update. Reason: Duplicate UID in base model.
+
+!ENTRY de.cau.cs.kieler.klighd.incremental 2 0 2020-10-18 19:54:36.257
+!MESSAGE Fallback to simple update. Reason: Duplicate UID in base model.
+
+!ENTRY de.cau.cs.kieler.klighd.incremental 2 0 2020-10-18 19:54:53.334
+!MESSAGE Fallback to simple update. Reason: Duplicate UID in base model.
+
+!ENTRY de.cau.cs.kieler.klighd.incremental 2 0 2020-10-18 19:55:50.737
+!MESSAGE Fallback to simple update. Reason: Duplicate UID in base model.
+
+!ENTRY de.cau.cs.kieler.klighd.incremental 2 0 2020-10-18 19:56:17.911
+!MESSAGE Fallback to simple update. Reason: Duplicate UID in base model.
+
+!ENTRY de.cau.cs.kieler.klighd.incremental 2 0 2020-10-18 19:56:26.770
+!MESSAGE Fallback to simple update. Reason: Duplicate UID in base model.
+
+!ENTRY de.cau.cs.kieler.klighd.incremental 2 0 2020-10-18 19:56:40.721
+!MESSAGE Fallback to simple update. Reason: Duplicate UID in base model.
+
+!ENTRY de.cau.cs.kieler.klighd 4 0 2020-10-18 19:56:58.512
+!MESSAGE KLighD: Execution of diagram synthesis de.cau.cs.kieler.klighd.syntheses.ReinitializingDiagramSynthesisProxy failed for input model de.cau.cs.kieler.sccharts.impl.StateImpl@3c6aa00 (id: DDD_pacemaker, label: DDD_pacemaker) (type: NORMAL, initial: false, final: false).
+!STACK 0
+java.lang.NullPointerException
+
+!ENTRY de.cau.cs.kieler.klighd.incremental 1 0 2020-10-18 19:56:58.541
+!MESSAGE Fallback to simple update. Reason: Empty base model.
+
+!ENTRY de.cau.cs.kieler.klighd 4 0 2020-10-18 19:57:05.315
+!MESSAGE KLighD: Execution of diagram synthesis de.cau.cs.kieler.klighd.syntheses.ReinitializingDiagramSynthesisProxy failed for input model de.cau.cs.kieler.sccharts.impl.StateImpl@3c6aa00 (id: DDD_pacemaker, label: DDD_pacemaker) (type: NORMAL, initial: false, final: false).
+!STACK 0
+java.lang.NullPointerException
+
+!ENTRY de.cau.cs.kieler.klighd.incremental 1 0 2020-10-18 19:57:05.473
+!MESSAGE Fallback to simple update. Reason: Empty base model.
+
+!ENTRY de.cau.cs.kieler.klighd.incremental 1 0 2020-10-18 19:57:06.883
+!MESSAGE Fallback to simple update. Reason: Empty base model.
+
+!ENTRY de.cau.cs.kieler.klighd.incremental 2 0 2020-10-18 19:57:40.653
+!MESSAGE Fallback to simple update. Reason: Duplicate UID in base model.
+
+!ENTRY de.cau.cs.kieler.klighd.incremental 2 0 2020-10-18 19:57:46.004
+!MESSAGE Fallback to simple update. Reason: Duplicate UID in base model.
+
+!ENTRY de.cau.cs.kieler.klighd.incremental 2 0 2020-10-18 19:57:51.325
+!MESSAGE Fallback to simple update. Reason: Duplicate UID in base model.
+
+!ENTRY de.cau.cs.kieler.klighd 4 0 2020-10-18 19:58:01.244
+!MESSAGE KLighD: Execution of diagram synthesis de.cau.cs.kieler.klighd.syntheses.ReinitializingDiagramSynthesisProxy failed for input model de.cau.cs.kieler.sccharts.impl.StateImpl@e4668e8 (id: DDD_pacemaker, label: DDD_pacemaker) (type: NORMAL, initial: false, final: false).
+!STACK 0
+java.lang.NullPointerException
+
+!ENTRY de.cau.cs.kieler.klighd.incremental 1 0 2020-10-18 19:58:01.273
+!MESSAGE Fallback to simple update. Reason: Empty base model.
+
+!ENTRY de.cau.cs.kieler.klighd 4 0 2020-10-18 19:58:06.886
+!MESSAGE KLighD: Execution of diagram synthesis de.cau.cs.kieler.klighd.syntheses.ReinitializingDiagramSynthesisProxy failed for input model de.cau.cs.kieler.sccharts.impl.StateImpl@44342187 (id: DDD_pacemaker, label: DDD_pacemaker) (type: NORMAL, initial: false, final: false).
+!STACK 0
+java.lang.NullPointerException
+
+!ENTRY de.cau.cs.kieler.klighd.incremental 1 0 2020-10-18 19:58:07.046
+!MESSAGE Fallback to simple update. Reason: Empty base model.
+
+!ENTRY de.cau.cs.kieler.klighd.incremental 1 0 2020-10-18 19:58:11.665
+!MESSAGE Fallback to simple update. Reason: Empty base model.
+
+!ENTRY de.cau.cs.kieler.klighd 4 0 2020-10-18 19:59:10.023
+!MESSAGE KLighD: Execution of diagram synthesis de.cau.cs.kieler.klighd.syntheses.ReinitializingDiagramSynthesisProxy failed for input model de.cau.cs.kieler.sccharts.impl.StateImpl@18b84777 (id: DDD_pacemaker, label: DDD_pacemaker) (type: NORMAL, initial: false, final: false).
+!STACK 0
+java.lang.NullPointerException
+
+!ENTRY de.cau.cs.kieler.klighd.incremental 1 0 2020-10-18 19:59:10.050
+!MESSAGE Fallback to simple update. Reason: Empty base model.
+
+!ENTRY de.cau.cs.kieler.klighd.incremental 1 0 2020-10-18 19:59:38.362
+!MESSAGE Fallback to simple update. Reason: Empty base model.
+
+!ENTRY de.cau.cs.kieler.klighd.incremental 2 0 2020-10-18 20:00:30.861
+!MESSAGE Fallback to simple update. Reason: Duplicate UID in base model.
+
+!ENTRY de.cau.cs.kieler.klighd.incremental 2 0 2020-10-18 20:01:13.727
+!MESSAGE Fallback to simple update. Reason: Duplicate UID in base model.
+
+!ENTRY de.cau.cs.kieler.klighd.incremental 2 0 2020-10-18 20:01:16.807
+!MESSAGE Fallback to simple update. Reason: Duplicate UID in base model.
+
+!ENTRY de.cau.cs.kieler.klighd.incremental 2 0 2020-10-18 20:01:20.960
+!MESSAGE Fallback to simple update. Reason: Duplicate UID in base model.
+
+!ENTRY de.cau.cs.kieler.klighd.incremental 2 0 2020-10-18 20:01:36.303
+!MESSAGE Fallback to simple update. Reason: Duplicate UID in base model.
+
+!ENTRY de.cau.cs.kieler.klighd.incremental 2 0 2020-10-18 20:02:28.190
+!MESSAGE Fallback to simple update. Reason: Duplicate UID in base model.
+
+!ENTRY de.cau.cs.kieler.klighd.incremental 2 0 2020-10-18 20:03:08.425
+!MESSAGE Fallback to simple update. Reason: Duplicate UID in base model.

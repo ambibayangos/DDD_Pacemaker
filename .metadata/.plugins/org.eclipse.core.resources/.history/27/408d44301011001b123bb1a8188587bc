@@ -228,7 +228,7 @@ scchart DDD_pacemaker {
 	  			
 	  			state counting
 	  			-->idle with VRP_ex
-	  			-->counting with VRP_counting;
+	  			-->counting with URI_counting;
 
 	};
 

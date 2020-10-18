@@ -1,0 +1,7 @@
+scchart NewModel {
+
+input signal VRP_start;
+
+initial state idle
+--> counting with 
+}

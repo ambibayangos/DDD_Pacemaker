@@ -1,0 +1,12 @@
+scchart NewModel {
+
+input signal VRP_start;
+input signal VRP_timeout;
+
+initial state idle
+--> counting with VRP_start;
+
+state counting
+-->idle with VRP_ex/VRP_timeout; 
+
+}
