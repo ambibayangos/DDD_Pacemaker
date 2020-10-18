@@ -1,13 +1,23 @@
-scchart NewModel {
+scchart VVIPacemaker{
+input signal VSense, LRI_ex, VRP_ex;
+output signal VPace;
+output signal LRI_start, LRI_stop;
+output signal VRP_start, VRP_stop;
+ initial state top{
 
-input signal VRP_start,VRP_ex;
-output signal VRP_counting;
+ region LRI:
+ initial state init --> waitVRP with VSense/LRI_start;
+ state waitVRP --> waitLRI with VRP_ex;
+ state waitLRI --> reInit with VSense / LRI_stop
+ --> reInit with LRI_ex / VPace;
+ state reInit --> waitVRP with /LRI_start;
 
-initial state idle
---> counting with VRP_start;
+ region VRP:
 
-state counting
--->idle with VRP_ex
---> counting with /VRP_counting; 
+ initial state idle --> comit1 with VSense
+ --> comit1 with VPace;
+ connector state comit1 --> waitVRP immediate with /VRP_start;
+ state waitVRP --> idle with VRP_ex;
 
+ };
 }

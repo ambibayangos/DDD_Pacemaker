@@ -27,12 +27,14 @@ scchart DDD_pacemaker {
 	start_VRP,
 	start_LRI,
 	start_URI,
+	LRI_stop,
 	AVI_counting,
 	PVARP_counting,
 	VRP_counting,
 	AEI_counting,
 	LRI_counting,
-	URI_counting;
+	URI_counting
+	stop_LRI;
 	
 	initial state TOP
 	{		
@@ -138,8 +140,8 @@ scchart DDD_pacemaker {
 	  			
 	  			state waitLRI
 	  			-->reinit with LRI_ex/Vpace
-	  			-->reinit with Vsense/stop_LRI
-	  			-->reinit with Vpace/stop_LRI;
+	  			-->reinit with Vsense/LRI_stop
+	  			-->reinit with Vpace/LRI_stop;
 	  			
 	  			state reinit
 	  			-->waitVRP with /start_LRI;
@@ -182,8 +184,7 @@ scchart DDD_pacemaker {
 	  			
 	  			state counting
 	  			-->idle with AVI_ex
-	  			-->counting with /AVI_counting
-	  			-->idle with stop_AVI;
+	  			-->counting with /AVI_counting;
 	  		
 	  		region PVARP_timer:
 	  		
@@ -192,8 +193,7 @@ scchart DDD_pacemaker {
 	  			
 	  			state counting
 	  			-->idle with PVARP_ex
-	  			-->counting with /PVARP_counting
-	  			-->idle with stop_PVARP;
+	  			-->counting with /PVARP_counting;
 
 	  		  			
 	  		region AEI_timer:
@@ -203,8 +203,7 @@ scchart DDD_pacemaker {
 	  			
 	  			state counting
 	  			-->idle with AEI_ex
-	  			-->counting with /AEI_counting
-	  			-->idle with stop_AEI;
+	  			-->counting with /AEI_counting;
 	  		
 	  		region LRI_timer:
 	  		
@@ -214,7 +213,7 @@ scchart DDD_pacemaker {
 	  			state counting
 	  			-->idle with LRI_ex
 	  			-->counting with /LRI_counting
-	  			-->idle with stop_LRI;
+	  			-->idle with LRI_stop;
 	  		 	  			
 	  		region URI_timer:
 	  		
@@ -223,8 +222,7 @@ scchart DDD_pacemaker {
 	  			
 	  			state counting
 	  			-->idle with URI_ex
-	  			-->counting with /URI_counting
-	  			-->idle with stop_URI;
+	  			-->counting with /URI_counting;
 	  			
 	  	 	region VRP_timer:
 	  		
@@ -233,8 +231,7 @@ scchart DDD_pacemaker {
 	  			
 	  			state counting
 	  			-->idle with VRP_ex
-	  			-->counting with /VRP_counting
-	  			-->idle with stop_VRP;
+	  			-->counting with /VRP_counting;
 
 	};
 

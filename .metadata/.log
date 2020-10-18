@@ -8770,3 +8770,581 @@ java.lang.NullPointerException
 
 !ENTRY de.cau.cs.kieler.klighd.incremental 2 0 2020-10-18 20:03:08.425
 !MESSAGE Fallback to simple update. Reason: Duplicate UID in base model.
+!SESSION 2020-10-18 21:42:41.142 -----------------------------------------------
+eclipse.buildId=unknown
+java.version=1.8.0_261
+java.vendor=Oracle Corporation
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=en_AU
+Framework arguments:  --launcher.XXPermSize 128m
+Command-line arguments:  -os win32 -ws win32 -arch x86_64 --launcher.XXPermSize 128m
+
+!ENTRY org.eclipse.core.resources 2 10035 2020-10-18 21:43:12.326
+!MESSAGE The workspace exited with unsaved changes in the previous session; refreshing workspace to recover changes.
+
+!ENTRY org.eclipse.emf.ecore 2 0 2020-10-18 21:43:12.660
+!MESSAGE Both 'de.cau.cs.kieler.kexpressions' and 'de.cau.cs.kieler.kexpressions' register a package for 'http://kieler.cs.cau.de/kext/0.1.0'
+
+!ENTRY org.eclipse.emf.ecore 2 0 2020-10-18 21:43:12.674
+!MESSAGE Both 'de.cau.cs.kieler.esterel.kexpressions.ui' and 'de.cau.cs.kieler.kexpressions.ui' register an extension parser for 'expr'
+
+!ENTRY org.eclipse.ui 2 0 2020-10-18 21:43:13.248
+!MESSAGE Warnings while parsing the commands from the 'org.eclipse.ui.commands' and 'org.eclipse.ui.actionDefinitions' extension points.
+!SUBENTRY 1 org.eclipse.ui 2 0 2020-10-18 21:43:13.248
+!MESSAGE Commands should really have a category: plug-in='de.cau.cs.kieler.sccharts.s', id='de.cau.cs.kieler.sccharts.commands.STransformation', categoryId='de.cau.cs.kieler.sccharts.commands.category'
+!SUBENTRY 1 org.eclipse.ui 2 0 2020-10-18 21:43:13.248
+!MESSAGE Commands should really have a category: plug-in='de.cau.cs.kieler.sccharts.scg', id='de.cau.cs.kieler.sccharts.commands.SCGTransformation', categoryId='de.cau.cs.kieler.sccharts.commands.category'
+!SUBENTRY 1 org.eclipse.ui 2 0 2020-10-18 21:43:13.248
+!MESSAGE Commands should really have a category: plug-in='de.cau.cs.kieler.scl.ui', id='de.cau.cs.kieler.scl.ui.commands.SCGToSCLTransformation', categoryId='de.cau.cs.kieler.scl.ui.commands.category'
+!SUBENTRY 1 org.eclipse.ui 2 0 2020-10-18 21:43:13.248
+!MESSAGE Commands should really have a category: plug-in='de.cau.cs.kieler.scl.ui', id='de.cau.cs.kieler.scl.commands.ui.SCLToSCGTransformation', categoryId='de.cau.cs.kieler.scl.ui.commands.category'
+!SUBENTRY 1 org.eclipse.ui 2 0 2020-10-18 21:43:13.248
+!MESSAGE Commands should really have a category: plug-in='de.cau.cs.kieler.synccharts', id='de.cau.cs.kieler.sccharts.commands.SyncChartsTransformation', categoryId='de.cau.cs.kieler.sccharts.commands.category'
+
+!ENTRY org.eclipse.ui 2 0 2020-10-18 21:43:13.309
+!MESSAGE Warnings while parsing the key bindings from the 'org.eclipse.ui.commands' and 'org.eclipse.ui.bindings' extension point
+!SUBENTRY 1 org.eclipse.ui 2 0 2020-10-18 21:43:13.309
+!MESSAGE Cannot bind to an undefined command: plug-in='de.cau.cs.kieler.core.model', id='de.cau.cs.kieler.core.model.zoom'
+
+!ENTRY org.eclipse.ui 2 0 2020-10-18 21:43:13.649
+!MESSAGE Warnings while parsing the commands from the 'org.eclipse.ui.commands' and 'org.eclipse.ui.actionDefinitions' extension points.
+!SUBENTRY 1 org.eclipse.ui 2 0 2020-10-18 21:43:13.649
+!MESSAGE Commands should really have a category: plug-in='de.cau.cs.kieler.sccharts.s', id='de.cau.cs.kieler.sccharts.commands.STransformation', categoryId='de.cau.cs.kieler.sccharts.commands.category'
+!SUBENTRY 1 org.eclipse.ui 2 0 2020-10-18 21:43:13.650
+!MESSAGE Commands should really have a category: plug-in='de.cau.cs.kieler.sccharts.scg', id='de.cau.cs.kieler.sccharts.commands.SCGTransformation', categoryId='de.cau.cs.kieler.sccharts.commands.category'
+!SUBENTRY 1 org.eclipse.ui 2 0 2020-10-18 21:43:13.650
+!MESSAGE Commands should really have a category: plug-in='de.cau.cs.kieler.scl.ui', id='de.cau.cs.kieler.scl.ui.commands.SCGToSCLTransformation', categoryId='de.cau.cs.kieler.scl.ui.commands.category'
+!SUBENTRY 1 org.eclipse.ui 2 0 2020-10-18 21:43:13.650
+!MESSAGE Commands should really have a category: plug-in='de.cau.cs.kieler.scl.ui', id='de.cau.cs.kieler.scl.commands.ui.SCLToSCGTransformation', categoryId='de.cau.cs.kieler.scl.ui.commands.category'
+!SUBENTRY 1 org.eclipse.ui 2 0 2020-10-18 21:43:13.650
+!MESSAGE Commands should really have a category: plug-in='de.cau.cs.kieler.synccharts', id='de.cau.cs.kieler.sccharts.commands.SyncChartsTransformation', categoryId='de.cau.cs.kieler.sccharts.commands.category'
+
+!ENTRY org.eclipse.jface 2 0 2020-10-18 21:43:22.316
+!MESSAGE Keybinding conflicts occurred.  They may interfere with normal accelerator operation.
+!SUBENTRY 1 org.eclipse.jface 2 0 2020-10-18 21:43:22.316
+!MESSAGE A conflict occurred for ALT+CTRL+H:
+Binding(ALT+CTRL+H,
+	ParameterizedCommand(Command(org.eclipse.jdt.ui.edit.text.java.open.call.hierarchy,Open Call Hierarchy,
+		Open a call hierarchy on the selected element,
+		Category(org.eclipse.ui.category.navigate,Navigate,null,true),
+		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@3badd554,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.ui.contexts.window,,,system)
+Binding(ALT+CTRL+H,
+	ParameterizedCommand(Command(org.eclipse.xtext.xbase.ui.hierarchy.OpenCallHierarchy,Open Call Hierarchy,
+		Open a call hierarchy on the selected element,
+		Category(org.eclipse.core.commands.categories.autogenerated,Uncategorized,Commands that were either auto-generated or have no category,true),
+		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@218da1f9,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.xtext.ui.XtextEditorScope,,,system)
+Binding(ALT+CTRL+H,
+	ParameterizedCommand(Command(org.eclipse.xtext.ui.editor.OpenCallHierarchy,Open Call Hierarchy,
+		Open call hierarchy for the selected element,
+		Category(org.eclipse.ui.category.navigate,Navigate,null,true),
+		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@3c3b7825,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.xtext.ui.XtextEditorScope,,,system)
+
+!ENTRY de.cau.cs.kieler.kico 2 0 2020-10-18 21:43:23.808
+!MESSAGE KiCo cannot find the feature with ID 'VHDL'
+
+!ENTRY de.cau.cs.kieler.kico 4 0 2020-10-18 21:43:23.858
+!MESSAGE Feature 'circuit' references a feature 'VHDL' that cannot be found.
+
+!ENTRY de.cau.cs.kieler.klighd.incremental 1 0 2020-10-18 21:43:24.441
+!MESSAGE Fallback to simple update. Reason: Empty base model.
+
+!ENTRY de.cau.cs.kieler.klighd.incremental 1 0 2020-10-18 21:44:56.727
+!MESSAGE Fallback to simple update. Reason: Empty base model.
+
+!ENTRY de.cau.cs.kieler.klighd.incremental 1 0 2020-10-18 21:45:01.109
+!MESSAGE Fallback to simple update. Reason: Empty base model.
+
+!ENTRY de.cau.cs.kieler.klighd.incremental 1 0 2020-10-18 22:19:52.505
+!MESSAGE Fallback to simple update. Reason: Empty base model.
+
+!ENTRY de.cau.cs.kieler.klighd.incremental 1 0 2020-10-19 00:46:05.287
+!MESSAGE Fallback to simple update. Reason: Empty base model.
+
+!ENTRY de.cau.cs.kieler.klighd.incremental 1 0 2020-10-19 00:52:43.772
+!MESSAGE Fallback to simple update. Reason: Empty base model.
+
+!ENTRY de.cau.cs.kieler.klighd.incremental 1 0 2020-10-19 00:52:44.594
+!MESSAGE Fallback to simple update. Reason: Empty base model.
+
+!ENTRY de.cau.cs.kieler.kico 4 4 2020-10-19 00:53:21.036
+!MESSAGE Broken compile chain. Transformation s.c cannot handle input type de.cau.cs.kieler.sccharts.impl.StateImpl (de.cau.cs.kieler.kico)
+
+!ENTRY de.cau.cs.kieler.kico 4 4 2020-10-19 00:53:21.077
+!MESSAGE An error occurred while calling transformation with the ID 's.c'.
+
+de.cau.cs.kieler.kico.KielerCompilerException: Broken compile chain. Transformation s.c cannot handle input type de.cau.cs.kieler.sccharts.impl.StateImpl
+	at de.cau.cs.kieler.kico.KielerCompiler.performTransformationTask(KielerCompiler.java:389)
+	at de.cau.cs.kieler.kico.KielerCompiler.compile(KielerCompiler.java:260)
+	at de.cau.cs.kieler.kico.klighd.internal.AsynchronousCompilation.run(AsynchronousCompilation.java:125)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
+ (de.cau.cs.kieler.kico)
+
+!ENTRY de.cau.cs.kieler.klighd.incremental 1 0 2020-10-19 00:53:21.246
+!MESSAGE Fallback to simple update. Reason: Empty base model.
+
+!ENTRY de.cau.cs.kieler.klighd.incremental 1 0 2020-10-19 00:53:23.316
+!MESSAGE Fallback to simple update. Reason: Empty base model.
+
+!ENTRY de.cau.cs.kieler.kico 4 4 2020-10-19 00:53:25.068
+!MESSAGE Broken compile chain. Transformation s.c cannot handle input type de.cau.cs.kieler.sccharts.impl.StateImpl (de.cau.cs.kieler.kico)
+
+!ENTRY de.cau.cs.kieler.kico 4 4 2020-10-19 00:53:25.109
+!MESSAGE An error occurred while calling transformation with the ID 's.c'.
+
+de.cau.cs.kieler.kico.KielerCompilerException: Broken compile chain. Transformation s.c cannot handle input type de.cau.cs.kieler.sccharts.impl.StateImpl
+	at de.cau.cs.kieler.kico.KielerCompiler.performTransformationTask(KielerCompiler.java:389)
+	at de.cau.cs.kieler.kico.KielerCompiler.compile(KielerCompiler.java:260)
+	at de.cau.cs.kieler.kico.klighd.internal.AsynchronousCompilation.run(AsynchronousCompilation.java:125)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
+ (de.cau.cs.kieler.kico)
+
+!ENTRY de.cau.cs.kieler.klighd.incremental 1 0 2020-10-19 00:53:25.271
+!MESSAGE Fallback to simple update. Reason: Empty base model.
+
+!ENTRY de.cau.cs.kieler.kico 4 4 2020-10-19 00:54:21.159
+!MESSAGE Broken compile chain. Transformation s.c cannot handle input type de.cau.cs.kieler.sccharts.impl.StateImpl (de.cau.cs.kieler.kico)
+
+!ENTRY de.cau.cs.kieler.kico 4 4 2020-10-19 00:54:21.168
+!MESSAGE An error occurred while calling transformation with the ID 's.c'.
+
+de.cau.cs.kieler.kico.KielerCompilerException: Broken compile chain. Transformation s.c cannot handle input type de.cau.cs.kieler.sccharts.impl.StateImpl
+	at de.cau.cs.kieler.kico.KielerCompiler.performTransformationTask(KielerCompiler.java:389)
+	at de.cau.cs.kieler.kico.KielerCompiler.compile(KielerCompiler.java:260)
+	at de.cau.cs.kieler.kico.klighd.internal.AsynchronousCompilation.run(AsynchronousCompilation.java:125)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
+ (de.cau.cs.kieler.kico)
+
+!ENTRY de.cau.cs.kieler.klighd.incremental 1 0 2020-10-19 00:54:21.270
+!MESSAGE Fallback to simple update. Reason: Empty base model.
+
+!ENTRY de.cau.cs.kieler.kico 4 4 2020-10-19 00:54:22.338
+!MESSAGE Broken compile chain. Transformation s.c cannot handle input type de.cau.cs.kieler.sccharts.impl.StateImpl (de.cau.cs.kieler.kico)
+
+!ENTRY de.cau.cs.kieler.kico 4 4 2020-10-19 00:54:22.347
+!MESSAGE An error occurred while calling transformation with the ID 's.c'.
+
+de.cau.cs.kieler.kico.KielerCompilerException: Broken compile chain. Transformation s.c cannot handle input type de.cau.cs.kieler.sccharts.impl.StateImpl
+	at de.cau.cs.kieler.kico.KielerCompiler.performTransformationTask(KielerCompiler.java:389)
+	at de.cau.cs.kieler.kico.KielerCompiler.compile(KielerCompiler.java:260)
+	at de.cau.cs.kieler.kico.klighd.internal.AsynchronousCompilation.run(AsynchronousCompilation.java:125)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
+ (de.cau.cs.kieler.kico)
+
+!ENTRY de.cau.cs.kieler.klighd.incremental 1 0 2020-10-19 00:54:22.404
+!MESSAGE Fallback to simple update. Reason: Empty base model.
+
+!ENTRY de.cau.cs.kieler.kico 4 4 2020-10-19 00:54:23.082
+!MESSAGE Broken compile chain. Transformation s.c cannot handle input type de.cau.cs.kieler.sccharts.impl.StateImpl (de.cau.cs.kieler.kico)
+
+!ENTRY de.cau.cs.kieler.kico 4 4 2020-10-19 00:54:23.089
+!MESSAGE An error occurred while calling transformation with the ID 's.c'.
+
+de.cau.cs.kieler.kico.KielerCompilerException: Broken compile chain. Transformation s.c cannot handle input type de.cau.cs.kieler.sccharts.impl.StateImpl
+	at de.cau.cs.kieler.kico.KielerCompiler.performTransformationTask(KielerCompiler.java:389)
+	at de.cau.cs.kieler.kico.KielerCompiler.compile(KielerCompiler.java:260)
+	at de.cau.cs.kieler.kico.klighd.internal.AsynchronousCompilation.run(AsynchronousCompilation.java:125)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
+ (de.cau.cs.kieler.kico)
+
+!ENTRY de.cau.cs.kieler.klighd.incremental 1 0 2020-10-19 00:54:23.182
+!MESSAGE Fallback to simple update. Reason: Empty base model.
+
+!ENTRY de.cau.cs.kieler.kico 4 4 2020-10-19 00:54:46.555
+!MESSAGE Broken compile chain. Transformation s.c cannot handle input type de.cau.cs.kieler.sccharts.impl.StateImpl (de.cau.cs.kieler.kico)
+
+!ENTRY de.cau.cs.kieler.kico 4 4 2020-10-19 00:54:46.563
+!MESSAGE An error occurred while calling transformation with the ID 's.c'.
+
+de.cau.cs.kieler.kico.KielerCompilerException: Broken compile chain. Transformation s.c cannot handle input type de.cau.cs.kieler.sccharts.impl.StateImpl
+	at de.cau.cs.kieler.kico.KielerCompiler.performTransformationTask(KielerCompiler.java:389)
+	at de.cau.cs.kieler.kico.KielerCompiler.compile(KielerCompiler.java:260)
+	at de.cau.cs.kieler.kico.klighd.internal.AsynchronousCompilation.run(AsynchronousCompilation.java:125)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
+ (de.cau.cs.kieler.kico)
+
+!ENTRY de.cau.cs.kieler.klighd.incremental 1 0 2020-10-19 00:54:46.776
+!MESSAGE Fallback to simple update. Reason: Empty base model.
+
+!ENTRY de.cau.cs.kieler.kico 4 4 2020-10-19 00:54:47.496
+!MESSAGE Broken compile chain. Transformation s.c cannot handle input type de.cau.cs.kieler.sccharts.impl.StateImpl (de.cau.cs.kieler.kico)
+
+!ENTRY de.cau.cs.kieler.kico 4 4 2020-10-19 00:54:47.503
+!MESSAGE An error occurred while calling transformation with the ID 's.c'.
+
+de.cau.cs.kieler.kico.KielerCompilerException: Broken compile chain. Transformation s.c cannot handle input type de.cau.cs.kieler.sccharts.impl.StateImpl
+	at de.cau.cs.kieler.kico.KielerCompiler.performTransformationTask(KielerCompiler.java:389)
+	at de.cau.cs.kieler.kico.KielerCompiler.compile(KielerCompiler.java:260)
+	at de.cau.cs.kieler.kico.klighd.internal.AsynchronousCompilation.run(AsynchronousCompilation.java:125)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
+ (de.cau.cs.kieler.kico)
+
+!ENTRY de.cau.cs.kieler.klighd.incremental 1 0 2020-10-19 00:54:47.741
+!MESSAGE Fallback to simple update. Reason: Empty base model.
+
+!ENTRY de.cau.cs.kieler.kico 4 4 2020-10-19 00:59:07.529
+!MESSAGE Broken compile chain. Transformation s.c cannot handle input type de.cau.cs.kieler.sccharts.impl.StateImpl (de.cau.cs.kieler.kico)
+
+!ENTRY de.cau.cs.kieler.kico 4 4 2020-10-19 00:59:07.541
+!MESSAGE An error occurred while calling transformation with the ID 's.c'.
+
+de.cau.cs.kieler.kico.KielerCompilerException: Broken compile chain. Transformation s.c cannot handle input type de.cau.cs.kieler.sccharts.impl.StateImpl
+	at de.cau.cs.kieler.kico.KielerCompiler.performTransformationTask(KielerCompiler.java:389)
+	at de.cau.cs.kieler.kico.KielerCompiler.compile(KielerCompiler.java:260)
+	at de.cau.cs.kieler.kico.klighd.internal.AsynchronousCompilation.run(AsynchronousCompilation.java:125)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
+ (de.cau.cs.kieler.kico)
+
+!ENTRY de.cau.cs.kieler.kico 4 4 2020-10-19 00:59:28.504
+!MESSAGE Broken compile chain. Transformation s.c cannot handle input type de.cau.cs.kieler.sccharts.impl.StateImpl (de.cau.cs.kieler.kico)
+
+!ENTRY de.cau.cs.kieler.kico 4 4 2020-10-19 00:59:28.512
+!MESSAGE An error occurred while calling transformation with the ID 's.c'.
+
+de.cau.cs.kieler.kico.KielerCompilerException: Broken compile chain. Transformation s.c cannot handle input type de.cau.cs.kieler.sccharts.impl.StateImpl
+	at de.cau.cs.kieler.kico.KielerCompiler.performTransformationTask(KielerCompiler.java:389)
+	at de.cau.cs.kieler.kico.KielerCompiler.compile(KielerCompiler.java:260)
+	at de.cau.cs.kieler.kico.klighd.internal.AsynchronousCompilation.run(AsynchronousCompilation.java:125)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
+ (de.cau.cs.kieler.kico)
+
+!ENTRY de.cau.cs.kieler.klighd.incremental 1 0 2020-10-19 00:59:36.243
+!MESSAGE Fallback to simple update. Reason: Empty base model.
+
+!ENTRY de.cau.cs.kieler.klighd.incremental 1 0 2020-10-19 00:59:39.226
+!MESSAGE Fallback to simple update. Reason: Empty base model.
+
+!ENTRY de.cau.cs.kieler.klighd.incremental 1 0 2020-10-19 00:59:41.106
+!MESSAGE Fallback to simple update. Reason: Empty base model.
+
+!ENTRY de.cau.cs.kieler.klighd.incremental 1 0 2020-10-19 00:59:42.579
+!MESSAGE Fallback to simple update. Reason: Empty base model.
+
+!ENTRY de.cau.cs.kieler.kico 4 4 2020-10-19 00:59:45.768
+!MESSAGE Broken compile chain. Transformation s.c cannot handle input type de.cau.cs.kieler.sccharts.impl.StateImpl (de.cau.cs.kieler.kico)
+
+!ENTRY de.cau.cs.kieler.kico 4 4 2020-10-19 00:59:45.777
+!MESSAGE An error occurred while calling transformation with the ID 's.c'.
+
+de.cau.cs.kieler.kico.KielerCompilerException: Broken compile chain. Transformation s.c cannot handle input type de.cau.cs.kieler.sccharts.impl.StateImpl
+	at de.cau.cs.kieler.kico.KielerCompiler.performTransformationTask(KielerCompiler.java:389)
+	at de.cau.cs.kieler.kico.KielerCompiler.compile(KielerCompiler.java:260)
+	at de.cau.cs.kieler.kico.klighd.internal.AsynchronousCompilation.run(AsynchronousCompilation.java:125)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
+ (de.cau.cs.kieler.kico)
+
+!ENTRY de.cau.cs.kieler.kico 4 4 2020-10-19 00:59:53.062
+!MESSAGE Broken compile chain. Transformation s.c cannot handle input type de.cau.cs.kieler.sccharts.impl.StateImpl (de.cau.cs.kieler.kico)
+
+!ENTRY de.cau.cs.kieler.kico 4 4 2020-10-19 00:59:53.071
+!MESSAGE An error occurred while calling transformation with the ID 's.c'.
+
+de.cau.cs.kieler.kico.KielerCompilerException: Broken compile chain. Transformation s.c cannot handle input type de.cau.cs.kieler.sccharts.impl.StateImpl
+	at de.cau.cs.kieler.kico.KielerCompiler.performTransformationTask(KielerCompiler.java:389)
+	at de.cau.cs.kieler.kico.KielerCompiler.compile(KielerCompiler.java:260)
+	at de.cau.cs.kieler.kico.klighd.internal.AsynchronousCompilation.run(AsynchronousCompilation.java:125)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
+ (de.cau.cs.kieler.kico)
+
+!ENTRY de.cau.cs.kieler.klighd.incremental 1 0 2020-10-19 01:00:16.756
+!MESSAGE Fallback to simple update. Reason: Empty base model.
+
+!ENTRY de.cau.cs.kieler.klighd.incremental 1 0 2020-10-19 01:00:21.798
+!MESSAGE Fallback to simple update. Reason: Empty base model.
+
+!ENTRY de.cau.cs.kieler.klighd.incremental 1 0 2020-10-19 01:00:22.981
+!MESSAGE Fallback to simple update. Reason: Empty base model.
+
+!ENTRY de.cau.cs.kieler.klighd.incremental 1 0 2020-10-19 01:00:23.893
+!MESSAGE Fallback to simple update. Reason: Empty base model.
+
+!ENTRY de.cau.cs.kieler.klighd.incremental 1 0 2020-10-19 01:00:25.025
+!MESSAGE Fallback to simple update. Reason: Empty base model.
+!SESSION 2020-10-19 01:07:23.630 -----------------------------------------------
+eclipse.buildId=unknown
+java.version=1.8.0_261
+java.vendor=Oracle Corporation
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=en_AU
+Framework arguments:  --launcher.XXPermSize 128m
+Command-line arguments:  -os win32 -ws win32 -arch x86_64 --launcher.XXPermSize 128m
+
+!ENTRY org.eclipse.emf.ecore 2 0 2020-10-19 01:07:28.234
+!MESSAGE Both 'de.cau.cs.kieler.kexpressions' and 'de.cau.cs.kieler.kexpressions' register a package for 'http://kieler.cs.cau.de/kext/0.1.0'
+
+!ENTRY org.eclipse.emf.ecore 2 0 2020-10-19 01:07:28.252
+!MESSAGE Both 'de.cau.cs.kieler.esterel.kexpressions.ui' and 'de.cau.cs.kieler.kexpressions.ui' register an extension parser for 'expr'
+
+!ENTRY org.eclipse.ui 2 0 2020-10-19 01:07:28.796
+!MESSAGE Warnings while parsing the commands from the 'org.eclipse.ui.commands' and 'org.eclipse.ui.actionDefinitions' extension points.
+!SUBENTRY 1 org.eclipse.ui 2 0 2020-10-19 01:07:28.796
+!MESSAGE Commands should really have a category: plug-in='de.cau.cs.kieler.sccharts.s', id='de.cau.cs.kieler.sccharts.commands.STransformation', categoryId='de.cau.cs.kieler.sccharts.commands.category'
+!SUBENTRY 1 org.eclipse.ui 2 0 2020-10-19 01:07:28.796
+!MESSAGE Commands should really have a category: plug-in='de.cau.cs.kieler.sccharts.scg', id='de.cau.cs.kieler.sccharts.commands.SCGTransformation', categoryId='de.cau.cs.kieler.sccharts.commands.category'
+!SUBENTRY 1 org.eclipse.ui 2 0 2020-10-19 01:07:28.796
+!MESSAGE Commands should really have a category: plug-in='de.cau.cs.kieler.scl.ui', id='de.cau.cs.kieler.scl.ui.commands.SCGToSCLTransformation', categoryId='de.cau.cs.kieler.scl.ui.commands.category'
+!SUBENTRY 1 org.eclipse.ui 2 0 2020-10-19 01:07:28.796
+!MESSAGE Commands should really have a category: plug-in='de.cau.cs.kieler.scl.ui', id='de.cau.cs.kieler.scl.commands.ui.SCLToSCGTransformation', categoryId='de.cau.cs.kieler.scl.ui.commands.category'
+!SUBENTRY 1 org.eclipse.ui 2 0 2020-10-19 01:07:28.796
+!MESSAGE Commands should really have a category: plug-in='de.cau.cs.kieler.synccharts', id='de.cau.cs.kieler.sccharts.commands.SyncChartsTransformation', categoryId='de.cau.cs.kieler.sccharts.commands.category'
+
+!ENTRY org.eclipse.ui 2 0 2020-10-19 01:07:28.853
+!MESSAGE Warnings while parsing the key bindings from the 'org.eclipse.ui.commands' and 'org.eclipse.ui.bindings' extension point
+!SUBENTRY 1 org.eclipse.ui 2 0 2020-10-19 01:07:28.853
+!MESSAGE Cannot bind to an undefined command: plug-in='de.cau.cs.kieler.core.model', id='de.cau.cs.kieler.core.model.zoom'
+
+!ENTRY org.eclipse.ui 2 0 2020-10-19 01:07:29.276
+!MESSAGE Warnings while parsing the commands from the 'org.eclipse.ui.commands' and 'org.eclipse.ui.actionDefinitions' extension points.
+!SUBENTRY 1 org.eclipse.ui 2 0 2020-10-19 01:07:29.276
+!MESSAGE Commands should really have a category: plug-in='de.cau.cs.kieler.sccharts.s', id='de.cau.cs.kieler.sccharts.commands.STransformation', categoryId='de.cau.cs.kieler.sccharts.commands.category'
+!SUBENTRY 1 org.eclipse.ui 2 0 2020-10-19 01:07:29.276
+!MESSAGE Commands should really have a category: plug-in='de.cau.cs.kieler.sccharts.scg', id='de.cau.cs.kieler.sccharts.commands.SCGTransformation', categoryId='de.cau.cs.kieler.sccharts.commands.category'
+!SUBENTRY 1 org.eclipse.ui 2 0 2020-10-19 01:07:29.276
+!MESSAGE Commands should really have a category: plug-in='de.cau.cs.kieler.scl.ui', id='de.cau.cs.kieler.scl.ui.commands.SCGToSCLTransformation', categoryId='de.cau.cs.kieler.scl.ui.commands.category'
+!SUBENTRY 1 org.eclipse.ui 2 0 2020-10-19 01:07:29.276
+!MESSAGE Commands should really have a category: plug-in='de.cau.cs.kieler.scl.ui', id='de.cau.cs.kieler.scl.commands.ui.SCLToSCGTransformation', categoryId='de.cau.cs.kieler.scl.ui.commands.category'
+!SUBENTRY 1 org.eclipse.ui 2 0 2020-10-19 01:07:29.277
+!MESSAGE Commands should really have a category: plug-in='de.cau.cs.kieler.synccharts', id='de.cau.cs.kieler.sccharts.commands.SyncChartsTransformation', categoryId='de.cau.cs.kieler.sccharts.commands.category'
+
+!ENTRY org.eclipse.jface 2 0 2020-10-19 01:07:37.214
+!MESSAGE Keybinding conflicts occurred.  They may interfere with normal accelerator operation.
+!SUBENTRY 1 org.eclipse.jface 2 0 2020-10-19 01:07:37.214
+!MESSAGE A conflict occurred for ALT+CTRL+H:
+Binding(ALT+CTRL+H,
+	ParameterizedCommand(Command(org.eclipse.jdt.ui.edit.text.java.open.call.hierarchy,Open Call Hierarchy,
+		Open a call hierarchy on the selected element,
+		Category(org.eclipse.ui.category.navigate,Navigate,null,true),
+		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@4d5196fd,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.ui.contexts.window,,,system)
+Binding(ALT+CTRL+H,
+	ParameterizedCommand(Command(org.eclipse.xtext.xbase.ui.hierarchy.OpenCallHierarchy,Open Call Hierarchy,
+		Open a call hierarchy on the selected element,
+		Category(org.eclipse.core.commands.categories.autogenerated,Uncategorized,Commands that were either auto-generated or have no category,true),
+		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@b680059,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.xtext.ui.XtextEditorScope,,,system)
+Binding(ALT+CTRL+H,
+	ParameterizedCommand(Command(org.eclipse.xtext.ui.editor.OpenCallHierarchy,Open Call Hierarchy,
+		Open call hierarchy for the selected element,
+		Category(org.eclipse.ui.category.navigate,Navigate,null,true),
+		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@72e259ca,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.xtext.ui.XtextEditorScope,,,system)
+
+!ENTRY de.cau.cs.kieler.kico 2 0 2020-10-19 01:07:38.281
+!MESSAGE KiCo cannot find the feature with ID 'VHDL'
+
+!ENTRY de.cau.cs.kieler.kico 4 0 2020-10-19 01:07:38.344
+!MESSAGE Feature 'circuit' references a feature 'VHDL' that cannot be found.
+
+!ENTRY de.cau.cs.kieler.klighd.incremental 1 0 2020-10-19 01:07:38.952
+!MESSAGE Fallback to simple update. Reason: Empty base model.
+
+!ENTRY de.cau.cs.kieler.sim.kiem 4 4 2020-10-19 07:53:23.118
+!MESSAGE Timeout of component 'SCCharts Visualization' occurred while performing the following operation: wrapup. You can increase the DataComponent timeout under Preference->KIELER->Execution Manager. (de.cau.cs.kieler.sim.kiem)
+!SESSION 2020-10-19 08:58:23.595 -----------------------------------------------
+eclipse.buildId=unknown
+java.version=1.8.0_261
+java.vendor=Oracle Corporation
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=en_AU
+Framework arguments:  --launcher.XXPermSize 128m
+Command-line arguments:  -os win32 -ws win32 -arch x86_64 --launcher.XXPermSize 128m
+
+!ENTRY org.eclipse.emf.ecore 2 0 2020-10-19 08:58:39.758
+!MESSAGE Both 'de.cau.cs.kieler.kexpressions' and 'de.cau.cs.kieler.kexpressions' register a package for 'http://kieler.cs.cau.de/kext/0.1.0'
+
+!ENTRY org.eclipse.emf.ecore 2 0 2020-10-19 08:58:39.804
+!MESSAGE Both 'de.cau.cs.kieler.esterel.kexpressions.ui' and 'de.cau.cs.kieler.kexpressions.ui' register an extension parser for 'expr'
+
+!ENTRY org.eclipse.ui 2 0 2020-10-19 08:58:40.378
+!MESSAGE Warnings while parsing the commands from the 'org.eclipse.ui.commands' and 'org.eclipse.ui.actionDefinitions' extension points.
+!SUBENTRY 1 org.eclipse.ui 2 0 2020-10-19 08:58:40.378
+!MESSAGE Commands should really have a category: plug-in='de.cau.cs.kieler.sccharts.s', id='de.cau.cs.kieler.sccharts.commands.STransformation', categoryId='de.cau.cs.kieler.sccharts.commands.category'
+!SUBENTRY 1 org.eclipse.ui 2 0 2020-10-19 08:58:40.378
+!MESSAGE Commands should really have a category: plug-in='de.cau.cs.kieler.sccharts.scg', id='de.cau.cs.kieler.sccharts.commands.SCGTransformation', categoryId='de.cau.cs.kieler.sccharts.commands.category'
+!SUBENTRY 1 org.eclipse.ui 2 0 2020-10-19 08:58:40.378
+!MESSAGE Commands should really have a category: plug-in='de.cau.cs.kieler.scl.ui', id='de.cau.cs.kieler.scl.ui.commands.SCGToSCLTransformation', categoryId='de.cau.cs.kieler.scl.ui.commands.category'
+!SUBENTRY 1 org.eclipse.ui 2 0 2020-10-19 08:58:40.378
+!MESSAGE Commands should really have a category: plug-in='de.cau.cs.kieler.scl.ui', id='de.cau.cs.kieler.scl.commands.ui.SCLToSCGTransformation', categoryId='de.cau.cs.kieler.scl.ui.commands.category'
+!SUBENTRY 1 org.eclipse.ui 2 0 2020-10-19 08:58:40.378
+!MESSAGE Commands should really have a category: plug-in='de.cau.cs.kieler.synccharts', id='de.cau.cs.kieler.sccharts.commands.SyncChartsTransformation', categoryId='de.cau.cs.kieler.sccharts.commands.category'
+
+!ENTRY org.eclipse.ui 2 0 2020-10-19 08:58:40.471
+!MESSAGE Warnings while parsing the key bindings from the 'org.eclipse.ui.commands' and 'org.eclipse.ui.bindings' extension point
+!SUBENTRY 1 org.eclipse.ui 2 0 2020-10-19 08:58:40.471
+!MESSAGE Cannot bind to an undefined command: plug-in='de.cau.cs.kieler.core.model', id='de.cau.cs.kieler.core.model.zoom'
+
+!ENTRY org.eclipse.ui 2 0 2020-10-19 08:58:40.921
+!MESSAGE Warnings while parsing the commands from the 'org.eclipse.ui.commands' and 'org.eclipse.ui.actionDefinitions' extension points.
+!SUBENTRY 1 org.eclipse.ui 2 0 2020-10-19 08:58:40.921
+!MESSAGE Commands should really have a category: plug-in='de.cau.cs.kieler.sccharts.s', id='de.cau.cs.kieler.sccharts.commands.STransformation', categoryId='de.cau.cs.kieler.sccharts.commands.category'
+!SUBENTRY 1 org.eclipse.ui 2 0 2020-10-19 08:58:40.921
+!MESSAGE Commands should really have a category: plug-in='de.cau.cs.kieler.sccharts.scg', id='de.cau.cs.kieler.sccharts.commands.SCGTransformation', categoryId='de.cau.cs.kieler.sccharts.commands.category'
+!SUBENTRY 1 org.eclipse.ui 2 0 2020-10-19 08:58:40.921
+!MESSAGE Commands should really have a category: plug-in='de.cau.cs.kieler.scl.ui', id='de.cau.cs.kieler.scl.ui.commands.SCGToSCLTransformation', categoryId='de.cau.cs.kieler.scl.ui.commands.category'
+!SUBENTRY 1 org.eclipse.ui 2 0 2020-10-19 08:58:40.921
+!MESSAGE Commands should really have a category: plug-in='de.cau.cs.kieler.scl.ui', id='de.cau.cs.kieler.scl.commands.ui.SCLToSCGTransformation', categoryId='de.cau.cs.kieler.scl.ui.commands.category'
+!SUBENTRY 1 org.eclipse.ui 2 0 2020-10-19 08:58:40.921
+!MESSAGE Commands should really have a category: plug-in='de.cau.cs.kieler.synccharts', id='de.cau.cs.kieler.sccharts.commands.SyncChartsTransformation', categoryId='de.cau.cs.kieler.sccharts.commands.category'
+
+!ENTRY org.eclipse.jface 2 0 2020-10-19 08:58:48.960
+!MESSAGE Keybinding conflicts occurred.  They may interfere with normal accelerator operation.
+!SUBENTRY 1 org.eclipse.jface 2 0 2020-10-19 08:58:48.960
+!MESSAGE A conflict occurred for ALT+CTRL+H:
+Binding(ALT+CTRL+H,
+	ParameterizedCommand(Command(org.eclipse.jdt.ui.edit.text.java.open.call.hierarchy,Open Call Hierarchy,
+		Open a call hierarchy on the selected element,
+		Category(org.eclipse.ui.category.navigate,Navigate,null,true),
+		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@310ad792,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.ui.contexts.window,,,system)
+Binding(ALT+CTRL+H,
+	ParameterizedCommand(Command(org.eclipse.xtext.xbase.ui.hierarchy.OpenCallHierarchy,Open Call Hierarchy,
+		Open a call hierarchy on the selected element,
+		Category(org.eclipse.core.commands.categories.autogenerated,Uncategorized,Commands that were either auto-generated or have no category,true),
+		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@15c900be,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.xtext.ui.XtextEditorScope,,,system)
+Binding(ALT+CTRL+H,
+	ParameterizedCommand(Command(org.eclipse.xtext.ui.editor.OpenCallHierarchy,Open Call Hierarchy,
+		Open call hierarchy for the selected element,
+		Category(org.eclipse.ui.category.navigate,Navigate,null,true),
+		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@72bec302,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.xtext.ui.XtextEditorScope,,,system)
+
+!ENTRY de.cau.cs.kieler.kico 2 0 2020-10-19 08:58:50.115
+!MESSAGE KiCo cannot find the feature with ID 'VHDL'
+
+!ENTRY de.cau.cs.kieler.kico 4 0 2020-10-19 08:58:50.169
+!MESSAGE Feature 'circuit' references a feature 'VHDL' that cannot be found.
+
+!ENTRY de.cau.cs.kieler.klighd.incremental 1 0 2020-10-19 08:58:50.800
+!MESSAGE Fallback to simple update. Reason: Empty base model.
+
+!ENTRY de.cau.cs.kieler.klighd.incremental 1 0 2020-10-19 08:59:07.914
+!MESSAGE Fallback to simple update. Reason: Empty base model.
+
+!ENTRY de.cau.cs.kieler.klighd.incremental 1 0 2020-10-19 08:59:10.358
+!MESSAGE Fallback to simple update. Reason: Empty base model.
+
+!ENTRY de.cau.cs.kieler.klighd.incremental 1 0 2020-10-19 08:59:12.174
+!MESSAGE Fallback to simple update. Reason: Empty base model.
+
+!ENTRY de.cau.cs.kieler.klighd.incremental 1 0 2020-10-19 08:59:13.966
+!MESSAGE Fallback to simple update. Reason: Empty base model.
+
+!ENTRY de.cau.cs.kieler.klighd.incremental 1 0 2020-10-19 08:59:15.352
+!MESSAGE Fallback to simple update. Reason: Empty base model.
+
+!ENTRY de.cau.cs.kieler.klighd.incremental 1 0 2020-10-19 08:59:17.375
+!MESSAGE Fallback to simple update. Reason: Empty base model.
+
+!ENTRY de.cau.cs.kieler.klighd.incremental 1 0 2020-10-19 09:03:12.782
+!MESSAGE Fallback to simple update. Reason: Empty base model.
+
+!ENTRY de.cau.cs.kieler.klighd.incremental 1 0 2020-10-19 09:03:12.976
+!MESSAGE Fallback to simple update. Reason: Empty base model.
+
+!ENTRY org.eclipse.ui 4 0 2020-10-19 09:03:21.764
+!MESSAGE Unhandled event loop exception
+!STACK 0
+org.eclipse.swt.SWTException: Widget is disposed
+	at org.eclipse.swt.SWT.error(SWT.java:4533)
+	at org.eclipse.swt.SWT.error(SWT.java:4448)
+	at org.eclipse.swt.SWT.error(SWT.java:4419)
+	at org.eclipse.swt.widgets.Widget.error(Widget.java:482)
+	at org.eclipse.swt.widgets.Widget.checkWidget(Widget.java:354)
+	at org.eclipse.swt.widgets.Button.getSelection(Button.java:729)
+	at de.cau.cs.kieler.prom.projectwizard.MainPage.isCreateInitialResources(MainPage.java:178)
+	at de.cau.cs.kieler.prom.projectwizard.PromProjectWizard.createInitialResources(PromProjectWizard.java:354)
+	at de.cau.cs.kieler.prom.projectwizard.PromProjectWizard.performFinish(PromProjectWizard.java:175)
+	at org.eclipse.jface.wizard.WizardDialog.finishPressed(WizardDialog.java:790)
+	at org.eclipse.jface.wizard.WizardDialog.buttonPressed(WizardDialog.java:423)
+	at org.eclipse.jface.dialogs.Dialog$2.widgetSelected(Dialog.java:618)
+	at org.eclipse.swt.widgets.TypedListener.handleEvent(TypedListener.java:249)
+	at org.eclipse.swt.widgets.EventTable.sendEvent(EventTable.java:84)
+	at org.eclipse.swt.widgets.Display.sendEvent(Display.java:4410)
+	at org.eclipse.swt.widgets.Widget.sendEvent(Widget.java:1079)
+	at org.eclipse.swt.widgets.Display.runDeferredEvents(Display.java:4228)
+	at org.eclipse.swt.widgets.Display.readAndDispatch(Display.java:3816)
+	at org.eclipse.jface.window.Window.runEventLoop(Window.java:818)
+	at org.eclipse.jface.window.Window.open(Window.java:794)
+	at org.eclipse.ui.internal.actions.NewWizardShortcutAction.run(NewWizardShortcutAction.java:133)
+	at org.eclipse.jface.action.Action.runWithEvent(Action.java:473)
+	at org.eclipse.jface.action.ActionContributionItem.handleWidgetSelection(ActionContributionItem.java:565)
+	at org.eclipse.jface.action.ActionContributionItem.lambda$4(ActionContributionItem.java:397)
+	at org.eclipse.swt.widgets.EventTable.sendEvent(EventTable.java:84)
+	at org.eclipse.swt.widgets.Display.sendEvent(Display.java:4410)
+	at org.eclipse.swt.widgets.Widget.sendEvent(Widget.java:1079)
+	at org.eclipse.swt.widgets.Display.runDeferredEvents(Display.java:4228)
+	at org.eclipse.swt.widgets.Display.readAndDispatch(Display.java:3816)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine$4.run(PartRenderingEngine.java:1121)
+	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:336)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.run(PartRenderingEngine.java:1022)
+	at org.eclipse.e4.ui.internal.workbench.E4Workbench.createAndRunUI(E4Workbench.java:150)
+	at org.eclipse.ui.internal.Workbench$5.run(Workbench.java:687)
+	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:336)
+	at org.eclipse.ui.internal.Workbench.createAndRunWorkbench(Workbench.java:604)
+	at org.eclipse.ui.PlatformUI.createAndRunWorkbench(PlatformUI.java:148)
+	at org.eclipse.ui.internal.ide.application.IDEApplication.start(IDEApplication.java:138)
+	at org.eclipse.equinox.internal.app.EclipseAppHandle.run(EclipseAppHandle.java:196)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.runApplication(EclipseAppLauncher.java:134)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.start(EclipseAppLauncher.java:104)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:388)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:243)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at org.eclipse.equinox.launcher.Main.invokeFramework(Main.java:673)
+	at org.eclipse.equinox.launcher.Main.basicRun(Main.java:610)
+	at org.eclipse.equinox.launcher.Main.run(Main.java:1519)
+
+!ENTRY de.cau.cs.kieler.klighd.incremental 1 0 2020-10-19 09:03:22.191
+!MESSAGE Fallback to simple update. Reason: Empty base model.
+
+!ENTRY de.cau.cs.kieler.klighd.incremental 1 0 2020-10-19 09:03:22.343
+!MESSAGE Fallback to simple update. Reason: Empty base model.
+
+!ENTRY de.cau.cs.kieler.klighd.incremental 1 0 2020-10-19 09:04:33.877
+!MESSAGE Fallback to simple update. Reason: Empty base model.
+
+!ENTRY de.cau.cs.kieler.klighd.incremental 1 0 2020-10-19 09:04:41.238
+!MESSAGE Fallback to simple update. Reason: Empty base model.
+
+!ENTRY de.cau.cs.kieler.klighd.incremental 1 0 2020-10-19 09:04:43.230
+!MESSAGE Fallback to simple update. Reason: Empty base model.
+
+!ENTRY de.cau.cs.kieler.klighd.incremental 1 0 2020-10-19 09:04:46.139
+!MESSAGE Fallback to simple update. Reason: Empty base model.
+
+!ENTRY de.cau.cs.kieler.klighd.incremental 1 0 2020-10-19 09:05:04.881
+!MESSAGE Fallback to simple update. Reason: Empty base model.
+
+!ENTRY de.cau.cs.kieler.klighd.incremental 1 0 2020-10-19 09:05:05.929
+!MESSAGE Fallback to simple update. Reason: Empty base model.
+
+!ENTRY de.cau.cs.kieler.klighd.incremental 1 0 2020-10-19 09:05:07.931
+!MESSAGE Fallback to simple update. Reason: Empty base model.
+
+!ENTRY org.eclipse.core.resources 2 2 2020-10-19 09:08:11.333
+!MESSAGE Save operation warnings.
+!SUBENTRY 1 org.eclipse.core.resources 2 234 2020-10-19 09:08:11.333
+!MESSAGE The project description file (.project) for 'asd' was missing.  This file contains important information about the project.  A new project description file has been created, but some information about the project may have been lost.
+
+!ENTRY de.cau.cs.kieler.klighd.incremental 1 0 2020-10-19 11:12:00.935
+!MESSAGE Fallback to simple update. Reason: Empty base model.
