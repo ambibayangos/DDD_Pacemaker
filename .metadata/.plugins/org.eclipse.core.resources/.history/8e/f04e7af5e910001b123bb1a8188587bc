@@ -23,7 +23,6 @@ scchart DDD_pacemaker {
 	  		  		region waitAVI:
 	  		  	
 	  		  		initial state init
-
 	  		  		-->connect with Asense
 	  		  		-->connect with Apace;
 	  		  	
@@ -32,8 +31,7 @@ scchart DDD_pacemaker {
 	  		  	
 	  		  		state waitAVI
 	  		  		--> waitPVARP immediate with AVI_ex
-	  		  		--> waitPVARP immediate with Vsense/stop_AVI
-	  		  		--> waitPVARP immediate with Vpace/stop_AVI;
+	  		  		--> waitPVARP immediate with Vsense/stop_AVI;
 	  		  	
 	  		  		final state waitPVARP
 	  		  		-->init with PVARP_ex;
