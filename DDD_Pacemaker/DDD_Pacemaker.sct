@@ -15,6 +15,8 @@ scchart DDD_pacemaker {
 	  		  	
 	  		  		initial state waitURI
 	  		  		-->URIdone with URI_ex;
+
+
 	  		  	
 	  		  		final state URIdone; 
 	  		
@@ -28,13 +30,15 @@ scchart DDD_pacemaker {
 	  		  		-->waitAVI immediate with /start_AVI;
 	  		  	
 	  		  		state waitAVI
-	  		  		--> VentricleEvent immediate with AVI_ex
-	  		  		--> VentricleEvent immediate with Vsense;
+	  		  		--> waitPVARP immediate with AVI_ex
+	  		  		--> waitPVARP immediate with Vsense/stop_AVI;
 	  		  	
-	  		  		final state VentricleEvent;
+	  		  		final state waitPVARP
+	  		  		-->init with PVARP_ex;
 
 	  		  	
 	  			}
+
 	  			>-> waitPVARP with AVI_ex/Vpace
 	  			>-> waitPVARP with Vsense/stop_URI
 	  			>-> waitPVARP with /Vpace;
@@ -66,10 +70,18 @@ scchart DDD_pacemaker {
 	  			--> connect with Vpace;
 	  			
 	  			connector state connect
-	  			--> waitPVARP immediate with /start_PVARP;
+	  			--> waitVRP immediate with /start_PVARP;
+	  			
+	  			state waitVRP
+	  			--> waitPVARP with VRP_ex;
 	  			
 	  			state waitPVARP
+	  			--> connect1 with Vsense
+	  			--> connect1 with Vpace
 	  			--> idle with PVARP_ex;
+	  			
+	  			connector state connect1
+	  			--> connect immediate with /stop_PVARP;
 	  			
 	  		region VRP:
 	  			
@@ -93,7 +105,8 @@ scchart DDD_pacemaker {
 	  			
 	  			state waitLRI
 	  			-->reinit with LRI_ex/Vpace
-	  			-->reinit with Vsense/LRI_stop;
+	  			-->reinit with Vsense/LRI_stop
+	  			-->reinit with Vpace/LRI_stop;
 	  			
 	  			state reinit
 	  			-->waitVRP with /start_LRI;
@@ -106,11 +119,18 @@ scchart DDD_pacemaker {
 	  			--> connect with Vpace;
 	  			
 	  			connector state connect
-	  			--> waitURI immediate with /start_URI;
+	  			--> waitVRP immediate with /start_URI;
+	  			
+	  			state waitVRP
+	  			--> waitURI with VRP_ex;
+	  		
 	  			
 	  			state waitURI
-	  			--> idle with URI_ex;
+	  			--> connect with Vsense/stop_URI
+	  			--> reinit immediate with URI_ex;
 	  			
+	  			state reinit
+	  			-->connect immediate with Vpace/start_URI;
 	};
 
 }
