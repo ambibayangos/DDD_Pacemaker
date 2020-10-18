@@ -210,7 +210,7 @@ scchart DDD_pacemaker {
 	  			
 	  			state counting
 	  			-->idle with LRI_ex
-	  			-->counting with /LRI_counting;
+	  			-->counting with /VRP_counting;
 	  		 	  			
 	  		region URI_timer:
 	  		

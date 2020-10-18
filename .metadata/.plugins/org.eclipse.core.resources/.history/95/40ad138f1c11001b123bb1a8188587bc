@@ -201,7 +201,7 @@ scchart DDD_pacemaker {
 	  			
 	  			state counting
 	  			-->idle with AEI_ex
-	  			-->counting with /AEI_counting;
+	  			-->counting with VRP_counting;
 	  		
 	  		region LRI_timer:
 	  		
@@ -210,7 +210,7 @@ scchart DDD_pacemaker {
 	  			
 	  			state counting
 	  			-->idle with LRI_ex
-	  			-->counting with /LRI_counting;
+	  			-->counting with VRP_counting;
 	  		 	  			
 	  		region URI_timer:
 	  		
@@ -219,7 +219,7 @@ scchart DDD_pacemaker {
 	  			
 	  			state counting
 	  			-->idle with URI_ex
-	  			-->counting with /URI_counting;
+	  			-->counting with URI_counting;
 	  			
 	  	 	region VRP_timer:
 	  		
@@ -228,7 +228,7 @@ scchart DDD_pacemaker {
 	  			
 	  			state counting
 	  			-->idle with VRP_ex
-	  			-->counting with /VRP_counting;
+	  			-->counting with VRP_counting;
 
 	};
 
