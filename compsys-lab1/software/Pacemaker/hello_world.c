@@ -23,12 +23,12 @@
 
 #include <time.h> // REMOVE THIS
 
-# define AVI_VALUE 200 	//ws
-# define AEI_VALUE 800  // s
-# define PVARP_VALUE 50 // s
-# define VRP_VALUE 150  // s
-# define LRI_VALUE 950  // s
-# define URI_VALUE 900  //s
+# define AVI_VALUE 200
+# define AEI_VALUE 800
+# define PVARP_VALUE 150
+# define VRP_VALUE 50
+# define LRI_VALUE 950
+# define URI_VALUE 900
 
 char *timer_start_flags[6];
 char *timer_state_flags[6];
@@ -42,6 +42,45 @@ int timer_timeout_values[6] = {
 			LRI_VALUE,
 			URI_VALUE
 	};
+
+int vsense_flag = 0;
+int asense_flag = 0;
+int occupied = 0; // represents a critical section ( "0" section is free , "1" is not free)
+
+
+/* get_heart_signals (void* context, alt_u32 ID)
+ *
+ * This method sets a flag to set initiate setting the
+ * Vsense or Asense variable if KEY0 and KEY1 are is pressed
+ * respectively.
+ */
+void get_heart_signals(void* context, alt_u32 ID)
+{
+	// critical section "ticket" variable
+	int code;
+
+	// Read buttons value
+	int buttonsValue = IORD_ALTERA_AVALON_PIO_DATA(BUTTONS_BASE);
+
+	// ensure mutual exclusion
+	test_and_set(&code);
+	while(code)test_and_set(&code);
+
+	if(buttonsValue == 0b110) // Vsense occurred
+	{
+		vsense_flag = 1;
+	}
+	else if(buttonsValue == 0b101) // Asense occured
+	{
+		asense_flag = 1;
+	}
+
+	// free the critical section
+	occupied = 0;
+
+	// clear the edge capture register to enable next interrupt
+	IOWR_ALTERA_AVALON_PIO_EDGE_CAP(BUTTONS_BASE, 0);
+}
 
 /* timeout_checker(int first_timeStamp , int timeout ,char *output):
  *
@@ -66,10 +105,19 @@ void timeout_checker(int first_timeStamp , int timeout ,char *timer_expired_flag
 
 	if(time_diff >= timeout)
 	{
-		//printf("timeoutvalue %d \n",time_diff);
-
+		printf("timeoutvalue %d \n",time_diff);
 		(*timer_expired_flag) = 1; // timer expired
 	}
+}
+
+/*
+ * This method ensures that only one process (main or ISR) has access
+ * to variables "vsense_flag" or "asense_flag" at a time
+ */
+void test_and_set(int* code)
+{
+	(*code) = occupied;
+	occupied = 1;
 }
 
 //REMOVE THIS
@@ -114,23 +162,24 @@ int main()
 	timer_expired_flags[4] = &LRI_ex;
 	timer_expired_flags[5] = &URI_ex;
 
-	//Force a Vsense TODO: Remove this later
-	IOWR_ALTERA_AVALON_PIO_DATA(LEDS_RED_BASE, 0);
-	int c = 0;
+	// critical section "ticket" variable
+	int code;
+
+	// initialize button isr - clear the buttons edge capture register
+	 IOWR_ALTERA_AVALON_PIO_EDGE_CAP(BUTTONS_BASE, 0);
+	// enable interrupt on button press (KEY0 or KEY1 only)
+	 IOWR_ALTERA_AVALON_PIO_IRQ_MASK(BUTTONS_BASE, 0b011);
+	// initialize button isr - register button ISR
+	 alt_irq_register (BUTTONS_IRQ, NULL , get_heart_signals);
+
+
   while(1)
   {
-	  if(c == 1)
-	  {
-		  Vsense = 1;
-	  }
-	  else
-	  {
-		  Vsense = 0;
-	  }
 
-
+	  /*
 	  printf("Vsense value  %d\n" , Vsense);
 	  printf("-----------------------\n");
+	  */
 
 	  /*
 	  printf("AVI_ex   %d \n",*timer_expired_flags[0]);
@@ -141,6 +190,8 @@ int main()
 	  printf("URI_ex   %d \n",*timer_expired_flags[5]);
 	  printf("-------------------------- \n");
 	  */
+
+	  /*
 	  printf("AVI_start   %d \n",*timer_start_flags[0]);
 	  printf("PVARP_start %d \n",*timer_start_flags[1]);
 	  printf("VRP_start   %d \n",*timer_start_flags[2]);
@@ -149,20 +200,47 @@ int main()
 	  printf("URI_start   %d \n",*timer_start_flags[5]);
 	  printf("-------------------------- \n");
 	  printf("-------------------------- \n");
+	  */
 
-	  //delay(10000); // Remove this
+	  // ensure mutual exclusion
+	  test_and_set(&code);
+	  while(code) test_and_set(&code);
 
-	  //printf("AEI_ex   %d \n",*timer_expired_flags[3]);
-	  //printf("PVARP_ex   %d \n",*timer_expired_flags[1]);
+	  //Get Vsense or Asense inputs
+	  if(vsense_flag)
+	  {
+		  Vsense = 1; // Vsense occured
+		  vsense_flag = 0;
+	  }
+	  else
+	  {
+		  Vsense = 0; // no Vsense occured
+	  }
+
+	  if(asense_flag)
+	  {
+		  Asense = 1; // Asense occured
+		  asense_flag = 0;
+	  }
+	  else
+	  {
+		  Asense = 0; // no Asense occured
+	  }
+
+	  occupied = 0; // free critical section
+
+	  // Get inputs (TIMER_ex inputs) e.g. "AVI_ex = 1" timer AVI expired
 	  for(int i = 0; i < 6 ; i++)
 	  {
-		  if((*timer_start_flags[i])) // check if a timer is started
+		  // check if a timer is started
+		  if((*timer_start_flags[i]))
 		  {
 			  // get the time stamp when start timer flag is set
 			  timer_fist_timeStamp_Value[i] = alt_nticks();
 		  }
 
-		  if((*timer_state_flags[i])) // check if a timer is still counting
+		  // check if a timer is still counting
+		  if((*timer_state_flags[i]))
 		  {
 			  /* check if a timer has timed out
 			   * and outputs a timer expire flag to
@@ -177,32 +255,35 @@ int main()
 			  *timer_expired_flags[i] = 0; // timer is idle or counting
 		  }
 
-	  }
+	   }
 
 
-	  // run the FSM
+	  // run one FSM tick
 	  tick();
 
-
+	  // emit FSM outputs
 	  if(Apace)
 	  {
+
+		  // set all green LED (high green led means atrium is paced)
 		  IOWR_ALTERA_AVALON_PIO_DATA(LEDS_RED_BASE, 0x3FFFF);
 	  }
 	  else
 	  {
+		  // clear all red LED (heart is not artificially paced)
 		  IOWR_ALTERA_AVALON_PIO_DATA(LEDS_RED_BASE, 0);
 	  }
 
 	  if(Vpace)
 	  {
+		  // set all red LED (high red led means ventricle is paced)
 		  IOWR_ALTERA_AVALON_PIO_DATA(LEDS_GREEN_BASE, 0x3FFFF);
 	  }
 	  else
 	  {
+		  // clear all green LED (heart is not artificially paced)
 		  IOWR_ALTERA_AVALON_PIO_DATA(LEDS_GREEN_BASE, 0);
 	  }
-
-	  c++;
 
 
   }
