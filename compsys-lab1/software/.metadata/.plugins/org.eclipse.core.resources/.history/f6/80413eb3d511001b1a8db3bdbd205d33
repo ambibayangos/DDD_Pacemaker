@@ -115,18 +115,10 @@ int main()
 	timer_expired_flags[5] = &URI_ex;
 
 	//Force a Vsense TODO: Remove this later
+	Vsense = 1;
 	IOWR_ALTERA_AVALON_PIO_DATA(LEDS_RED_BASE, 0);
-	int c = 0;
   while(1)
   {
-	  if(c == 1)
-	  {
-		  Vsense = 1;
-	  }
-	  else
-	  {
-		  Vsense = 0;
-	  }
 
 
 	  printf("Vsense value  %d\n" , Vsense);
@@ -150,7 +142,7 @@ int main()
 	  printf("-------------------------- \n");
 	  printf("-------------------------- \n");
 
-	  //delay(10000); // Remove this
+	  delay(10000); // Remove this
 
 	  //printf("AEI_ex   %d \n",*timer_expired_flags[3]);
 	  //printf("PVARP_ex   %d \n",*timer_expired_flags[1]);
@@ -201,8 +193,6 @@ int main()
 	  {
 		  IOWR_ALTERA_AVALON_PIO_DATA(LEDS_GREEN_BASE, 0);
 	  }
-
-	  c++;
 
 
   }

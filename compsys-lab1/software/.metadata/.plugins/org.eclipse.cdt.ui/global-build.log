@@ -1,16 +1,25 @@
-12:00:29 **** Incremental Build of configuration Nios II for project Pacemaker ****
+19:41:51 **** Incremental Build of configuration Nios II for project Pacemaker ****
+make all 
+Info: Building ../Pacemaker_bsp/
+C:/intelFPGA_lite/16.1/nios2eds/bin/gnu/H-x86_64-mingw32/bin/make --no-print-directory -C ../Pacemaker_bsp/
+[BSP build complete]
+Info: Compiling hello_world.c to obj/default/hello_world.o
+nios2-elf-gcc -xc -MP -MMD -c -I../Pacemaker_bsp//HAL/inc -I../Pacemaker_bsp/ -I../Pacemaker_bsp//drivers/inc  -pipe -D__hal__ -DALT_NO_INSTRUCTION_EMULATION -DALT_SINGLE_THREADED    -O0 -g -Wall   -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global  -o obj/default/hello_world.o hello_world.c
+Info: Linking Pacemaker.elf
+nios2-elf-g++  -T'../Pacemaker_bsp//linker.x' -msys-crt0='../Pacemaker_bsp//obj/HAL/src/crt0.o' -msys-lib=hal_bsp -L../Pacemaker_bsp/   -Wl,-Map=Pacemaker.map   -O0 -g -Wall   -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global  -o Pacemaker.elf obj/default/FSM.o obj/default/hello_world.o -lm -msys-lib=m
+nios2-elf-insert Pacemaker.elf --thread_model hal --cpu_name cpu --qsys true --simulation_enabled false --id 308784078 --sidp 0x0 --timestamp 1502336826 --stderr_dev jtag_uart --stdin_dev jtag_uart --stdout_dev jtag_uart --sopc_system_name nios2_system --quartus_project_dir "C:/Users/ambib/OneDrive/Desktop/compsys-lab1" --jdi ../..//output_files/lab1.jdi --sopcinfo C:/Users/ambib/OneDrive/Desktop/compsys-lab1/software/Pacemaker_bsp/../../nios2_system.sopcinfo
+Info: (Pacemaker.elf) 89 KBytes program size (code + initialized data).
+Info:                 8095 KBytes free for stack + heap.
+Info: Creating Pacemaker.objdump
+nios2-elf-objdump --disassemble --syms --all-header --source Pacemaker.elf >Pacemaker.objdump
+[Pacemaker build complete]
+19:41:59 **** Build of configuration Nios II for project Pacemaker ****
 make all 
 Info: Building ../Pacemaker_bsp/
 C:/intelFPGA_lite/16.1/nios2eds/bin/gnu/H-x86_64-mingw32/bin/make --no-print-directory -C ../Pacemaker_bsp/
 [BSP build complete]
 [Pacemaker build complete]
-12:00:34 **** Build of configuration Nios II for project Pacemaker ****
-make all 
-Info: Building ../Pacemaker_bsp/
-C:/intelFPGA_lite/16.1/nios2eds/bin/gnu/H-x86_64-mingw32/bin/make --no-print-directory -C ../Pacemaker_bsp/
-[BSP build complete]
-[Pacemaker build complete]
-12:00:36 **** Incremental Build of configuration Nios II for project Pacemaker ****
+19:42:01 **** Incremental Build of configuration Nios II for project Pacemaker ****
 make all 
 Info: Building ../Pacemaker_bsp/
 C:/intelFPGA_lite/16.1/nios2eds/bin/gnu/H-x86_64-mingw32/bin/make --no-print-directory -C ../Pacemaker_bsp/

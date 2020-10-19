@@ -123,10 +123,6 @@ int main()
 	  {
 		  Vsense = 1;
 	  }
-	  else
-	  {
-		  Vsense = 0;
-	  }
 
 
 	  printf("Vsense value  %d\n" , Vsense);
@@ -150,7 +146,7 @@ int main()
 	  printf("-------------------------- \n");
 	  printf("-------------------------- \n");
 
-	  //delay(10000); // Remove this
+	  delay(10000); // Remove this
 
 	  //printf("AEI_ex   %d \n",*timer_expired_flags[3]);
 	  //printf("PVARP_ex   %d \n",*timer_expired_flags[1]);
