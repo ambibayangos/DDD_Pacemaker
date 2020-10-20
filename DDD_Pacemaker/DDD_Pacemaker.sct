@@ -37,47 +37,37 @@ scchart DDD_pacemaker {
 	initial state TOP
 	{		
 	    	
-	  		region AVI:
+	  	region AVI:
+ 
+  			initial state waitURIandAVI
+  			{
+    			region waitAVI:
+   
+  	  			initial state init
+				-->PVARP_done with PVARP_ex;
+   
+   
+   
+  			   state PVARP_done
+    		   -->connect with Asense
+    		   -->connect with Apace;
+   
+    		  connector state connect
+              -->waitAVI immediate with /start_AVI;
+   
+    		  state waitAVI
+              --> waitURI with AVI_ex    
+              -->init with Vsense/stop_AVI
+              -->init with Vpace/stop_AVI;
+   
+   
+    		  state waitURI
+              --> init immediate with !URI_counting/Vpace;
+              
+  };
+
 	  		
-	  			initial state waitURIandAVI
-	  			{
-	  		
-	  		  		region waitURI:
-	  		  	
-	  		  		initial state waitURI
-	  		  		-->URIdone with URI_ex;
-
-
-	  		  	
-	  		  		final state URIdone; 
-	  		
-	  		  		region waitAVI:
-	  		  	
-	  		  		initial state init
-
-	  		  		-->connect with Asense
-	  		  		-->connect with Apace;
-	  		  	
-	  		  		connector state connect
-	  		  		-->waitAVI immediate with /start_AVI;
-	  		  	
-	  		  		state waitAVI
-	  		  		--> waitPVARP immediate with AVI_ex
-	  		  		--> waitPVARP immediate with Vsense/stop_AVI
-	  		  		--> waitPVARP immediate with Vpace/stop_AVI;
-	  		  	
-	  		  		final state waitPVARP
-	  		  		-->init with PVARP_ex;
-
-	  		  	
-	  			}
-
-	  			>-> waitPVARP with AVI_ex/Vpace
-	  			>-> waitPVARP with Vsense/stop_URI
-	  			>-> waitPVARP with /Vpace;
-	  		
-	  			state waitPVARP
-	  			-->waitURIandAVI with PVARP_ex;
+	  			
 		  		
 	  		
 	  		region AEI:
@@ -219,7 +209,7 @@ scchart DDD_pacemaker {
 	  		region URI_timer:
 	  		
 	  			initial state idle
-	  			-->counting with start_URI;
+	  			-->counting immediate with start_URI;
 	  			
 	  			state counting
 	  			-->idle with URI_ex

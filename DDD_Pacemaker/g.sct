@@ -1,0 +1,160 @@
+scchart pacemaker {
+  input signal ASense, VSense;
+  output signal AEIStart, AVIStart, PVARPStart, VRPStart, URIStart, LRIStart;
+  input signal AEIExpired, AVIExpired, PVARPExpired, VRPExpired, URIExpired, LRIExpired;
+  output signal AEIStop, AVIStop, PVARPStop, VRPStop, URIStop, LRIStop;
+  output signal APace, VPace;
+
+  initial state main { 
+  	/* AVI – Atrioventricular Interval
+	The maximum time between an atrial event and its subsequent ventricular event */
+    region AVI:
+	
+	initial state idle
+		--> PVARPWait with ASense
+		--> V_wait with APace
+		--> PVARPDone with PVARPExpired;
+	state PVARPDone
+		--> V_wait with ASense
+		--> V_wait with APace
+		--> idle with PVARPStart;
+	connector state PVARPWait
+		--> ASWait immediate with PVARPExpired;
+	state ASWait 
+		--> V_wait with ASense
+		--> V_wait with APace;
+	connector state V_wait
+		--> AVI_on immediate with / AVIStart;
+	state AVI_on
+		--> idle with VSense / AVIStop
+		--> idle with AVIExpired;
+	
+	/* AVITimer – Atrioventricular Interval Timer
+	The timer state machine that handles pacing based on the AVI timer */
+    region AVITimer:
+	
+	initial state idle
+		--> URIDone with URIExpired
+		--> AVITimer with AVIStart;
+	state URIDone //URI expiry pulse has already been detected, we are clear to pace whenever AVI is activated
+		--> AVITimerURIDone with AVIStart;
+	state AVITimer
+		--> idle with AVIStop
+		--> AVITimerURIDone with URIExpired
+		--> URIWait with AVIExpired;
+	state URIWait
+		--> idle with URIExpired / VPace;
+	state AVITimerURIDone
+		--> idle with AVIStop
+		--> idle with AVIExpired / VPace;
+	
+	/* PVARP – Post-Ventricular Atrial Refractory Period
+	The time after a ventricular event where any atrial events are ignored as Atrial
+	Refractory (AR) signals */
+    region PVARP:
+    
+   	initial state idle
+   		--> AR_wait with VPace
+    	--> AR_wait with VSense;
+	connector state AR_wait
+		--> PVARPWait immediate with / PVARPStart;
+	state PVARPWait
+		--> idle with PVARPExpired;
+		
+	/* VRP – Ventricular Refractory Period
+	The time after a ventricular event where any other ventricular events are ignored as
+	Ventricular Refractory (VR) signals */
+    region VRP:
+
+    initial state idle
+   		--> V_wait with VPace
+    	--> V_wait with VSense;
+	connector state V_wait
+		--> VRPWait immediate with / VRPStart;
+	state VRPWait
+		--> idle with VRPExpired;
+    
+	/* AEI – Atrial Escape Interval
+	The maximum time between a ventricular event and its subsequent atrial event */
+    region AEI:
+
+    initial state idle
+		--> VRPWait with VSense
+		--> A_wait with VPace;
+	connector state VRPWait
+		--> VSWait immediate with VRPExpired;
+	state VSWait
+		--> A_wait with VSense
+		--> A_wait with VPace;
+	connector state A_wait
+		--> AEI_on immediate with / AEIStart;
+	state AEI_on
+		--> idle with ASense / AEIStop
+		--> idle with AEIExpired;
+
+	/* AEITimer – Atrial Escape Interval Timer
+	The timer state machine that handles pacing based on the AVI timer */
+    region AEITimer:
+	
+	initial state idle
+		--> AEITimer with AEIStart;
+	state AEITimer
+		--> idle with AEIStop
+		--> idle with AEIExpired / APace;
+
+	/* LRI – Lower Rate Interval
+	The slowest rate at which the heart is allowed to operate. This is measured as the time
+	between ventricular events */
+    region LRI:
+    
+    initial state idle
+		--> VRPWait with VSense / LRIStart;
+	state VRPWait
+		--> LRI_on with VRPExpired;
+	state LRI_on
+		--> resetLRI immediate with LRIExpired / VPace
+		--> resetLRI immediate with VSense / LRIStop
+		--> resetLRI immediate with VPace / LRIStop;
+	connector state resetLRI
+		--> VRPWait immediate with / LRIStart;
+    
+    /* LRITimer – Lower Rate Interval Timer
+	This is the timer that handles pacing based on the LRI Timer */
+    region LRITimer:
+
+    initial state idle
+		--> LRITimer with LRIStart;
+	state LRITimer
+		--> idle with LRIExpired
+		--> idle with LRIStop;
+		
+	/* URI – Upper Rate Interval
+	The fastest rate at which the pacemaker will ever pace the heart at. This is measured
+	as the time between ventricular events */
+    region URI:
+
+    initial state idle
+		--> VRPWait with VSense
+		--> URI_wait with VPace;
+	connector state VRPWait
+		--> VSWait immediate with VRPExpired;
+	state VSWait
+		--> URI_wait with VSense
+		--> URI_wait with VPace;
+	connector state URI_wait
+		--> URI_on immediate with / URIStart;
+	state URI_on
+		--> idle with URIExpired;
+	
+	/* URITimer – Upper Rate Interval Timer
+	This is the timer that handles pacing based on the URI Timer */
+    region URITimer:
+
+    initial state idle
+		--> URITimer with URIStart;
+	state URITimer
+		--> idle with URIExpired
+		--> idle with URIStop;
+	
+  };
+}

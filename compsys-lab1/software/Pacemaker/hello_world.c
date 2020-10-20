@@ -46,6 +46,7 @@ int timer_timeout_values[6] = {
 int vsense_flag = 0;
 int asense_flag = 0;
 int occupied = 0; // represents a critical section ( "0" section is free , "1" is not free)
+FILE* uart; // File pointer for the UART
 
 
 /* get_heart_signals (void* context, alt_u32 ID)
@@ -105,7 +106,7 @@ void timeout_checker(int first_timeStamp , int timeout ,char *timer_expired_flag
 
 	if(time_diff >= timeout)
 	{
-		printf("timeoutvalue %d \n",time_diff);
+		//printf("timeoutvalue %d \n",time_diff);
 		(*timer_expired_flag) = 1; // timer expired
 	}
 }
@@ -164,6 +165,19 @@ int main()
 
 	// critical section "ticket" variable
 	int code;
+	// Open uart
+	printf("5667\n");
+	uart = fopen(UART_NAME , "w+"); // TODO: check if uart is NULL or not
+	printf("1234\n");
+	if(uart == NULL)
+	{
+		printf("UART failed to open\n");
+	}
+	else
+	{
+		 printf("stfu\n");
+		 fprintf(uart,"Shot taken\n\r");
+	}
 
 	// initialize button isr - clear the buttons edge capture register
 	 IOWR_ALTERA_AVALON_PIO_EDGE_CAP(BUTTONS_BASE, 0);
@@ -175,7 +189,7 @@ int main()
 
   while(1)
   {
-
+	  fprintf(uart,"Shot\n\r");
 	  /*
 	  printf("Vsense value  %d\n" , Vsense);
 	  printf("-----------------------\n");

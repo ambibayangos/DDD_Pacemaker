@@ -1,0 +1,344 @@
+/*
+ * "Hello World" example.
+ *
+ * This example prints 'Hello from Nios II' to the STDOUT stream. It runs on
+ * the Nios II 'standard', 'full_featured', 'fast', and 'low_cost' example
+ * designs. It runs with or without the MicroC/OS-II RTOS and requires a STDOUT
+ * device in your system's hardware.
+ * The memory footprint of this hosted application is ~69 kbytes by default
+ * using the standard reference design.
+ *
+ * For a reduced footprint version of this template, and an explanation of how
+ * to reduce the memory footprint for a given application, see the
+ * "small_hello_world" template.
+ *
+ */
+
+#include <stdio.h>
+#include <altera_avalon_pio_regs.h>
+#include "sys/alt_alarm.h"
+
+#include"system.h"
+#include "FSM.h"
+
+#include <time.h> // REMOVE THIS
+
+# define AVI_VALUE 200
+# define AEI_VALUE 800
+# define PVARP_VALUE 150
+# define VRP_VALUE 50
+# define LRI_VALUE 950
+# define URI_VALUE 900
+
+char *timer_start_flags[6];
+char *timer_state_flags[6];
+char *timer_expired_flags[6];
+int timer_fist_timeStamp_Value[6] = {0,0,0,0,0,0};
+int timer_timeout_values[6] = {
+			AVI_VALUE,
+			PVARP_VALUE,
+			VRP_VALUE,
+			AEI_VALUE,
+			LRI_VALUE,
+			URI_VALUE
+	};
+int vsense_flag = 0;
+int asense_flag = 0;
+int occupied = 0; // represents a critical section ( "0" section is free , "1" is not free)
+FILE* uart;
+FILE* lcd;
+
+
+/* get_heart_signals (void* context, alt_u32 ID)
+ *
+ * This method sets a flag to set initiate setting the
+ * Vsense or Asense variable if KEY0 and KEY1 are is pressed
+ * respectively.
+ */
+void get_heart_signals(void* context, alt_u32 ID)
+{
+	// critical section "ticket" variable
+	int code;
+
+	// Read buttons value
+	int buttonsValue = IORD_ALTERA_AVALON_PIO_DATA(BUTTONS_BASE);
+
+	// ensure mutual exclusion
+	test_and_set(&code);
+	while(code)test_and_set(&code);
+
+	if(buttonsValue == 0b110) // Vsense occurred
+	{
+		vsense_flag = 1;
+	}
+	else if(buttonsValue == 0b101) // Asense occured
+	{
+		asense_flag = 1;
+	}
+
+	// free the critical section
+	occupied = 0;
+
+	// clear the edge capture register to enable next interrupt
+	IOWR_ALTERA_AVALON_PIO_EDGE_CAP(BUTTONS_BASE, 0);
+}
+
+/* timeout_checker(int first_timeStamp , int timeout ,char *output):
+ *
+ * This function determines if a timer has timeout out.
+ * it returns "1" for timer has timed out and "0" if timer
+ * is still counting.
+ *
+ * inputs
+ *
+ * 	fist_tiimeStamp - the value of alt_n_ticks when the timer is started.
+ * 	timer_state - "0" for timer done counting and "1" for timer still counting.
+ * 	timeout - the amount of time (ms) the timer has to count.
+ * 	timer_expired_flag - the address of the timer variable that represent an input on the sccharts
+ * 			 will modify the value of the passed outputput to "1" for timer timeout
+ * 			 and "0" for timer still counting.
+ */
+void timeout_checker(int first_timeStamp , int timeout ,char *timer_expired_flag)
+{
+
+	// calculates the elapsed time
+	int time_diff = alt_nticks() - first_timeStamp;
+
+	if(time_diff >= timeout)
+	{
+		printf("timeoutvalue %d \n",time_diff);
+		(*timer_expired_flag) = 1; // timer expired
+	}
+}
+
+/*
+ * This method ensures that only one process (main or ISR) has access
+ * to variables "vsense_flag" or "asense_flag" at a time
+ */
+void test_and_set(int* code)
+{
+	(*code) = occupied;
+	occupied = 1;
+}
+
+//REMOVE THIS
+void delay(int milliseconds)
+{
+    long pause;
+    clock_t now,then;
+
+    pause = milliseconds*(CLOCKS_PER_SEC/1000);
+    now = then = clock();
+    while( (now-then) < pause )
+        now = clock();
+}
+
+
+int main()
+{
+	// Initialize the FSM
+	reset();
+
+	// Store the timers "timer start" flags
+	timer_start_flags[0] = &start_AVI;
+	timer_start_flags[1] = &start_PVARP;
+	timer_start_flags[2] = &start_VRP;
+	timer_start_flags[3] = &start_AEI;
+	timer_start_flags[4] = &start_LRI;
+	timer_start_flags[5] = &start_URI;
+
+	// Store the timer state (counting = 1 idle = 0)
+	timer_state_flags[0] = &AVI_counting;
+	timer_state_flags[1] = &PVARP_counting;
+	timer_state_flags[2] = &VRP_counting;
+	timer_state_flags[3] = &AEI_counting;
+	timer_state_flags[4] = &LRI_counting;
+	timer_state_flags[5] = &URI_counting;
+
+	// Store the SCCHARTS OUTPUT variables
+	timer_expired_flags[0] = &AVI_ex;
+	timer_expired_flags[1] = &PVARP_ex;
+	timer_expired_flags[2] = &VRP_ex;
+	timer_expired_flags[3] = &AEI_ex;
+	timer_expired_flags[4] = &LRI_ex;
+	timer_expired_flags[5] = &URI_ex;
+
+	// stores the hear signals sent from the heart emulator
+	char heart_signal[1];
+	//  stores the switch values on the switch on DE-115 board
+	int swicthValue = 0;
+	// stores the previous value of variable "swicthValue"
+	int prevSwitchValue = 0;
+	// critical section "ticket" variable
+	int code;
+
+	//Open uart with read and write
+	uart = fopen(UART_NAME , "w+");
+	if(uart == NULL)
+	{
+		printf("could not start uart");
+	}
+
+	//Open lcd module on the DE-115 board
+	lcd = fopen(LCD_NAME, "w");
+
+
+
+	// initialize button isr - clear the buttons edge capture register
+	 IOWR_ALTERA_AVALON_PIO_EDGE_CAP(BUTTONS_BASE, 0);
+	// enable interrupt on button press (KEY0 or KEY1 only)
+	 IOWR_ALTERA_AVALON_PIO_IRQ_MASK(BUTTONS_BASE, 0b011);
+	// initialize button isr - register button ISR
+	 alt_irq_register (BUTTONS_IRQ, NULL , get_heart_signals);
+
+
+
+
+  while(1)
+  {
+
+	  if(swicthValue) // Read Vsense and Asense inputs from the heart emulator
+	  {
+		  // Read heart inputs from the heart emulator
+		  fscanf(uart,"%c", heart_signal);
+
+		  if(heart_signal[0] == "A")
+		  {
+			  Asense = 1; // Asense occured
+		  }
+		  else
+		  {
+			  Asense = 0; // no Asense occured
+		  }
+
+		  if(heart_signal[0] == "V")
+		  {
+			  Vsense = 1; // Vsense occured
+		  }
+		  else
+		  {
+			  Vsense = 0; // no Vsense occured
+		  }
+		  printf("%c \n", heart_signal[0]);
+
+	  }
+	  else // Read Vsense and Asense inputs from KEY0 and KEY1
+	  {
+		  // ensure mutual exclusion
+		  test_and_set(&code);
+		  while(code) test_and_set(&code);
+
+		  //Get Vsense or Asense inputs
+		  if(vsense_flag)
+		  {
+			  Vsense = 1; // Vsense occured
+			  vsense_flag = 0;
+		  }
+		  else
+		  {
+			  Vsense = 0; // no Vsense occured
+		  }
+
+		  if(asense_flag)
+		  {
+			  Asense = 1; // Asense occured
+			  asense_flag = 0;
+		  }
+		  else
+		  {
+			  Asense = 0; // no Asense occured
+		  }
+
+		  occupied = 0; // free critical section
+	  }
+
+	  // Get inputs (TIMER_ex inputs) e.g. "AVI_ex = 1" timer AVI expired
+	  for(int i = 0; i < 6 ; i++)
+	  {
+		  // check if a timer is started
+		  if((*timer_start_flags[i]))
+		  {
+			  // get the time stamp when start timer flag is set
+			  timer_fist_timeStamp_Value[i] = alt_nticks();
+		  }
+
+		  // check if a timer is still counting
+		  if((*timer_state_flags[i]))
+		  {
+			  /* check if a timer has timed out
+			   * and outputs a timer expire flag to
+			   * intput into sccharts
+			   */
+			  timeout_checker(timer_fist_timeStamp_Value[i],
+			                  timer_timeout_values[i],
+			                  timer_expired_flags[i]);
+		  }
+		  else
+		  {
+			  *timer_expired_flags[i] = 0; // timer is idle or counting
+		  }
+
+	   }
+
+
+	  // run one FSM tick
+	  tick();
+
+	  // emit FSM outputs
+	  if(Apace)
+	  {
+
+		  // set all green LED (high green led means atrium is paced)
+		  IOWR_ALTERA_AVALON_PIO_DATA(LEDS_RED_BASE, 0x3FFFF);
+
+		  if(swicthValue) // if mode is mode 2
+		  {
+		 	 fprintf(uart,"V"); // make a Vpace on the heart emulator
+		  }
+	  }
+	  else
+	  {
+		  // clear all red LED (heart is not artificially paced)
+		  IOWR_ALTERA_AVALON_PIO_DATA(LEDS_RED_BASE, 0);
+	  }
+
+	  if(Vpace)
+	  {
+		  // set all red LED (high red led means ventricle is paced)
+		  IOWR_ALTERA_AVALON_PIO_DATA(LEDS_GREEN_BASE, 0x3FFFF);
+
+		  if(swicthValue) // if mode is mode 2
+		  {
+			  fprintf(uart,"V"); // make a Vpace on the heart emulator
+		  }
+	  }
+	  else
+	  {
+		  // clear all green LED (heart is not artificially paced)
+		  IOWR_ALTERA_AVALON_PIO_DATA(LEDS_GREEN_BASE, 0);
+	  }
+
+	  // get current value of SW0 from DE-115 board
+	  swicthValue = IORD_ALTERA_AVALON_PIO_DATA(SWITCHES_BASE)&1;
+	  if(prevSwitchValue != swicthValue)
+	  {
+		  if(swicthValue)
+		  {
+			  fprintf(lcd,"Mode 2 \n");
+			  fprintf(lcd,"\n");
+		  }
+		  else
+		  {
+			  fprintf(lcd,"Mode 1 \n\r");
+			  fprintf(lcd,"\n");
+		  }
+
+		  prevSwitchValue = swicthValue;
+	  }
+
+  }
+
+  return 0;
+
+}
+
