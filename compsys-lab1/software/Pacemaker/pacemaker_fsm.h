@@ -45,6 +45,6 @@ extern char VRP_counting;
 extern char AEI_counting;
 extern char LRI_counting;
 extern char URI_counting;
-
+extern char reset_LRI;
 
 #endif /* PACEMAKER_FSM_H_ */

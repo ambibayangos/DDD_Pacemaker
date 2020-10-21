@@ -33,8 +33,8 @@
 # define AEI_VALUE 800
 # define PVARP_VALUE 50
 # define VRP_VALUE 150
-# define LRI_VALUE 3600
-# define URI_VALUE 3500
+# define LRI_VALUE 950
+# define URI_VALUE 900
 
 #define _Asense  65 // ascii for character "A"
 #define _Vsense  86 // ascii for character "V"
@@ -76,20 +76,22 @@ void get_heart_signals(void* context, alt_u32 ID)
 	int buttonsValue = IORD_ALTERA_AVALON_PIO_DATA(BUTTONS_BASE);
 
 	// ensure mutual exclusion
-	test_and_set(&code);
-	while(code)test_and_set(&code);
+	//test_and_set(&code);
+	//while(code)test_and_set(&code);
 
 	if(buttonsValue == 0b110) // Vsense occurred
 	{
 		vsense_flag = 1;
+		Vsense = 1;
 	}
 	else if(buttonsValue == 0b101) // Asense occured
 	{
 		asense_flag = 1;
+		Asense = 1;
 	}
 
 	// free the critical section
-	occupied = 0;
+	//occupied = 0;
 
 	// clear the edge capture register to enable next interrupt
 	IOWR_ALTERA_AVALON_PIO_EDGE_CAP(BUTTONS_BASE, 0);
@@ -107,19 +109,21 @@ void get_uart_contents(void *context ,alt_u32 interrupt)
 	data =IORD_ALTERA_AVALON_UART_RXDATA(UART_BASE);
 
 	// ensure mutual exclusion
-	test_and_set(&code);
-	while(code)test_and_set(&code);
+	//test_and_set(&code);
+	//while(code)test_and_set(&code);
 	if(data == _Asense)
 	{
 		asense_flag_mode_2 = 1;
+		printf("Asense received from heart emulator\n");
 	}
 	else if(data == _Vsense)
 	{
 		vsense_flag_mode_2 = 1;
+		printf("Vsense received from heart emulator\n");
 	}
 
 	//free the critical section
-	occupied = 0;
+	//occupied = 0;
 
 }
 
@@ -160,6 +164,20 @@ void test_and_set(int* code)
 {
 	(*code) = occupied;
 	occupied = 1;
+}
+
+void transmit_string(char* txString){
+	//Set RTS to true (logic 0 as inverted)
+	IOWR(UART_BASE,ALTERA_AVALON_UART_CONTROL_REG ,IORD(UART_BASE,ALTERA_AVALON_UART_CONTROL_REG) & ~(0x0800));
+	//Ensure that CTS is true (logic 0 as inverted)
+	while((IORD(UART_BASE,ALTERA_AVALON_UART_STATUS_REG) & 0x0800) != 0){};
+	//Ensure that previous character sent
+	while((IORD(UART_BASE,ALTERA_AVALON_UART_STATUS_REG) & 0x0040) == 0){};
+	//Write next character into txData register
+	IOWR(UART_BASE,ALTERA_AVALON_UART_TXDATA_REG ,txString[0]);
+
+//Finished sending string so set RTS to false (logic 1 as inverted)
+IOWR(UART_BASE,ALTERA_AVALON_UART_CONTROL_REG ,IORD(UART_BASE,ALTERA_AVALON_UART_CONTROL_REG) | 0x0800);
 }
 
 
@@ -230,6 +248,7 @@ int main()
   while(1)
   {
 
+
 	  if(swicthValue) // Read Vsense and Asense inputs from the heart emulator ( SW0 = 1)
 	  {
 		  // Read heart inputs from the heart emulator
@@ -241,19 +260,28 @@ int main()
 		  if(asense_flag_mode_2)
 		  {
 			  Asense = 1; // Asense occured
+			  IOWR_ALTERA_AVALON_PIO_DATA(LEDS_GREEN_BASE, 0b1);
+
+			  asense_flag_mode_2 = 0;
 		  }
 		  else
 		  {
 			  Asense = 0; // no Asense occured
+			  IOWR_ALTERA_AVALON_PIO_DATA(LEDS_GREEN_BASE, 0);
 		  }
 
 		  if(vsense_flag_mode_2)
 		  {
 			  Vsense = 1; // Vsense occured
+			  IOWR_ALTERA_AVALON_PIO_DATA(LEDS_RED_BASE, 0b1);
+
+			  vsense_flag_mode_2 = 0;
+
 		  }
 		  else
 		  {
 			  Vsense = 0; // no Vsense occured
+			  IOWR_ALTERA_AVALON_PIO_DATA(LEDS_RED_BASE, 0);
 		  }
 
 		  occupied = 0; // free critical section
@@ -262,8 +290,8 @@ int main()
 	  else // Read Vsense and Asense inputs from KEY0 and KEY1 ( SW0 = 0)
 	  {
 		  // ensure mutual exclusion
-		  test_and_set(&code);
-		  while(code) test_and_set(&code);
+		  //test_and_set(&code);
+		  //while(code) test_and_set(&code);
 
 		  //Get Vsense or Asense inputs
 		  if(vsense_flag)
@@ -286,8 +314,9 @@ int main()
 			  Asense = 0; // no Asense occured
 		  }
 
-		  occupied = 0; // free critical section
+		  //occupied = 0; // free critical section
 	  }
+
 
 	  // Get inputs (TIMER_ex inputs) e.g. "AVI_ex = 1" timer AVI expired
 	  for(int i = 0; i < 6 ; i++)
@@ -328,10 +357,13 @@ int main()
 
 		  // set all green LED (high green led means atrium is paced)
 		  IOWR_ALTERA_AVALON_PIO_DATA(LEDS_RED_BASE, 0x3FFFF);
+		  printf("Apace\n");
 
 		  if(swicthValue) // if mode is mode 2
 		  {
-		 	 fprintf(uart,"A"); // make a Vpace on the heart emulator
+			  char AP[1] = "A";
+			  transmit_string(&AP); // make a Vpace on the heart emulator
+		 	 printf("---> send A\n");
 		  }
 	  }
 	  else
@@ -344,10 +376,13 @@ int main()
 	  {
 		  // set all red LED (high red led means ventricle is paced)
 		  IOWR_ALTERA_AVALON_PIO_DATA(LEDS_GREEN_BASE, 0x3FFFF);
+		  printf("Vpace\n");
 
 		  if(swicthValue) // if mode is mode 2
 		  {
-			  fprintf(uart,"V"); // make a Vpace on the heart emulator
+			  char VP[1] = "V";
+			  transmit_string(&VP); // make a Vpace on the heart emulator // make a Vpace on the heart emulator
+			  printf("---> send V\n");
 		  }
 	  }
 	  else
@@ -374,8 +409,9 @@ int main()
 		  prevSwitchValue = swicthValue;
 		  asense_flag = 0; // reset Vsense occured flag
 		  vsense_flag = 0; // reset Asense occured flag
+		  asense_flag_mode_2 = 0; // reset Asense occured flag
+		  vsense_flag_mode_2 = 0; // reset Vsense occured flag
 	  }
-
 
   }
 

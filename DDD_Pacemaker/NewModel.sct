@@ -165,7 +165,7 @@ initial state TOP
   --> reinit with Vpace /stop_URI;
  
 
-  connector state reinit2
+  state reinit2
   -->waitVRP with Vpace/start_URI
   -->waitVRP with Vsense/start_URI;  
  
@@ -218,11 +218,13 @@ initial state TOP
   initial state idle
   -->counting with start_LRI;
 
+ connector state connect 
+ --> counting with start_LRI;
  
   state counting
   -->counting with /LRI_counting
   -->idle  with LRI_ex
-  -->idle immediate with stop_LRI
+  -->connect immediate with stop_LRI
   -->idle with reset_LRI;
 
    

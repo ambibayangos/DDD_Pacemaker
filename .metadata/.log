@@ -648,3 +648,150 @@ java.lang.NullPointerException
 
 !ENTRY de.cau.cs.kieler.klighd.incremental 1 0 2020-10-21 05:40:58.313
 !MESSAGE Fallback to simple update. Reason: Empty base model.
+
+!ENTRY de.cau.cs.kieler.klighd.incremental 1 0 2020-10-21 05:45:49.780
+!MESSAGE Fallback to simple update. Reason: Empty base model.
+
+!ENTRY de.cau.cs.kieler.klighd.incremental 1 0 2020-10-21 05:45:54.193
+!MESSAGE Fallback to simple update. Reason: Empty base model.
+
+!ENTRY de.cau.cs.kieler.klighd.incremental 1 0 2020-10-21 05:48:58.981
+!MESSAGE Fallback to simple update. Reason: Empty base model.
+
+!ENTRY de.cau.cs.kieler.klighd.incremental 1 0 2020-10-21 11:20:55.553
+!MESSAGE Fallback to simple update. Reason: Empty base model.
+
+!ENTRY org.eclipse.ui 4 0 2020-10-21 11:20:55.828
+!MESSAGE Unhandled event loop exception
+!STACK 0
+org.eclipse.swt.SWTException: Widget is disposed
+	at org.eclipse.swt.SWT.error(SWT.java:4533)
+	at org.eclipse.swt.SWT.error(SWT.java:4448)
+	at org.eclipse.swt.SWT.error(SWT.java:4419)
+	at org.eclipse.swt.widgets.Widget.error(Widget.java:482)
+	at org.eclipse.swt.widgets.Widget.checkWidget(Widget.java:354)
+	at org.eclipse.swt.widgets.Widget.addListener(Widget.java:199)
+	at de.cau.cs.kieler.klighd.piccolo.internal.KlighdCanvas$KlighdRoot.getDefaultInputManager(KlighdCanvas.java:142)
+	at de.cau.cs.kieler.klighd.piccolo.internal.KlighdCanvas.sendInputEventToInputManager(KlighdCanvas.java:223)
+	at de.cau.cs.kieler.klighd.piccolo.internal.events.KlighdMouseEventListener$1.run(KlighdMouseEventListener.java:169)
+	at org.eclipse.swt.widgets.Display.runTimer(Display.java:4329)
+	at org.eclipse.swt.widgets.Display.messageProc(Display.java:3418)
+	at org.eclipse.swt.internal.win32.OS.DispatchMessageW(Native Method)
+	at org.eclipse.swt.internal.win32.OS.DispatchMessage(OS.java:2552)
+	at org.eclipse.swt.widgets.Display.readAndDispatch(Display.java:3814)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine$4.run(PartRenderingEngine.java:1121)
+	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:336)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.run(PartRenderingEngine.java:1022)
+	at org.eclipse.e4.ui.internal.workbench.E4Workbench.createAndRunUI(E4Workbench.java:150)
+	at org.eclipse.ui.internal.Workbench$5.run(Workbench.java:687)
+	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:336)
+	at org.eclipse.ui.internal.Workbench.createAndRunWorkbench(Workbench.java:604)
+	at org.eclipse.ui.PlatformUI.createAndRunWorkbench(PlatformUI.java:148)
+	at org.eclipse.ui.internal.ide.application.IDEApplication.start(IDEApplication.java:138)
+	at org.eclipse.equinox.internal.app.EclipseAppHandle.run(EclipseAppHandle.java:196)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.runApplication(EclipseAppLauncher.java:134)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.start(EclipseAppLauncher.java:104)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:388)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:243)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at org.eclipse.equinox.launcher.Main.invokeFramework(Main.java:673)
+	at org.eclipse.equinox.launcher.Main.basicRun(Main.java:610)
+	at org.eclipse.equinox.launcher.Main.run(Main.java:1519)
+
+!ENTRY de.cau.cs.kieler.klighd.incremental 1 0 2020-10-21 11:21:02.053
+!MESSAGE Fallback to simple update. Reason: Empty base model.
+
+!ENTRY de.cau.cs.kieler.kico 2 2 2020-10-21 11:29:26.323
+!MESSAGE A warning occurred while calling transformation with the ID 'scg.scheduling'.
+
+de.cau.cs.kieler.kico.KielerCompilerException: The SCG is NOT ASC-schedulable!
+	at de.cau.cs.kieler.scg.transformations.schedulers.SimpleGuardScheduler.transform(SimpleGuardScheduler.java:133)
+	at sun.reflect.GeneratedMethodAccessor211.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at de.cau.cs.kieler.kico.internal.Transformation.doTransform(Transformation.java:500)
+	at de.cau.cs.kieler.kico.KielerCompiler.performTransformation(KielerCompiler.java:451)
+	at de.cau.cs.kieler.kico.KielerCompiler.performTransformationTask(KielerCompiler.java:370)
+	at de.cau.cs.kieler.kico.KielerCompiler.compile(KielerCompiler.java:260)
+	at de.cau.cs.kieler.sccharts.sim.java.SCChartsJavaDataComponent.doModel2ModelTransform(SCChartsJavaDataComponent.java:703)
+	at de.cau.cs.kieler.sccharts.sim.java.SCChartsJavaDataComponent.doModel2ModelTransform(SCChartsJavaDataComponent.java:470)
+	at de.cau.cs.kieler.sim.kiem.ui.datacomponent.JSONObjectSimulationDataComponent.model2ModelTransform(JSONObjectSimulationDataComponent.java:311)
+	at de.cau.cs.kieler.sim.kiem.ui.datacomponent.JSONObjectSimulationDataComponent.performModelTransformation(JSONObjectSimulationDataComponent.java:612)
+	at de.cau.cs.kieler.sim.kiem.ui.datacomponent.JSONObjectSimulationDataComponent.provideInitialVariables(JSONObjectSimulationDataComponent.java:578)
+	at de.cau.cs.kieler.sim.kiem.internal.DataComponentWrapper.provideInitialVariables(DataComponentWrapper.java:382)
+	at de.cau.cs.kieler.sim.kiem.execution.InitializeExecution.distributeInitialKeys(InitializeExecution.java:270)
+	at de.cau.cs.kieler.sim.kiem.execution.InitializeExecution.run(InitializeExecution.java:158)
+	at java.lang.Thread.run(Unknown Source)
+ (de.cau.cs.kieler.kico)
+
+!ENTRY de.cau.cs.kieler.sccharts.sim.java 4 4 2020-10-21 11:29:28.248
+!MESSAGE Model could not be generated
+
+Please ensure that all simulation warnings in the respective Eclipse Problems View have been cleared.
+
+de.cau.cs.kieler.sim.kiem.KiemInitializationException: 
+de.cau.cs.kieler.kico.KielerCompilerException: The SCG is NOT ASC-schedulable!
+	at de.cau.cs.kieler.scg.transformations.schedulers.SimpleGuard (de.cau.cs.kieler.sccharts.sim.java)
+!STACK 0
+de.cau.cs.kieler.sim.kiem.KiemInitializationException: 
+de.cau.cs.kieler.kico.KielerCompilerException: The SCG is NOT ASC-schedulable!
+	at de.cau.cs.kieler.scg.transformations.schedulers.SimpleGuardScheduler.transform(SimpleGuardScheduler.java:133)
+	at ...
+	at de.cau.cs.kieler.sccharts.sim.java.SCChartsJavaDataComponent.doModel2ModelTransform(SCChartsJavaDataComponent.java:719)
+	at de.cau.cs.kieler.sccharts.sim.java.SCChartsJavaDataComponent.doModel2ModelTransform(SCChartsJavaDataComponent.java:470)
+	at de.cau.cs.kieler.sim.kiem.ui.datacomponent.JSONObjectSimulationDataComponent.model2ModelTransform(JSONObjectSimulationDataComponent.java:311)
+	at de.cau.cs.kieler.sim.kiem.ui.datacomponent.JSONObjectSimulationDataComponent.performModelTransformation(JSONObjectSimulationDataComponent.java:612)
+	at de.cau.cs.kieler.sim.kiem.ui.datacomponent.JSONObjectSimulationDataComponent.provideInitialVariables(JSONObjectSimulationDataComponent.java:578)
+	at de.cau.cs.kieler.sim.kiem.internal.DataComponentWrapper.provideInitialVariables(DataComponentWrapper.java:382)
+	at de.cau.cs.kieler.sim.kiem.execution.InitializeExecution.distributeInitialKeys(InitializeExecution.java:270)
+	at de.cau.cs.kieler.sim.kiem.execution.InitializeExecution.run(InitializeExecution.java:158)
+	at java.lang.Thread.run(Unknown Source)
+
+!ENTRY de.cau.cs.kieler.kico 2 2 2020-10-21 11:33:42.419
+!MESSAGE A warning occurred while calling transformation with the ID 'scg.scheduling'.
+
+de.cau.cs.kieler.kico.KielerCompilerException: The SCG is NOT ASC-schedulable!
+	at de.cau.cs.kieler.scg.transformations.schedulers.SimpleGuardScheduler.transform(SimpleGuardScheduler.java:133)
+	at sun.reflect.GeneratedMethodAccessor211.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at de.cau.cs.kieler.kico.internal.Transformation.doTransform(Transformation.java:500)
+	at de.cau.cs.kieler.kico.KielerCompiler.performTransformation(KielerCompiler.java:451)
+	at de.cau.cs.kieler.kico.KielerCompiler.performTransformationTask(KielerCompiler.java:370)
+	at de.cau.cs.kieler.kico.KielerCompiler.compile(KielerCompiler.java:260)
+	at de.cau.cs.kieler.sccharts.sim.java.SCChartsJavaDataComponent.doModel2ModelTransform(SCChartsJavaDataComponent.java:703)
+	at de.cau.cs.kieler.sccharts.sim.java.SCChartsJavaDataComponent.doModel2ModelTransform(SCChartsJavaDataComponent.java:470)
+	at de.cau.cs.kieler.sim.kiem.ui.datacomponent.JSONObjectSimulationDataComponent.model2ModelTransform(JSONObjectSimulationDataComponent.java:311)
+	at de.cau.cs.kieler.sim.kiem.ui.datacomponent.JSONObjectSimulationDataComponent.performModelTransformation(JSONObjectSimulationDataComponent.java:612)
+	at de.cau.cs.kieler.sim.kiem.ui.datacomponent.JSONObjectSimulationDataComponent.provideInitialVariables(JSONObjectSimulationDataComponent.java:578)
+	at de.cau.cs.kieler.sim.kiem.internal.DataComponentWrapper.provideInitialVariables(DataComponentWrapper.java:382)
+	at de.cau.cs.kieler.sim.kiem.execution.InitializeExecution.distributeInitialKeys(InitializeExecution.java:270)
+	at de.cau.cs.kieler.sim.kiem.execution.InitializeExecution.run(InitializeExecution.java:158)
+	at java.lang.Thread.run(Unknown Source)
+ (de.cau.cs.kieler.kico)
+
+!ENTRY de.cau.cs.kieler.sccharts.sim.java 4 4 2020-10-21 11:33:44.872
+!MESSAGE Model could not be generated
+
+Please ensure that all simulation warnings in the respective Eclipse Problems View have been cleared.
+
+de.cau.cs.kieler.sim.kiem.KiemInitializationException: 
+de.cau.cs.kieler.kico.KielerCompilerException: The SCG is NOT ASC-schedulable!
+	at de.cau.cs.kieler.scg.transformations.schedulers.SimpleGuard (de.cau.cs.kieler.sccharts.sim.java)
+!STACK 0
+de.cau.cs.kieler.sim.kiem.KiemInitializationException: 
+de.cau.cs.kieler.kico.KielerCompilerException: The SCG is NOT ASC-schedulable!
+	at de.cau.cs.kieler.scg.transformations.schedulers.SimpleGuardScheduler.transform(SimpleGuardScheduler.java:133)
+	at ...
+	at de.cau.cs.kieler.sccharts.sim.java.SCChartsJavaDataComponent.doModel2ModelTransform(SCChartsJavaDataComponent.java:719)
+	at de.cau.cs.kieler.sccharts.sim.java.SCChartsJavaDataComponent.doModel2ModelTransform(SCChartsJavaDataComponent.java:470)
+	at de.cau.cs.kieler.sim.kiem.ui.datacomponent.JSONObjectSimulationDataComponent.model2ModelTransform(JSONObjectSimulationDataComponent.java:311)
+	at de.cau.cs.kieler.sim.kiem.ui.datacomponent.JSONObjectSimulationDataComponent.performModelTransformation(JSONObjectSimulationDataComponent.java:612)
+	at de.cau.cs.kieler.sim.kiem.ui.datacomponent.JSONObjectSimulationDataComponent.provideInitialVariables(JSONObjectSimulationDataComponent.java:578)
+	at de.cau.cs.kieler.sim.kiem.internal.DataComponentWrapper.provideInitialVariables(DataComponentWrapper.java:382)
+	at de.cau.cs.kieler.sim.kiem.execution.InitializeExecution.distributeInitialKeys(InitializeExecution.java:270)
+	at de.cau.cs.kieler.sim.kiem.execution.InitializeExecution.run(InitializeExecution.java:158)
+	at java.lang.Thread.run(Unknown Source)
