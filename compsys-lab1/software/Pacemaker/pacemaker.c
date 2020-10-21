@@ -1,18 +1,29 @@
-/*
- * "Hello World" example.
+/*Project: DDD mode pacemaker on Nios II interfaced with DE-115 board
  *
- * This example prints 'Hello from Nios II' to the STDOUT stream. It runs on
- * the Nios II 'standard', 'full_featured', 'fast', and 'low_cost' example
- * designs. It runs with or without the MicroC/OS-II RTOS and requires a STDOUT
- * device in your system's hardware.
- * The memory footprint of this hosted application is ~69 kbytes by default
- * using the standard reference design.
+ * This project is an embedded traffic light controller programme for Altera DE-115 board.
+ * The traffic light controller has 4 modes.
  *
- * For a reduced footprint version of this template, and an explanation of how
- * to reduce the memory footprint for a given application, see the
- * "small_hello_world" template.
+ * This project is an embedded DDD mode pacemaker on NIOS II interfaced wth Altera DE-115 board.
+ * the main FSM for this project is done using sscharts(model based) approach and this fsm is interfaced
+ * using emmbedder C with HAL api from Altera. This project has two modes.
  *
+ * Mode 1 - The heart signals are emulated using KEY0 (Ventricular sense from heart)
+ * 			and KEY1 (Atrial sense from heart).
+ *
+ * Mode 2 - The heart signals come from UART send by CS303-Heart.exe (a heart emulator)
+ * 			where the character "V" means ventrical signals from the heart and the character "A"
+ * 			means means atrial signals.
+ *
+ *
+ * Read the README.md file or README.txt file for more details.
+ * REAME files are in the root folder of this project.
+ *
+ * 	Authors: Arturo Bayangos Jr.
+ * 			 Tommy Hou
+ *
+ * 	Last Edited date: 21/10/2020
  */
+
 
 #include <stdio.h>
 #include <altera_avalon_pio_regs.h>
@@ -24,23 +35,23 @@
 #include"system.h"
 #include "pacemaker_fsm.h"
 
-
-# define AVI_VALUE 300
+// Timeout value for the timers
+# define AVI_VALUE 400
 # define AEI_VALUE 800
 # define PVARP_VALUE 50
 # define VRP_VALUE 150
-# define LRI_VALUE 950
-# define URI_VALUE 900
+# define LRI_VALUE 900
+# define URI_VALUE 950
 
 #define _Asense  65 // ascii for character "A"
 #define _Vsense  86 // ascii for character "V"
 
 
-char *timer_start_flags[6];
-char *timer_state_flags[6];
-char *timer_expired_flags[6];
-int timer_fist_timeStamp_Value[6] = {0,0,0,0,0,0};
-int timer_timeout_values[6] = {
+char *timer_start_flags[6]; // stores the flags to start a timer
+char *timer_state_flags[6]; // stores the flags to tell if timer is couting or not
+char *timer_expired_flags[6]; // stores the flags to tell is timer has exprired
+int timer_fist_timeStamp_Value[6] = {0,0,0,0,0,0}; // stores the initial timestamp when a timer is started
+int timer_timeout_values[6] = { // stores the timer timeout values
 			AVI_VALUE,
 			PVARP_VALUE,
 			VRP_VALUE,
@@ -48,16 +59,16 @@ int timer_timeout_values[6] = {
 			LRI_VALUE,
 			URI_VALUE
 	};
-int vsense_flag = 0;
-int asense_flag = 0;
-int vsense_flag_mode_2 = 0;
-int asense_flag_mode_2 = 0;
+int vsense_flag = 0; // if this flag set then Vsense occured in mode 1
+int asense_flag = 0; // if this flag set then Asense occured in mode 1
+int vsense_flag_mode_2 = 0; // if this flag set then Vsense occured in mode 2
+int asense_flag_mode_2 = 0; // if this flag set then Asense occured in mode 2
 int occupied = 0; // represents a critical section ( "0" section is free , "1" is not free)
 FILE* uart;
 FILE* lcd;
 
 
-/* get_heart_signals (void* context, alt_u32 ID)
+/* get_heart_signals (void* context, alt_u32 ID):
  *
  * This method sets a flag to set initiate setting the
  * Vsense or Asense variable if KEY0 and KEY1 are is pressed
@@ -96,7 +107,15 @@ void get_heart_signals(void* context, alt_u32 ID)
 	IOWR_ALTERA_AVALON_PIO_EDGE_CAP(BUTTONS_BASE, 0);
 }
 
-
+/* get_uart_contents(void *context ,alt_u32 interrupt):
+ *
+ * This method is the ISR routine runned when a character is ready to
+ * be read from uart buffer.
+ *
+ * This method also sets the flag "asense_flag_mode_2"
+ * to set variable "Vsense" and sets the flag "vsense_flag_mode_2"
+ * to set the variable "Asense"
+ */
 void get_uart_contents(void *context ,alt_u32 interrupt)
 {
 	unsigned short int data,status,code;
@@ -154,17 +173,10 @@ void timeout_checker(int first_timeStamp , int timeout ,char *timer_expired_flag
 	}
 }
 
-
-/*
- * This method ensures that only one process (main or ISR) has access
- * to variables "vsense_flag" or "asense_flag" at a time
+/* transmit_string(char* txString):
+ *
+ * This method transmits a character to uart
  */
-void test_and_set(int* code)
-{
-	(*code) = occupied;
-	occupied = 1;
-}
-
 void transmit_string(char* txString){
 	//Set RTS to true (logic 0 as inverted)
 	IOWR(UART_BASE,ALTERA_AVALON_UART_CONTROL_REG ,IORD(UART_BASE,ALTERA_AVALON_UART_CONTROL_REG) & ~(0x0800));
@@ -179,7 +191,191 @@ void transmit_string(char* txString){
 IOWR(UART_BASE,ALTERA_AVALON_UART_CONTROL_REG ,IORD(UART_BASE,ALTERA_AVALON_UART_CONTROL_REG) | 0x0800);
 }
 
+/* get_inputs(int *mode)
+ *
+ *  This function sets or clears the Vpace and Apace
+ *  variables before being inputted to the pacemeker
+ *  fsm tick "tick()".
+ *
+ *  It take in the mode to decide if the heart signals
+ *  comes from uart or the buttons on DE-115 board
+ */
+void get_inputs(int *mode)
+{
+	if(*mode) // Read Vsense and Asense inputs from the heart emulator ( SW0 = 1)
+		  {
+			  // ensure mutual exclusion
+			  //test_and_set(&code);
+			  //while(code) test_and_set(&code);
+			  if(asense_flag_mode_2)
+			  {
+				  Asense = 1; // Asense occured
+				  asense_flag_mode_2 = 0;
+			  }
+			  else
+			  {
+				  Asense = 0; // no Asense occured
+			  }
 
+			  if(vsense_flag_mode_2)
+			  {
+				  Vsense = 1; // Vsense occured
+				  vsense_flag_mode_2 = 0;
+
+			  }
+			  else
+			  {
+				  Vsense = 0; // no Vsense occured
+			  }
+
+			  //occupied = 0; // free critical section
+
+		  }
+		  else // Read Vsense and Asense inputs from KEY0 and KEY1 ( SW0 = 0)
+		  {
+			  // ensure mutual exclusion
+			  //test_and_set(&code);
+			  //while(code) test_and_set(&code);
+
+			  //Get Vsense or Asense inputs
+			  if(vsense_flag)
+			  {
+				  Vsense = 1; // Vsense occured
+				  vsense_flag = 0; // reset vsense occured flag
+			  }
+			  else
+			  {
+				  Vsense = 0; // no Vsense occured
+			  }
+
+			  if(asense_flag)
+			  {
+				  Asense = 1; // Asense occured
+				  asense_flag = 0; // reset Asense occured flag
+			  }
+			  else
+			  {
+				  Asense = 0; // no Asense occured
+			  }
+
+			  //occupied = 0; // free critical section
+		  }
+}
+
+/* get_timer_expired_inputs():
+ *
+ * This method sets the timer expired variables (see "timer_expired_flags" variable)
+ * to indicate a timer expiring in sscharts
+ */
+void get_timer_expired_inputs(void)
+{
+	  // Get inputs (TIMER_ex inputs) e.g. "AVI_ex = 1" timer AVI expired
+	  for(int i = 0; i < 6 ; i++)
+	  {
+		  // check if a timer is started
+		  if((*timer_start_flags[i]))
+		  {
+			  // get the time stamp when start timer flag is set
+			  timer_fist_timeStamp_Value[i] = alt_nticks();
+		  }
+
+		  // check if a timer is still counting
+		  if((*timer_state_flags[i]))
+		  {
+			  /* check if a timer has timed out
+			   * and outputs a timer expire flag to
+			   * intput into sccharts
+			   */
+			  timeout_checker(timer_fist_timeStamp_Value[i],
+			                  timer_timeout_values[i],
+			                  timer_expired_flags[i]);
+		  }
+		  else
+		  {
+			  *timer_expired_flags[i] = 0; // timer is idle or counting
+		  }
+
+	   }
+}
+
+/* emit_outputs(int *led_counter_vp , int* led_counter_ap , int *mode):
+ *
+ *  this method "emits" the output of the pacemaker sscharts logic
+ *  Vpace = 1 (set LEDG0 and LEDG1) or Apace = 1 (set LEDG6 and LEDG7)
+ *  or Vpace = 0 (clear LEDG0 and LEDG1) or Apace = 0 (clear LEDG6 and LEDG7)
+ */
+void emit_outputs(int *led_counter_vp , int* led_counter_ap , int *mode)
+{
+	  // emit FSM outputs
+	  if(Apace)
+	  {
+
+		  // set all green LED (high green led means atrium is paced)
+		  IOWR_ALTERA_AVALON_PIO_DATA(LEDS_GREEN_BASE, IORD_ALTERA_AVALON_PIO_DATA(LEDS_GREEN_BASE)| 192);
+		  printf("Apace\n");
+
+
+		  if(*mode) // if mode is mode 2
+		  {
+			  char AP[1] = "A";
+			  transmit_string(&AP); // make a Vpace on the heart emulator
+		 	 printf("---> send A\n");
+		  }
+	  }
+	  else
+	  {
+		  if(*led_counter_ap == 50)
+		  {
+			  // clear all red LED (heart is not artificially paced)
+			  IOWR_ALTERA_AVALON_PIO_DATA(LEDS_RED_BASE, 0);
+			  led_counter_vp = 0;
+		  }
+
+		  (*led_counter_ap)++;
+	  }
+
+	  if(Vpace)
+	  {
+		  // set all red LED (high red led means ventricle is paced)
+		  IOWR_ALTERA_AVALON_PIO_DATA(LEDS_GREEN_BASE, IORD_ALTERA_AVALON_PIO_DATA(LEDS_GREEN_BASE)| 3);
+		  printf("Vpace\n");
+
+		  if(*mode) // if mode is mode 2
+		  {
+			  char VP[1] = "V";
+			  transmit_string(&VP); // make a Vpace on the heart emulator // make a Vpace on the heart emulator
+			  printf("---> send V\n");
+		  }
+	  }
+	  else
+	  {
+		  if(*led_counter_vp == 50)
+		  {
+			  // clear all green LED (heart is not artificially paced)
+			  IOWR_ALTERA_AVALON_PIO_DATA(LEDS_GREEN_BASE, 0);
+			  *led_counter_vp = 0;
+		  }
+
+		  (*led_counter_vp)++;
+	  }
+
+}
+
+/* test_and_set(int* code):
+ *
+ * This method ensures that only one process (main or ISR) has access
+ * to variables "vsense_flag" or "asense_flag" at a time
+ */
+void test_and_set(int* code)
+{
+	(*code) = occupied;
+	occupied = 1;
+}
+
+/* main()
+ *
+ * This the programme entry point
+ */
 int main()
 {
 	// Initialize the FSM
@@ -209,8 +405,6 @@ int main()
 	timer_expired_flags[4] = &LRI_ex;
 	timer_expired_flags[5] = &URI_ex;
 
-	// stores the heart signals sent from the heart emulator
-	char heart_signal[1];
 	//  stores the switch values on the switch on DE-115 board
 	int swicthValue = 0;
 	// stores the previous value of variable "swicthValue"
@@ -248,159 +442,45 @@ int main()
 	 // register uart ISR routine
 	  alt_irq_register(UART_IRQ, NULL, get_uart_contents);
 
-  while(1)
+  while(1) // Run FSM continually
   {
 
+	  /********************** Read inputs *********************
+	   **********************              *********************
+	   **********************              *********************
+	   */
+	  /* read Vsense or Asense inputs and clear them in the next tick
+	   * if the are set                                            */
+	  get_inputs(&swicthValue);
 
-	  if(swicthValue) // Read Vsense and Asense inputs from the heart emulator ( SW0 = 1)
-	  {
-		  // Read heart inputs from the heart emulator
-		  //fscanf(uart,"%c", &heart_signal);
+	  /* read if timers are started and check if they are expired.
+	   * set timer expired inputs if they are expired otherwise clear them */
+	   get_timer_expired_inputs();
 
-		  // ensure mutual exclusion
-		  test_and_set(&code);
-		  while(code) test_and_set(&code);
-		  if(asense_flag_mode_2)
-		  {
-			  Asense = 1; // Asense occured
-			  asense_flag_mode_2 = 0;
-		  }
-		  else
-		  {
-			  Asense = 0; // no Asense occured
-		  }
-
-		  if(vsense_flag_mode_2)
-		  {
-			  Vsense = 1; // Vsense occured
-			  vsense_flag_mode_2 = 0;
-
-		  }
-		  else
-		  {
-			  Vsense = 0; // no Vsense occured
-		  }
-
-		  occupied = 0; // free critical section
-
-	  }
-	  else // Read Vsense and Asense inputs from KEY0 and KEY1 ( SW0 = 0)
-	  {
-		  // ensure mutual exclusion
-		  //test_and_set(&code);
-		  //while(code) test_and_set(&code);
-
-		  //Get Vsense or Asense inputs
-		  if(vsense_flag)
-		  {
-			  Vsense = 1; // Vsense occured
-			  vsense_flag = 0;
-		  }
-		  else
-		  {
-			  Vsense = 0; // no Vsense occured
-		  }
-
-		  if(asense_flag)
-		  {
-			  Asense = 1; // Asense occured
-			  asense_flag = 0;
-		  }
-		  else
-		  {
-			  Asense = 0; // no Asense occured
-		  }
-
-		  //occupied = 0; // free critical section
-	  }
-
-
-	  // Get inputs (TIMER_ex inputs) e.g. "AVI_ex = 1" timer AVI expired
-	  for(int i = 0; i < 6 ; i++)
-	  {
-		  // check if a timer is started
-		  if((*timer_start_flags[i]))
-		  {
-			  // get the time stamp when start timer flag is set
-			  timer_fist_timeStamp_Value[i] = alt_nticks();
-		  }
-
-		  // check if a timer is still counting
-		  if((*timer_state_flags[i]))
-		  {
-			  /* check if a timer has timed out
-			   * and outputs a timer expire flag to
-			   * intput into sccharts
-			   */
-			  timeout_checker(timer_fist_timeStamp_Value[i],
-			                  timer_timeout_values[i],
-			                  timer_expired_flags[i]);
-		  }
-		  else
-		  {
-			  *timer_expired_flags[i] = 0; // timer is idle or counting
-		  }
-
-	   }
-
-
-	  // run one FSM tick
+	  /**********************  FSM tick *********************
+	   **********************           *********************
+	   **********************           *********************
+	   */
+	   // do one FSM tick
 	  tick();
 
+	  /********************* emits output  *********************
+	   *********************               *********************
+	   *********************               *********************
+	   *
+	   * if Vpace = 1 (set LEDG0 and LEDG1)
+	   * if Apace = 1 (set LEDG6 and LEDG7)
+	   *
+	   * otherwise (clear LEDG0 and LEDG1)
+	   *           (clear LEDG6 and LEDG7)
+	   */
+	  emit_outputs(&led_counter_vp,&led_counter_ap, &swicthValue);
 
-	  // emit FSM outputs
-	  if(Apace)
-	  {
 
-		  // set all green LED (high green led means atrium is paced)
-		  IOWR_ALTERA_AVALON_PIO_DATA(LEDS_GREEN_BASE, IORD_ALTERA_AVALON_PIO_DATA(LEDS_GREEN_BASE)| 192);
-		  printf("Apace\n");
-
-
-		  if(swicthValue) // if mode is mode 2
-		  {
-			  char AP[1] = "A";
-			  transmit_string(&AP); // make a Vpace on the heart emulator
-		 	 printf("---> send A\n");
-		  }
-	  }
-	  else
-	  {
-		  if(led_counter_ap == 50)
-		  {
-			  // clear all red LED (heart is not artificially paced)
-			  IOWR_ALTERA_AVALON_PIO_DATA(LEDS_RED_BASE, 0);
-			  led_counter_vp = 0;
-		  }
-
-		  led_counter_ap++;
-	  }
-
-	  if(Vpace)
-	  {
-		  // set all red LED (high red led means ventricle is paced)
-		  IOWR_ALTERA_AVALON_PIO_DATA(LEDS_GREEN_BASE, IORD_ALTERA_AVALON_PIO_DATA(LEDS_GREEN_BASE)| 3);
-		  printf("Vpace\n");
-
-		  if(swicthValue) // if mode is mode 2
-		  {
-			  char VP[1] = "V";
-			  transmit_string(&VP); // make a Vpace on the heart emulator // make a Vpace on the heart emulator
-			  printf("---> send V\n");
-		  }
-	  }
-	  else
-	  {
-		  if(led_counter_vp == 50)
-		  {
-			  // clear all green LED (heart is not artificially paced)
-			  IOWR_ALTERA_AVALON_PIO_DATA(LEDS_GREEN_BASE, 0);
-			  led_counter_vp = 0;
-		  }
-
-		  led_counter_vp++;
-	  }
-
+	  /********************** Determine mode  *********************
+	   **********************                 *********************
+	   **********************                 *********************
+	   */
 	  // get current value of SW0 from DE-115 board
 	  swicthValue = IORD_ALTERA_AVALON_PIO_DATA(SWITCHES_BASE)&1;
 	  if(prevSwitchValue != swicthValue)
@@ -425,6 +505,8 @@ int main()
 
   }
 
+  fclose(uart); // close uart
+  fclose(lcd);  // close lcd
   return 0;
 
 }

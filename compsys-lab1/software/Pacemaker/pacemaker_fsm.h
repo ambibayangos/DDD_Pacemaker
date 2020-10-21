@@ -1,8 +1,12 @@
 /*
  * pacemaker_fsm.h
  *
+ * This file acts as an interface between the SCCharts logic
+ * and the DE-115 board peripherals
+ *
  *  Created on: 20/10/2020
- *      Author: ambib
+ *      Author: Artro Bayangos Jr.
+ *      		Tommy Hou
  */
 
 #ifndef PACEMAKER_FSM_H_

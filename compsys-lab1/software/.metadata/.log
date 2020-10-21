@@ -5983,3 +5983,111 @@ java.lang.Exception: Connected system ID hash not found on target at expected ba
 
 !ENTRY com.altera.sbtgui.launch 1 0 2020-10-21 14:00:18.989
 !MESSAGE Executing: [C:/intelfpga_lite/16.1/quartus\bin64\cygwin\bin\bash.exe, -c, nios2-download '--cable=USB-Blaster on localhost [USB-0]' --device=1 --instance=0 --go --sidp=0x0 --id=0x1267abce --timestamp=1502336826 /cygdrive/c/Users/ambib/OneDrive/Desktop/compsys-lab1/software/Pacemaker/Pacemaker.elf]
+
+!ENTRY com.altera.sbtgui.launch 1 0 2020-10-21 14:19:16.536
+!MESSAGE Terminated Launch with connection: 10USB-Blaster on localhost [USB-0]
+
+!ENTRY com.altera.sbtgui.launch 1 0 2020-10-21 14:19:17.998
+!MESSAGE Executing: [C:/intelfpga_lite/16.1/quartus\bin64\cygwin\bin\bash.exe, -c, nios2-download '--cable=USB-Blaster on localhost [USB-0]' --device=1 --instance=0 --stop --sidp=0x0 --id=0x1267abce --timestamp=1502336826]
+
+!ENTRY com.altera.sbtgui.launch 1 0 2020-10-21 14:19:20.952
+!MESSAGE Executing: [C:/intelfpga_lite/16.1/quartus\bin64\cygwin\bin\bash.exe, -c, nios2-download '--cable=USB-Blaster on localhost [USB-0]' --device=1 --instance=0 --go --sidp=0x0 --id=0x1267abce --timestamp=1502336826 /cygdrive/c/Users/ambib/OneDrive/Desktop/compsys-lab1/software/Pacemaker/Pacemaker.elf]
+
+!ENTRY com.altera.sbtgui.launch 1 0 2020-10-21 14:25:32.826
+!MESSAGE Terminated Launch with connection: 10USB-Blaster on localhost [USB-0]
+
+!ENTRY com.altera.sbtgui.launch 1 0 2020-10-21 14:25:33.965
+!MESSAGE Executing: [C:/intelfpga_lite/16.1/quartus\bin64\cygwin\bin\bash.exe, -c, nios2-download '--cable=USB-Blaster on localhost [USB-0]' --device=1 --instance=0 --stop --sidp=0x0 --id=0x1267abce --timestamp=1502336826]
+
+!ENTRY com.altera.sbtgui.launch 1 0 2020-10-21 14:25:36.947
+!MESSAGE Executing: [C:/intelfpga_lite/16.1/quartus\bin64\cygwin\bin\bash.exe, -c, nios2-download '--cable=USB-Blaster on localhost [USB-0]' --device=1 --instance=0 --go --sidp=0x0 --id=0x1267abce --timestamp=1502336826 /cygdrive/c/Users/ambib/OneDrive/Desktop/compsys-lab1/software/Pacemaker/Pacemaker.elf]
+
+!ENTRY com.altera.sbtgui.launch 1 0 2020-10-21 16:35:41.449
+!MESSAGE Terminated Launch with connection: 10USB-Blaster on localhost [USB-0]
+
+!ENTRY com.altera.sbtgui.launch 1 0 2020-10-21 16:35:43.057
+!MESSAGE Executing: [C:/intelfpga_lite/16.1/quartus\bin64\cygwin\bin\bash.exe, -c, nios2-download '--cable=USB-Blaster on localhost [USB-0]' --device=1 --instance=0 --stop --sidp=0x0 --id=0x1267abce --timestamp=1502336826]
+
+!ENTRY com.altera.sbtgui.launch 1 0 2020-10-21 16:35:46.096
+!MESSAGE Executing: [C:/intelfpga_lite/16.1/quartus\bin64\cygwin\bin\bash.exe, -c, nios2-download '--cable=USB-Blaster on localhost [USB-0]' --device=1 --instance=0 --go --sidp=0x0 --id=0x1267abce --timestamp=1502336826 /cygdrive/c/Users/ambib/OneDrive/Desktop/compsys-lab1/software/Pacemaker/Pacemaker.elf]
+
+!ENTRY com.altera.sbtgui.launch 1 0 2020-10-21 16:42:06.281
+!MESSAGE Terminated Launch with connection: 10USB-Blaster on localhost [USB-0]
+
+!ENTRY com.altera.sbtgui.launch 1 0 2020-10-21 16:42:07.478
+!MESSAGE Executing: [C:/intelfpga_lite/16.1/quartus\bin64\cygwin\bin\bash.exe, -c, nios2-download '--cable=USB-Blaster on localhost [USB-0]' --device=1 --instance=0 --stop --sidp=0x0 --id=0x1267abce --timestamp=1502336826]
+
+!ENTRY com.altera.sbtgui.launch 1 0 2020-10-21 16:42:10.706
+!MESSAGE Executing: [C:/intelfpga_lite/16.1/quartus\bin64\cygwin\bin\bash.exe, -c, nios2-download '--cable=USB-Blaster on localhost [USB-0]' --device=1 --instance=0 --go --sidp=0x0 --id=0x1267abce --timestamp=1502336826 /cygdrive/c/Users/ambib/OneDrive/Desktop/compsys-lab1/software/Pacemaker/Pacemaker.elf]
+
+!ENTRY com.altera.sbtgui.launch 1 0 2020-10-21 16:43:04.789
+!MESSAGE Terminated Launch with connection: 10USB-Blaster on localhost [USB-0]
+
+!ENTRY com.altera.sbtgui.launch 1 0 2020-10-21 16:43:05.921
+!MESSAGE Executing: [C:/intelfpga_lite/16.1/quartus\bin64\cygwin\bin\bash.exe, -c, nios2-download '--cable=USB-Blaster on localhost [USB-0]' --device=1 --instance=0 --stop --sidp=0x0 --id=0x1267abce --timestamp=1502336826]
+
+!ENTRY com.altera.sbtgui.launch 1 0 2020-10-21 16:43:08.849
+!MESSAGE Executing: [C:/intelfpga_lite/16.1/quartus\bin64\cygwin\bin\bash.exe, -c, nios2-download '--cable=USB-Blaster on localhost [USB-0]' --device=1 --instance=0 --go --sidp=0x0 --id=0x1267abce --timestamp=1502336826 /cygdrive/c/Users/ambib/OneDrive/Desktop/compsys-lab1/software/Pacemaker/Pacemaker.elf]
+
+!ENTRY com.altera.sbtgui.launch 1 0 2020-10-21 16:44:13.344
+!MESSAGE Terminated Launch with connection: 10USB-Blaster on localhost [USB-0]
+
+!ENTRY com.altera.sbtgui.launch 1 0 2020-10-21 16:44:14.525
+!MESSAGE Executing: [C:/intelfpga_lite/16.1/quartus\bin64\cygwin\bin\bash.exe, -c, nios2-download '--cable=USB-Blaster on localhost [USB-0]' --device=1 --instance=0 --stop --sidp=0x0 --id=0x1267abce --timestamp=1502336826]
+
+!ENTRY com.altera.sbtgui.launch 1 0 2020-10-21 16:44:17.508
+!MESSAGE Executing: [C:/intelfpga_lite/16.1/quartus\bin64\cygwin\bin\bash.exe, -c, nios2-download '--cable=USB-Blaster on localhost [USB-0]' --device=1 --instance=0 --go --sidp=0x0 --id=0x1267abce --timestamp=1502336826 /cygdrive/c/Users/ambib/OneDrive/Desktop/compsys-lab1/software/Pacemaker/Pacemaker.elf]
+
+!ENTRY com.altera.sbtgui.launch 1 0 2020-10-21 16:45:14.896
+!MESSAGE Terminated Launch with connection: 10USB-Blaster on localhost [USB-0]
+
+!ENTRY com.altera.sbtgui.launch 1 0 2020-10-21 16:45:16.028
+!MESSAGE Executing: [C:/intelfpga_lite/16.1/quartus\bin64\cygwin\bin\bash.exe, -c, nios2-download '--cable=USB-Blaster on localhost [USB-0]' --device=1 --instance=0 --stop --sidp=0x0 --id=0x1267abce --timestamp=1502336826]
+
+!ENTRY com.altera.sbtgui.launch 1 0 2020-10-21 16:45:19.057
+!MESSAGE Executing: [C:/intelfpga_lite/16.1/quartus\bin64\cygwin\bin\bash.exe, -c, nios2-download '--cable=USB-Blaster on localhost [USB-0]' --device=1 --instance=0 --go --sidp=0x0 --id=0x1267abce --timestamp=1502336826 /cygdrive/c/Users/ambib/OneDrive/Desktop/compsys-lab1/software/Pacemaker/Pacemaker.elf]
+
+!ENTRY com.altera.sbtgui.launch 1 0 2020-10-21 16:46:09.884
+!MESSAGE Terminated Launch with connection: 10USB-Blaster on localhost [USB-0]
+
+!ENTRY com.altera.sbtgui.launch 1 0 2020-10-21 16:46:11.090
+!MESSAGE Executing: [C:/intelfpga_lite/16.1/quartus\bin64\cygwin\bin\bash.exe, -c, nios2-download '--cable=USB-Blaster on localhost [USB-0]' --device=1 --instance=0 --stop --sidp=0x0 --id=0x1267abce --timestamp=1502336826]
+
+!ENTRY com.altera.sbtgui.launch 1 0 2020-10-21 16:46:14.085
+!MESSAGE Executing: [C:/intelfpga_lite/16.1/quartus\bin64\cygwin\bin\bash.exe, -c, nios2-download '--cable=USB-Blaster on localhost [USB-0]' --device=1 --instance=0 --go --sidp=0x0 --id=0x1267abce --timestamp=1502336826 /cygdrive/c/Users/ambib/OneDrive/Desktop/compsys-lab1/software/Pacemaker/Pacemaker.elf]
+
+!ENTRY com.altera.sbtgui.launch 1 0 2020-10-21 16:47:03.261
+!MESSAGE Terminated Launch with connection: 10USB-Blaster on localhost [USB-0]
+
+!ENTRY com.altera.sbtgui.launch 1 0 2020-10-21 16:47:04.375
+!MESSAGE Executing: [C:/intelfpga_lite/16.1/quartus\bin64\cygwin\bin\bash.exe, -c, nios2-download '--cable=USB-Blaster on localhost [USB-0]' --device=1 --instance=0 --stop --sidp=0x0 --id=0x1267abce --timestamp=1502336826]
+
+!ENTRY com.altera.sbtgui.launch 1 0 2020-10-21 16:47:07.295
+!MESSAGE Executing: [C:/intelfpga_lite/16.1/quartus\bin64\cygwin\bin\bash.exe, -c, nios2-download '--cable=USB-Blaster on localhost [USB-0]' --device=1 --instance=0 --go --sidp=0x0 --id=0x1267abce --timestamp=1502336826 /cygdrive/c/Users/ambib/OneDrive/Desktop/compsys-lab1/software/Pacemaker/Pacemaker.elf]
+
+!ENTRY com.altera.sbtgui.launch 1 0 2020-10-21 16:52:56.577
+!MESSAGE Terminated Launch with connection: 10USB-Blaster on localhost [USB-0]
+
+!ENTRY com.altera.sbtgui.launch 1 0 2020-10-21 16:52:57.924
+!MESSAGE Executing: [C:/intelfpga_lite/16.1/quartus\bin64\cygwin\bin\bash.exe, -c, nios2-download '--cable=USB-Blaster on localhost [USB-0]' --device=1 --instance=0 --stop --sidp=0x0 --id=0x1267abce --timestamp=1502336826]
+
+!ENTRY com.altera.sbtgui.launch 1 0 2020-10-21 16:53:00.949
+!MESSAGE Executing: [C:/intelfpga_lite/16.1/quartus\bin64\cygwin\bin\bash.exe, -c, nios2-download '--cable=USB-Blaster on localhost [USB-0]' --device=1 --instance=0 --go --sidp=0x0 --id=0x1267abce --timestamp=1502336826 /cygdrive/c/Users/ambib/OneDrive/Desktop/compsys-lab1/software/Pacemaker/Pacemaker.elf]
+
+!ENTRY com.altera.sbtgui.launch 1 0 2020-10-21 16:53:25.181
+!MESSAGE Terminated Launch with connection: 10USB-Blaster on localhost [USB-0]
+
+!ENTRY com.altera.sbtgui.launch 1 0 2020-10-21 16:53:26.298
+!MESSAGE Executing: [C:/intelfpga_lite/16.1/quartus\bin64\cygwin\bin\bash.exe, -c, nios2-download '--cable=USB-Blaster on localhost [USB-0]' --device=1 --instance=0 --stop --sidp=0x0 --id=0x1267abce --timestamp=1502336826]
+
+!ENTRY com.altera.sbtgui.launch 1 0 2020-10-21 16:53:29.409
+!MESSAGE Executing: [C:/intelfpga_lite/16.1/quartus\bin64\cygwin\bin\bash.exe, -c, nios2-download '--cable=USB-Blaster on localhost [USB-0]' --device=1 --instance=0 --go --sidp=0x0 --id=0x1267abce --timestamp=1502336826 /cygdrive/c/Users/ambib/OneDrive/Desktop/compsys-lab1/software/Pacemaker/Pacemaker.elf]
+
+!ENTRY com.altera.sbtgui.launch 1 0 2020-10-21 16:54:34.402
+!MESSAGE Terminated Launch with connection: 10USB-Blaster on localhost [USB-0]
+
+!ENTRY com.altera.sbtgui.launch 1 0 2020-10-21 16:54:35.560
+!MESSAGE Executing: [C:/intelfpga_lite/16.1/quartus\bin64\cygwin\bin\bash.exe, -c, nios2-download '--cable=USB-Blaster on localhost [USB-0]' --device=1 --instance=0 --stop --sidp=0x0 --id=0x1267abce --timestamp=1502336826]
+
+!ENTRY com.altera.sbtgui.launch 1 0 2020-10-21 16:54:38.742
+!MESSAGE Executing: [C:/intelfpga_lite/16.1/quartus\bin64\cygwin\bin\bash.exe, -c, nios2-download '--cable=USB-Blaster on localhost [USB-0]' --device=1 --instance=0 --go --sidp=0x0 --id=0x1267abce --timestamp=1502336826 /cygdrive/c/Users/ambib/OneDrive/Desktop/compsys-lab1/software/Pacemaker/Pacemaker.elf]

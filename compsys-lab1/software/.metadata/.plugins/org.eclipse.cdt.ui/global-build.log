@@ -1,10 +1,4 @@
-13:01:44 **** Incremental Build of configuration Nios II for project Pacemaker ****
-make all 
-Info: Building ../Pacemaker_bsp/
-C:/intelFPGA_lite/16.1/nios2eds/bin/gnu/H-x86_64-mingw32/bin/make --no-print-directory -C ../Pacemaker_bsp/
-[BSP build complete]
-[Pacemaker build complete]
-13:02:36 **** Build of configuration Nios II for project Pacemaker ****
+16:17:07 **** Incremental Build of configuration Nios II for project Pacemaker ****
 make all 
 Info: Building ../Pacemaker_bsp/
 C:/intelFPGA_lite/16.1/nios2eds/bin/gnu/H-x86_64-mingw32/bin/make --no-print-directory -C ../Pacemaker_bsp/
@@ -12,35 +6,392 @@ C:/intelFPGA_lite/16.1/nios2eds/bin/gnu/H-x86_64-mingw32/bin/make --no-print-dir
 Info: Compiling pacemaker.c to obj/default/pacemaker.o
 nios2-elf-gcc -xc -MP -MMD -c -I../Pacemaker_bsp//HAL/inc -I../Pacemaker_bsp/ -I../Pacemaker_bsp//drivers/inc  -pipe -D__hal__ -DALT_NO_INSTRUCTION_EMULATION -DALT_SINGLE_THREADED    -O0 -g -Wall   -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global  -o obj/default/pacemaker.o pacemaker.c
 pacemaker.c: In function 'get_heart_signals':
-pacemaker.c:79:2: warning: implicit declaration of function 'test_and_set' [-Wimplicit-function-declaration]
+pacemaker.c:80:6: warning: unused variable 'code' [-Wunused-variable]
+  int code;
+      ^
+pacemaker.c: In function 'get_uart_contents':
+pacemaker.c:121:33: warning: unused variable 'code' [-Wunused-variable]
+  unsigned short int data,status,code;
+                                 ^
+pacemaker.c: In function 'emit_outputs':
+pacemaker.c:321:22: warning: passing argument 1 of 'transmit_string' from incompatible pointer type [-Wincompatible-pointer-types]
+      transmit_string(&AP); // make a Vpace on the heart emulator
+                      ^
+pacemaker.c:180:6: note: expected 'char *' but argument is of type 'char (*)[1]'
+ void transmit_string(char* txString){
+      ^
+pacemaker.c:346:22: warning: passing argument 1 of 'transmit_string' from incompatible pointer type [-Wincompatible-pointer-types]
+      transmit_string(&VP); // make a Vpace on the heart emulator // make a Vpace on the heart emulator
+                      ^
+pacemaker.c:180:6: note: expected 'char *' but argument is of type 'char (*)[1]'
+ void transmit_string(char* txString){
+      ^
+pacemaker.c: In function 'main':
+pacemaker.c:441:3: warning: implicit declaration of function 'alt_irq_register' [-Wimplicit-function-declaration]
+   alt_irq_register (BUTTONS_IRQ, NULL , get_heart_signals);
+   ^
+pacemaker.c:415:6: warning: unused variable 'code' [-Wunused-variable]
+  int code;
+      ^
+pacemaker.c:409:7: warning: unused variable 'heart_signal' [-Wunused-variable]
+  char heart_signal[1];
+       ^
+Info: Linking Pacemaker.elf
+nios2-elf-g++  -T'../Pacemaker_bsp//linker.x' -msys-crt0='../Pacemaker_bsp//obj/HAL/src/crt0.o' -msys-lib=hal_bsp -L../Pacemaker_bsp/   -Wl,-Map=Pacemaker.map   -O0 -g -Wall   -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global  -o Pacemaker.elf obj/default/pacemaker.o obj/default/pacemaker_fsm.o -lm -msys-lib=m
+nios2-elf-insert Pacemaker.elf --thread_model hal --cpu_name cpu --qsys true --simulation_enabled false --id 308784078 --sidp 0x0 --timestamp 1502336826 --stderr_dev jtag_uart --stdin_dev jtag_uart --stdout_dev jtag_uart --sopc_system_name nios2_system --quartus_project_dir "C:/Users/ambib/OneDrive/Desktop/compsys-lab1" --jdi ../..//output_files/lab1.jdi --sopcinfo C:/Users/ambib/OneDrive/Desktop/compsys-lab1/software/Pacemaker_bsp/../../nios2_system.sopcinfo
+Info: (Pacemaker.elf) 93 KBytes program size (code + initialized data).
+Info:                 8091 KBytes free for stack + heap.
+Info: Creating Pacemaker.objdump
+nios2-elf-objdump --disassemble --syms --all-header --source Pacemaker.elf >Pacemaker.objdump
+[Pacemaker build complete]
+16:35:33 **** Build of configuration Nios II for project Pacemaker ****
+make all 
+Info: Building ../Pacemaker_bsp/
+C:/intelFPGA_lite/16.1/nios2eds/bin/gnu/H-x86_64-mingw32/bin/make --no-print-directory -C ../Pacemaker_bsp/
+[BSP build complete]
+Info: Compiling pacemaker.c to obj/default/pacemaker.o
+nios2-elf-gcc -xc -MP -MMD -c -I../Pacemaker_bsp//HAL/inc -I../Pacemaker_bsp/ -I../Pacemaker_bsp//drivers/inc  -pipe -D__hal__ -DALT_NO_INSTRUCTION_EMULATION -DALT_SINGLE_THREADED    -O0 -g -Wall   -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global  -o obj/default/pacemaker.o pacemaker.c
+pacemaker.c: In function 'get_heart_signals':
+pacemaker.c:80:6: warning: unused variable 'code' [-Wunused-variable]
+  int code;
+      ^
+pacemaker.c: In function 'get_uart_contents':
+pacemaker.c:121:33: warning: unused variable 'code' [-Wunused-variable]
+  unsigned short int data,status,code;
+                                 ^
+pacemaker.c: In function 'emit_outputs':
+pacemaker.c:321:22: warning: passing argument 1 of 'transmit_string' from incompatible pointer type [-Wincompatible-pointer-types]
+      transmit_string(&AP); // make a Vpace on the heart emulator
+                      ^
+pacemaker.c:180:6: note: expected 'char *' but argument is of type 'char (*)[1]'
+ void transmit_string(char* txString){
+      ^
+pacemaker.c:346:22: warning: passing argument 1 of 'transmit_string' from incompatible pointer type [-Wincompatible-pointer-types]
+      transmit_string(&VP); // make a Vpace on the heart emulator // make a Vpace on the heart emulator
+                      ^
+pacemaker.c:180:6: note: expected 'char *' but argument is of type 'char (*)[1]'
+ void transmit_string(char* txString){
+      ^
+pacemaker.c: In function 'main':
+pacemaker.c:439:3: warning: implicit declaration of function 'alt_irq_register' [-Wimplicit-function-declaration]
+   alt_irq_register (BUTTONS_IRQ, NULL , get_heart_signals);
+   ^
+pacemaker.c:413:6: warning: unused variable 'code' [-Wunused-variable]
+  int code;
+      ^
+Info: Linking Pacemaker.elf
+nios2-elf-g++  -T'../Pacemaker_bsp//linker.x' -msys-crt0='../Pacemaker_bsp//obj/HAL/src/crt0.o' -msys-lib=hal_bsp -L../Pacemaker_bsp/   -Wl,-Map=Pacemaker.map   -O0 -g -Wall   -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global  -o Pacemaker.elf obj/default/pacemaker.o obj/default/pacemaker_fsm.o -lm -msys-lib=m
+nios2-elf-insert Pacemaker.elf --thread_model hal --cpu_name cpu --qsys true --simulation_enabled false --id 308784078 --sidp 0x0 --timestamp 1502336826 --stderr_dev jtag_uart --stdin_dev jtag_uart --stdout_dev jtag_uart --sopc_system_name nios2_system --quartus_project_dir "C:/Users/ambib/OneDrive/Desktop/compsys-lab1" --jdi ../..//output_files/lab1.jdi --sopcinfo C:/Users/ambib/OneDrive/Desktop/compsys-lab1/software/Pacemaker_bsp/../../nios2_system.sopcinfo
+Info: (Pacemaker.elf) 93 KBytes program size (code + initialized data).
+Info:                 8091 KBytes free for stack + heap.
+Info: Creating Pacemaker.objdump
+nios2-elf-objdump --disassemble --syms --all-header --source Pacemaker.elf >Pacemaker.objdump
+[Pacemaker build complete]
+16:35:38 **** Incremental Build of configuration Nios II for project Pacemaker ****
+make all 
+Info: Building ../Pacemaker_bsp/
+C:/intelFPGA_lite/16.1/nios2eds/bin/gnu/H-x86_64-mingw32/bin/make --no-print-directory -C ../Pacemaker_bsp/
+[BSP build complete]
+[Pacemaker build complete]
+16:41:58 **** Build of configuration Nios II for project Pacemaker ****
+make all 
+Info: Building ../Pacemaker_bsp/
+C:/intelFPGA_lite/16.1/nios2eds/bin/gnu/H-x86_64-mingw32/bin/make --no-print-directory -C ../Pacemaker_bsp/
+[BSP build complete]
+Info: Compiling pacemaker.c to obj/default/pacemaker.o
+nios2-elf-gcc -xc -MP -MMD -c -I../Pacemaker_bsp//HAL/inc -I../Pacemaker_bsp/ -I../Pacemaker_bsp//drivers/inc  -pipe -D__hal__ -DALT_NO_INSTRUCTION_EMULATION -DALT_SINGLE_THREADED    -O0 -g -Wall   -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global  -o obj/default/pacemaker.o pacemaker.c
+pacemaker.c: In function 'get_heart_signals':
+pacemaker.c:80:6: warning: unused variable 'code' [-Wunused-variable]
+  int code;
+      ^
+pacemaker.c: In function 'get_uart_contents':
+pacemaker.c:121:33: warning: unused variable 'code' [-Wunused-variable]
+  unsigned short int data,status,code;
+                                 ^
+pacemaker.c: In function 'emit_outputs':
+pacemaker.c:321:22: warning: passing argument 1 of 'transmit_string' from incompatible pointer type [-Wincompatible-pointer-types]
+      transmit_string(&AP); // make a Vpace on the heart emulator
+                      ^
+pacemaker.c:180:6: note: expected 'char *' but argument is of type 'char (*)[1]'
+ void transmit_string(char* txString){
+      ^
+pacemaker.c:346:22: warning: passing argument 1 of 'transmit_string' from incompatible pointer type [-Wincompatible-pointer-types]
+      transmit_string(&VP); // make a Vpace on the heart emulator // make a Vpace on the heart emulator
+                      ^
+pacemaker.c:180:6: note: expected 'char *' but argument is of type 'char (*)[1]'
+ void transmit_string(char* txString){
+      ^
+pacemaker.c: In function 'main':
+pacemaker.c:439:3: warning: implicit declaration of function 'alt_irq_register' [-Wimplicit-function-declaration]
+   alt_irq_register (BUTTONS_IRQ, NULL , get_heart_signals);
+   ^
+pacemaker.c:413:6: warning: unused variable 'code' [-Wunused-variable]
+  int code;
+      ^
+Info: Linking Pacemaker.elf
+nios2-elf-g++  -T'../Pacemaker_bsp//linker.x' -msys-crt0='../Pacemaker_bsp//obj/HAL/src/crt0.o' -msys-lib=hal_bsp -L../Pacemaker_bsp/   -Wl,-Map=Pacemaker.map   -O0 -g -Wall   -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global  -o Pacemaker.elf obj/default/pacemaker.o obj/default/pacemaker_fsm.o -lm -msys-lib=m
+nios2-elf-insert Pacemaker.elf --thread_model hal --cpu_name cpu --qsys true --simulation_enabled false --id 308784078 --sidp 0x0 --timestamp 1502336826 --stderr_dev jtag_uart --stdin_dev jtag_uart --stdout_dev jtag_uart --sopc_system_name nios2_system --quartus_project_dir "C:/Users/ambib/OneDrive/Desktop/compsys-lab1" --jdi ../..//output_files/lab1.jdi --sopcinfo C:/Users/ambib/OneDrive/Desktop/compsys-lab1/software/Pacemaker_bsp/../../nios2_system.sopcinfo
+Info: (Pacemaker.elf) 93 KBytes program size (code + initialized data).
+Info:                 8091 KBytes free for stack + heap.
+Info: Creating Pacemaker.objdump
+nios2-elf-objdump --disassemble --syms --all-header --source Pacemaker.elf >Pacemaker.objdump
+[Pacemaker build complete]
+16:42:03 **** Incremental Build of configuration Nios II for project Pacemaker ****
+make all 
+Info: Building ../Pacemaker_bsp/
+C:/intelFPGA_lite/16.1/nios2eds/bin/gnu/H-x86_64-mingw32/bin/make --no-print-directory -C ../Pacemaker_bsp/
+[BSP build complete]
+[Pacemaker build complete]
+16:42:59 **** Build of configuration Nios II for project Pacemaker ****
+make all 
+Info: Building ../Pacemaker_bsp/
+C:/intelFPGA_lite/16.1/nios2eds/bin/gnu/H-x86_64-mingw32/bin/make --no-print-directory -C ../Pacemaker_bsp/
+[BSP build complete]
+[Pacemaker build complete]
+16:43:02 **** Incremental Build of configuration Nios II for project Pacemaker ****
+make all 
+Info: Building ../Pacemaker_bsp/
+C:/intelFPGA_lite/16.1/nios2eds/bin/gnu/H-x86_64-mingw32/bin/make --no-print-directory -C ../Pacemaker_bsp/
+[BSP build complete]
+[Pacemaker build complete]
+16:44:05 **** Build of configuration Nios II for project Pacemaker ****
+make all 
+Info: Building ../Pacemaker_bsp/
+C:/intelFPGA_lite/16.1/nios2eds/bin/gnu/H-x86_64-mingw32/bin/make --no-print-directory -C ../Pacemaker_bsp/
+[BSP build complete]
+Info: Compiling pacemaker.c to obj/default/pacemaker.o
+nios2-elf-gcc -xc -MP -MMD -c -I../Pacemaker_bsp//HAL/inc -I../Pacemaker_bsp/ -I../Pacemaker_bsp//drivers/inc  -pipe -D__hal__ -DALT_NO_INSTRUCTION_EMULATION -DALT_SINGLE_THREADED    -O0 -g -Wall   -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global  -o obj/default/pacemaker.o pacemaker.c
+pacemaker.c: In function 'get_heart_signals':
+pacemaker.c:80:6: warning: unused variable 'code' [-Wunused-variable]
+  int code;
+      ^
+pacemaker.c: In function 'get_uart_contents':
+pacemaker.c:121:33: warning: unused variable 'code' [-Wunused-variable]
+  unsigned short int data,status,code;
+                                 ^
+pacemaker.c: In function 'emit_outputs':
+pacemaker.c:321:22: warning: passing argument 1 of 'transmit_string' from incompatible pointer type [-Wincompatible-pointer-types]
+      transmit_string(&AP); // make a Vpace on the heart emulator
+                      ^
+pacemaker.c:180:6: note: expected 'char *' but argument is of type 'char (*)[1]'
+ void transmit_string(char* txString){
+      ^
+pacemaker.c:346:22: warning: passing argument 1 of 'transmit_string' from incompatible pointer type [-Wincompatible-pointer-types]
+      transmit_string(&VP); // make a Vpace on the heart emulator // make a Vpace on the heart emulator
+                      ^
+pacemaker.c:180:6: note: expected 'char *' but argument is of type 'char (*)[1]'
+ void transmit_string(char* txString){
+      ^
+pacemaker.c: In function 'main':
+pacemaker.c:439:3: warning: implicit declaration of function 'alt_irq_register' [-Wimplicit-function-declaration]
+   alt_irq_register (BUTTONS_IRQ, NULL , get_heart_signals);
+   ^
+pacemaker.c:413:6: warning: unused variable 'code' [-Wunused-variable]
+  int code;
+      ^
+Info: Linking Pacemaker.elf
+nios2-elf-g++  -T'../Pacemaker_bsp//linker.x' -msys-crt0='../Pacemaker_bsp//obj/HAL/src/crt0.o' -msys-lib=hal_bsp -L../Pacemaker_bsp/   -Wl,-Map=Pacemaker.map   -O0 -g -Wall   -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global  -o Pacemaker.elf obj/default/pacemaker.o obj/default/pacemaker_fsm.o -lm -msys-lib=m
+nios2-elf-insert Pacemaker.elf --thread_model hal --cpu_name cpu --qsys true --simulation_enabled false --id 308784078 --sidp 0x0 --timestamp 1502336826 --stderr_dev jtag_uart --stdin_dev jtag_uart --stdout_dev jtag_uart --sopc_system_name nios2_system --quartus_project_dir "C:/Users/ambib/OneDrive/Desktop/compsys-lab1" --jdi ../..//output_files/lab1.jdi --sopcinfo C:/Users/ambib/OneDrive/Desktop/compsys-lab1/software/Pacemaker_bsp/../../nios2_system.sopcinfo
+Info: (Pacemaker.elf) 93 KBytes program size (code + initialized data).
+Info:                 8091 KBytes free for stack + heap.
+Info: Creating Pacemaker.objdump
+nios2-elf-objdump --disassemble --syms --all-header --source Pacemaker.elf >Pacemaker.objdump
+[Pacemaker build complete]
+16:44:10 **** Incremental Build of configuration Nios II for project Pacemaker ****
+make all 
+Info: Building ../Pacemaker_bsp/
+C:/intelFPGA_lite/16.1/nios2eds/bin/gnu/H-x86_64-mingw32/bin/make --no-print-directory -C ../Pacemaker_bsp/
+[BSP build complete]
+[Pacemaker build complete]
+16:45:06 **** Build of configuration Nios II for project Pacemaker ****
+make all 
+Info: Building ../Pacemaker_bsp/
+C:/intelFPGA_lite/16.1/nios2eds/bin/gnu/H-x86_64-mingw32/bin/make --no-print-directory -C ../Pacemaker_bsp/
+[BSP build complete]
+Info: Compiling pacemaker.c to obj/default/pacemaker.o
+nios2-elf-gcc -xc -MP -MMD -c -I../Pacemaker_bsp//HAL/inc -I../Pacemaker_bsp/ -I../Pacemaker_bsp//drivers/inc  -pipe -D__hal__ -DALT_NO_INSTRUCTION_EMULATION -DALT_SINGLE_THREADED    -O0 -g -Wall   -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global  -o obj/default/pacemaker.o pacemaker.c
+pacemaker.c: In function 'get_heart_signals':
+pacemaker.c:80:6: warning: unused variable 'code' [-Wunused-variable]
+  int code;
+      ^
+pacemaker.c: In function 'get_uart_contents':
+pacemaker.c:121:33: warning: unused variable 'code' [-Wunused-variable]
+  unsigned short int data,status,code;
+                                 ^
+pacemaker.c: In function 'emit_outputs':
+pacemaker.c:321:22: warning: passing argument 1 of 'transmit_string' from incompatible pointer type [-Wincompatible-pointer-types]
+      transmit_string(&AP); // make a Vpace on the heart emulator
+                      ^
+pacemaker.c:180:6: note: expected 'char *' but argument is of type 'char (*)[1]'
+ void transmit_string(char* txString){
+      ^
+pacemaker.c:346:22: warning: passing argument 1 of 'transmit_string' from incompatible pointer type [-Wincompatible-pointer-types]
+      transmit_string(&VP); // make a Vpace on the heart emulator // make a Vpace on the heart emulator
+                      ^
+pacemaker.c:180:6: note: expected 'char *' but argument is of type 'char (*)[1]'
+ void transmit_string(char* txString){
+      ^
+pacemaker.c: In function 'main':
+pacemaker.c:439:3: warning: implicit declaration of function 'alt_irq_register' [-Wimplicit-function-declaration]
+   alt_irq_register (BUTTONS_IRQ, NULL , get_heart_signals);
+   ^
+pacemaker.c:413:6: warning: unused variable 'code' [-Wunused-variable]
+  int code;
+      ^
+Info: Linking Pacemaker.elf
+nios2-elf-g++  -T'../Pacemaker_bsp//linker.x' -msys-crt0='../Pacemaker_bsp//obj/HAL/src/crt0.o' -msys-lib=hal_bsp -L../Pacemaker_bsp/   -Wl,-Map=Pacemaker.map   -O0 -g -Wall   -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global  -o Pacemaker.elf obj/default/pacemaker.o obj/default/pacemaker_fsm.o -lm -msys-lib=m
+nios2-elf-insert Pacemaker.elf --thread_model hal --cpu_name cpu --qsys true --simulation_enabled false --id 308784078 --sidp 0x0 --timestamp 1502336826 --stderr_dev jtag_uart --stdin_dev jtag_uart --stdout_dev jtag_uart --sopc_system_name nios2_system --quartus_project_dir "C:/Users/ambib/OneDrive/Desktop/compsys-lab1" --jdi ../..//output_files/lab1.jdi --sopcinfo C:/Users/ambib/OneDrive/Desktop/compsys-lab1/software/Pacemaker_bsp/../../nios2_system.sopcinfo
+Info: (Pacemaker.elf) 93 KBytes program size (code + initialized data).
+Info:                 8091 KBytes free for stack + heap.
+Info: Creating Pacemaker.objdump
+nios2-elf-objdump --disassemble --syms --all-header --source Pacemaker.elf >Pacemaker.objdump
+[Pacemaker build complete]
+16:45:12 **** Incremental Build of configuration Nios II for project Pacemaker ****
+make all 
+Info: Building ../Pacemaker_bsp/
+C:/intelFPGA_lite/16.1/nios2eds/bin/gnu/H-x86_64-mingw32/bin/make --no-print-directory -C ../Pacemaker_bsp/
+[BSP build complete]
+[Pacemaker build complete]
+16:46:01 **** Build of configuration Nios II for project Pacemaker ****
+make all 
+Info: Building ../Pacemaker_bsp/
+C:/intelFPGA_lite/16.1/nios2eds/bin/gnu/H-x86_64-mingw32/bin/make --no-print-directory -C ../Pacemaker_bsp/
+[BSP build complete]
+Info: Compiling pacemaker.c to obj/default/pacemaker.o
+nios2-elf-gcc -xc -MP -MMD -c -I../Pacemaker_bsp//HAL/inc -I../Pacemaker_bsp/ -I../Pacemaker_bsp//drivers/inc  -pipe -D__hal__ -DALT_NO_INSTRUCTION_EMULATION -DALT_SINGLE_THREADED    -O0 -g -Wall   -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global  -o obj/default/pacemaker.o pacemaker.c
+pacemaker.c: In function 'get_heart_signals':
+pacemaker.c:80:6: warning: unused variable 'code' [-Wunused-variable]
+  int code;
+      ^
+pacemaker.c: In function 'get_uart_contents':
+pacemaker.c:121:33: warning: unused variable 'code' [-Wunused-variable]
+  unsigned short int data,status,code;
+                                 ^
+pacemaker.c: In function 'emit_outputs':
+pacemaker.c:321:22: warning: passing argument 1 of 'transmit_string' from incompatible pointer type [-Wincompatible-pointer-types]
+      transmit_string(&AP); // make a Vpace on the heart emulator
+                      ^
+pacemaker.c:180:6: note: expected 'char *' but argument is of type 'char (*)[1]'
+ void transmit_string(char* txString){
+      ^
+pacemaker.c:346:22: warning: passing argument 1 of 'transmit_string' from incompatible pointer type [-Wincompatible-pointer-types]
+      transmit_string(&VP); // make a Vpace on the heart emulator // make a Vpace on the heart emulator
+                      ^
+pacemaker.c:180:6: note: expected 'char *' but argument is of type 'char (*)[1]'
+ void transmit_string(char* txString){
+      ^
+pacemaker.c: In function 'main':
+pacemaker.c:439:3: warning: implicit declaration of function 'alt_irq_register' [-Wimplicit-function-declaration]
+   alt_irq_register (BUTTONS_IRQ, NULL , get_heart_signals);
+   ^
+pacemaker.c:413:6: warning: unused variable 'code' [-Wunused-variable]
+  int code;
+      ^
+Info: Linking Pacemaker.elf
+nios2-elf-g++  -T'../Pacemaker_bsp//linker.x' -msys-crt0='../Pacemaker_bsp//obj/HAL/src/crt0.o' -msys-lib=hal_bsp -L../Pacemaker_bsp/   -Wl,-Map=Pacemaker.map   -O0 -g -Wall   -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global  -o Pacemaker.elf obj/default/pacemaker.o obj/default/pacemaker_fsm.o -lm -msys-lib=m
+nios2-elf-insert Pacemaker.elf --thread_model hal --cpu_name cpu --qsys true --simulation_enabled false --id 308784078 --sidp 0x0 --timestamp 1502336826 --stderr_dev jtag_uart --stdin_dev jtag_uart --stdout_dev jtag_uart --sopc_system_name nios2_system --quartus_project_dir "C:/Users/ambib/OneDrive/Desktop/compsys-lab1" --jdi ../..//output_files/lab1.jdi --sopcinfo C:/Users/ambib/OneDrive/Desktop/compsys-lab1/software/Pacemaker_bsp/../../nios2_system.sopcinfo
+Info: (Pacemaker.elf) 93 KBytes program size (code + initialized data).
+Info:                 8091 KBytes free for stack + heap.
+Info: Creating Pacemaker.objdump
+nios2-elf-objdump --disassemble --syms --all-header --source Pacemaker.elf >Pacemaker.objdump
+[Pacemaker build complete]
+16:46:07 **** Incremental Build of configuration Nios II for project Pacemaker ****
+make all 
+Info: Building ../Pacemaker_bsp/
+C:/intelFPGA_lite/16.1/nios2eds/bin/gnu/H-x86_64-mingw32/bin/make --no-print-directory -C ../Pacemaker_bsp/
+[BSP build complete]
+[Pacemaker build complete]
+16:46:55 **** Build of configuration Nios II for project Pacemaker ****
+make all 
+Info: Building ../Pacemaker_bsp/
+C:/intelFPGA_lite/16.1/nios2eds/bin/gnu/H-x86_64-mingw32/bin/make --no-print-directory -C ../Pacemaker_bsp/
+[BSP build complete]
+Info: Compiling pacemaker.c to obj/default/pacemaker.o
+nios2-elf-gcc -xc -MP -MMD -c -I../Pacemaker_bsp//HAL/inc -I../Pacemaker_bsp/ -I../Pacemaker_bsp//drivers/inc  -pipe -D__hal__ -DALT_NO_INSTRUCTION_EMULATION -DALT_SINGLE_THREADED    -O0 -g -Wall   -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global  -o obj/default/pacemaker.o pacemaker.c
+pacemaker.c: In function 'get_heart_signals':
+pacemaker.c:80:6: warning: unused variable 'code' [-Wunused-variable]
+  int code;
+      ^
+pacemaker.c: In function 'get_uart_contents':
+pacemaker.c:121:33: warning: unused variable 'code' [-Wunused-variable]
+  unsigned short int data,status,code;
+                                 ^
+pacemaker.c: In function 'emit_outputs':
+pacemaker.c:321:22: warning: passing argument 1 of 'transmit_string' from incompatible pointer type [-Wincompatible-pointer-types]
+      transmit_string(&AP); // make a Vpace on the heart emulator
+                      ^
+pacemaker.c:180:6: note: expected 'char *' but argument is of type 'char (*)[1]'
+ void transmit_string(char* txString){
+      ^
+pacemaker.c:346:22: warning: passing argument 1 of 'transmit_string' from incompatible pointer type [-Wincompatible-pointer-types]
+      transmit_string(&VP); // make a Vpace on the heart emulator // make a Vpace on the heart emulator
+                      ^
+pacemaker.c:180:6: note: expected 'char *' but argument is of type 'char (*)[1]'
+ void transmit_string(char* txString){
+      ^
+pacemaker.c: In function 'main':
+pacemaker.c:439:3: warning: implicit declaration of function 'alt_irq_register' [-Wimplicit-function-declaration]
+   alt_irq_register (BUTTONS_IRQ, NULL , get_heart_signals);
+   ^
+pacemaker.c:413:6: warning: unused variable 'code' [-Wunused-variable]
+  int code;
+      ^
+Info: Linking Pacemaker.elf
+nios2-elf-g++  -T'../Pacemaker_bsp//linker.x' -msys-crt0='../Pacemaker_bsp//obj/HAL/src/crt0.o' -msys-lib=hal_bsp -L../Pacemaker_bsp/   -Wl,-Map=Pacemaker.map   -O0 -g -Wall   -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global  -o Pacemaker.elf obj/default/pacemaker.o obj/default/pacemaker_fsm.o -lm -msys-lib=m
+nios2-elf-insert Pacemaker.elf --thread_model hal --cpu_name cpu --qsys true --simulation_enabled false --id 308784078 --sidp 0x0 --timestamp 1502336826 --stderr_dev jtag_uart --stdin_dev jtag_uart --stdout_dev jtag_uart --sopc_system_name nios2_system --quartus_project_dir "C:/Users/ambib/OneDrive/Desktop/compsys-lab1" --jdi ../..//output_files/lab1.jdi --sopcinfo C:/Users/ambib/OneDrive/Desktop/compsys-lab1/software/Pacemaker_bsp/../../nios2_system.sopcinfo
+Info: (Pacemaker.elf) 93 KBytes program size (code + initialized data).
+Info:                 8091 KBytes free for stack + heap.
+Info: Creating Pacemaker.objdump
+nios2-elf-objdump --disassemble --syms --all-header --source Pacemaker.elf >Pacemaker.objdump
+[Pacemaker build complete]
+16:47:00 **** Incremental Build of configuration Nios II for project Pacemaker ****
+make all 
+Info: Building ../Pacemaker_bsp/
+C:/intelFPGA_lite/16.1/nios2eds/bin/gnu/H-x86_64-mingw32/bin/make --no-print-directory -C ../Pacemaker_bsp/
+[BSP build complete]
+[Pacemaker build complete]
+16:52:48 **** Build of configuration Nios II for project Pacemaker ****
+make all 
+Info: Building ../Pacemaker_bsp/
+C:/intelFPGA_lite/16.1/nios2eds/bin/gnu/H-x86_64-mingw32/bin/make --no-print-directory -C ../Pacemaker_bsp/
+[BSP build complete]
+Info: Compiling pacemaker.c to obj/default/pacemaker.o
+nios2-elf-gcc -xc -MP -MMD -c -I../Pacemaker_bsp//HAL/inc -I../Pacemaker_bsp/ -I../Pacemaker_bsp//drivers/inc  -pipe -D__hal__ -DALT_NO_INSTRUCTION_EMULATION -DALT_SINGLE_THREADED    -O0 -g -Wall   -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global  -o obj/default/pacemaker.o pacemaker.c
+pacemaker.c: In function 'get_heart_signals':
+pacemaker.c:80:6: warning: unused variable 'code' [-Wunused-variable]
+  int code;
+      ^
+pacemaker.c: In function 'get_uart_contents':
+pacemaker.c:130:2: warning: implicit declaration of function 'test_and_set' [-Wimplicit-function-declaration]
   test_and_set(&code);
   ^
+pacemaker.c: In function 'emit_outputs':
+pacemaker.c:321:22: warning: passing argument 1 of 'transmit_string' from incompatible pointer type [-Wincompatible-pointer-types]
+      transmit_string(&AP); // make a Vpace on the heart emulator
+                      ^
+pacemaker.c:180:6: note: expected 'char *' but argument is of type 'char (*)[1]'
+ void transmit_string(char* txString){
+      ^
+pacemaker.c:346:22: warning: passing argument 1 of 'transmit_string' from incompatible pointer type [-Wincompatible-pointer-types]
+      transmit_string(&VP); // make a Vpace on the heart emulator // make a Vpace on the heart emulator
+                      ^
+pacemaker.c:180:6: note: expected 'char *' but argument is of type 'char (*)[1]'
+ void transmit_string(char* txString){
+      ^
 pacemaker.c: At top level:
-pacemaker.c:161:6: warning: conflicting types for 'test_and_set'
+pacemaker.c:369:6: warning: conflicting types for 'test_and_set'
  void test_and_set(int* code)
       ^
-pacemaker.c:79:2: note: previous implicit declaration of 'test_and_set' was here
+pacemaker.c:130:2: note: previous implicit declaration of 'test_and_set' was here
   test_and_set(&code);
   ^
 pacemaker.c: In function 'main':
-pacemaker.c:240:3: warning: implicit declaration of function 'alt_irq_register' [-Wimplicit-function-declaration]
+pacemaker.c:439:3: warning: implicit declaration of function 'alt_irq_register' [-Wimplicit-function-declaration]
    alt_irq_register (BUTTONS_IRQ, NULL , get_heart_signals);
    ^
-pacemaker.c:362:22: warning: passing argument 1 of 'transmit_string' from incompatible pointer type [-Wincompatible-pointer-types]
-      transmit_string(&AP); // make a Vpace on the heart emulator
-                      ^
-pacemaker.c:167:6: note: expected 'char *' but argument is of type 'char (*)[1]'
- void transmit_string(char* txString){
+pacemaker.c:413:6: warning: unused variable 'code' [-Wunused-variable]
+  int code;
       ^
-pacemaker.c:381:22: warning: passing argument 1 of 'transmit_string' from incompatible pointer type [-Wincompatible-pointer-types]
-      transmit_string(&VP); // make a Vpace on the heart emulator // make a Vpace on the heart emulator
-                      ^
-pacemaker.c:167:6: note: expected 'char *' but argument is of type 'char (*)[1]'
- void transmit_string(char* txString){
-      ^
-pacemaker.c:212:7: warning: unused variable 'heart_signal' [-Wunused-variable]
-  char heart_signal[1];
-       ^
 Info: Linking Pacemaker.elf
 nios2-elf-g++  -T'../Pacemaker_bsp//linker.x' -msys-crt0='../Pacemaker_bsp//obj/HAL/src/crt0.o' -msys-lib=hal_bsp -L../Pacemaker_bsp/   -Wl,-Map=Pacemaker.map   -O0 -g -Wall   -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global  -o Pacemaker.elf obj/default/pacemaker.o obj/default/pacemaker_fsm.o -lm -msys-lib=m
 nios2-elf-insert Pacemaker.elf --thread_model hal --cpu_name cpu --qsys true --simulation_enabled false --id 308784078 --sidp 0x0 --timestamp 1502336826 --stderr_dev jtag_uart --stdin_dev jtag_uart --stdout_dev jtag_uart --sopc_system_name nios2_system --quartus_project_dir "C:/Users/ambib/OneDrive/Desktop/compsys-lab1" --jdi ../..//output_files/lab1.jdi --sopcinfo C:/Users/ambib/OneDrive/Desktop/compsys-lab1/software/Pacemaker_bsp/../../nios2_system.sopcinfo
@@ -49,13 +400,25 @@ Info:                 8091 KBytes free for stack + heap.
 Info: Creating Pacemaker.objdump
 nios2-elf-objdump --disassemble --syms --all-header --source Pacemaker.elf >Pacemaker.objdump
 [Pacemaker build complete]
-13:02:41 **** Incremental Build of configuration Nios II for project Pacemaker ****
+16:52:54 **** Incremental Build of configuration Nios II for project Pacemaker ****
 make all 
 Info: Building ../Pacemaker_bsp/
 C:/intelFPGA_lite/16.1/nios2eds/bin/gnu/H-x86_64-mingw32/bin/make --no-print-directory -C ../Pacemaker_bsp/
 [BSP build complete]
 [Pacemaker build complete]
-13:03:21 **** Build of configuration Nios II for project Pacemaker ****
+16:53:20 **** Build of configuration Nios II for project Pacemaker ****
+make all 
+Info: Building ../Pacemaker_bsp/
+C:/intelFPGA_lite/16.1/nios2eds/bin/gnu/H-x86_64-mingw32/bin/make --no-print-directory -C ../Pacemaker_bsp/
+[BSP build complete]
+[Pacemaker build complete]
+16:53:22 **** Incremental Build of configuration Nios II for project Pacemaker ****
+make all 
+Info: Building ../Pacemaker_bsp/
+C:/intelFPGA_lite/16.1/nios2eds/bin/gnu/H-x86_64-mingw32/bin/make --no-print-directory -C ../Pacemaker_bsp/
+[BSP build complete]
+[Pacemaker build complete]
+16:54:26 **** Build of configuration Nios II for project Pacemaker ****
 make all 
 Info: Building ../Pacemaker_bsp/
 C:/intelFPGA_lite/16.1/nios2eds/bin/gnu/H-x86_64-mingw32/bin/make --no-print-directory -C ../Pacemaker_bsp/
@@ -63,185 +426,33 @@ C:/intelFPGA_lite/16.1/nios2eds/bin/gnu/H-x86_64-mingw32/bin/make --no-print-dir
 Info: Compiling pacemaker.c to obj/default/pacemaker.o
 nios2-elf-gcc -xc -MP -MMD -c -I../Pacemaker_bsp//HAL/inc -I../Pacemaker_bsp/ -I../Pacemaker_bsp//drivers/inc  -pipe -D__hal__ -DALT_NO_INSTRUCTION_EMULATION -DALT_SINGLE_THREADED    -O0 -g -Wall   -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global  -o obj/default/pacemaker.o pacemaker.c
 pacemaker.c: In function 'get_heart_signals':
-pacemaker.c:79:2: warning: implicit declaration of function 'test_and_set' [-Wimplicit-function-declaration]
-  test_and_set(&code);
-  ^
-pacemaker.c: At top level:
-pacemaker.c:161:6: warning: conflicting types for 'test_and_set'
- void test_and_set(int* code)
-      ^
-pacemaker.c:79:2: note: previous implicit declaration of 'test_and_set' was here
-  test_and_set(&code);
-  ^
-pacemaker.c: In function 'main':
-pacemaker.c:240:3: warning: implicit declaration of function 'alt_irq_register' [-Wimplicit-function-declaration]
-   alt_irq_register (BUTTONS_IRQ, NULL , get_heart_signals);
-   ^
-pacemaker.c:362:22: warning: passing argument 1 of 'transmit_string' from incompatible pointer type [-Wincompatible-pointer-types]
-      transmit_string(&AP); // make a Vpace on the heart emulator
-                      ^
-pacemaker.c:167:6: note: expected 'char *' but argument is of type 'char (*)[1]'
- void transmit_string(char* txString){
-      ^
-pacemaker.c:381:22: warning: passing argument 1 of 'transmit_string' from incompatible pointer type [-Wincompatible-pointer-types]
-      transmit_string(&VP); // make a Vpace on the heart emulator // make a Vpace on the heart emulator
-                      ^
-pacemaker.c:167:6: note: expected 'char *' but argument is of type 'char (*)[1]'
- void transmit_string(char* txString){
-      ^
-pacemaker.c:212:7: warning: unused variable 'heart_signal' [-Wunused-variable]
-  char heart_signal[1];
-       ^
-Info: Linking Pacemaker.elf
-nios2-elf-g++  -T'../Pacemaker_bsp//linker.x' -msys-crt0='../Pacemaker_bsp//obj/HAL/src/crt0.o' -msys-lib=hal_bsp -L../Pacemaker_bsp/   -Wl,-Map=Pacemaker.map   -O0 -g -Wall   -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global  -o Pacemaker.elf obj/default/pacemaker.o obj/default/pacemaker_fsm.o -lm -msys-lib=m
-nios2-elf-insert Pacemaker.elf --thread_model hal --cpu_name cpu --qsys true --simulation_enabled false --id 308784078 --sidp 0x0 --timestamp 1502336826 --stderr_dev jtag_uart --stdin_dev jtag_uart --stdout_dev jtag_uart --sopc_system_name nios2_system --quartus_project_dir "C:/Users/ambib/OneDrive/Desktop/compsys-lab1" --jdi ../..//output_files/lab1.jdi --sopcinfo C:/Users/ambib/OneDrive/Desktop/compsys-lab1/software/Pacemaker_bsp/../../nios2_system.sopcinfo
-Info: (Pacemaker.elf) 93 KBytes program size (code + initialized data).
-Info:                 8091 KBytes free for stack + heap.
-Info: Creating Pacemaker.objdump
-nios2-elf-objdump --disassemble --syms --all-header --source Pacemaker.elf >Pacemaker.objdump
-[Pacemaker build complete]
-13:03:25 **** Incremental Build of configuration Nios II for project Pacemaker ****
-make all 
-Info: Building ../Pacemaker_bsp/
-C:/intelFPGA_lite/16.1/nios2eds/bin/gnu/H-x86_64-mingw32/bin/make --no-print-directory -C ../Pacemaker_bsp/
-[BSP build complete]
-[Pacemaker build complete]
-13:05:31 **** Build of configuration Nios II for project Pacemaker ****
-make all 
-Info: Building ../Pacemaker_bsp/
-C:/intelFPGA_lite/16.1/nios2eds/bin/gnu/H-x86_64-mingw32/bin/make --no-print-directory -C ../Pacemaker_bsp/
-[BSP build complete]
-Info: Compiling pacemaker.c to obj/default/pacemaker.o
-nios2-elf-gcc -xc -MP -MMD -c -I../Pacemaker_bsp//HAL/inc -I../Pacemaker_bsp/ -I../Pacemaker_bsp//drivers/inc  -pipe -D__hal__ -DALT_NO_INSTRUCTION_EMULATION -DALT_SINGLE_THREADED    -O0 -g -Wall   -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global  -o obj/default/pacemaker.o pacemaker.c
-pacemaker.c: In function 'get_heart_signals':
-pacemaker.c:79:2: warning: implicit declaration of function 'test_and_set' [-Wimplicit-function-declaration]
-  test_and_set(&code);
-  ^
-pacemaker.c: At top level:
-pacemaker.c:161:6: warning: conflicting types for 'test_and_set'
- void test_and_set(int* code)
-      ^
-pacemaker.c:79:2: note: previous implicit declaration of 'test_and_set' was here
-  test_and_set(&code);
-  ^
-pacemaker.c: In function 'main':
-pacemaker.c:240:3: warning: implicit declaration of function 'alt_irq_register' [-Wimplicit-function-declaration]
-   alt_irq_register (BUTTONS_IRQ, NULL , get_heart_signals);
-   ^
-pacemaker.c:362:22: warning: passing argument 1 of 'transmit_string' from incompatible pointer type [-Wincompatible-pointer-types]
-      transmit_string(&AP); // make a Vpace on the heart emulator
-                      ^
-pacemaker.c:167:6: note: expected 'char *' but argument is of type 'char (*)[1]'
- void transmit_string(char* txString){
-      ^
-pacemaker.c:381:22: warning: passing argument 1 of 'transmit_string' from incompatible pointer type [-Wincompatible-pointer-types]
-      transmit_string(&VP); // make a Vpace on the heart emulator // make a Vpace on the heart emulator
-                      ^
-pacemaker.c:167:6: note: expected 'char *' but argument is of type 'char (*)[1]'
- void transmit_string(char* txString){
-      ^
-pacemaker.c:212:7: warning: unused variable 'heart_signal' [-Wunused-variable]
-  char heart_signal[1];
-       ^
-Info: Linking Pacemaker.elf
-nios2-elf-g++  -T'../Pacemaker_bsp//linker.x' -msys-crt0='../Pacemaker_bsp//obj/HAL/src/crt0.o' -msys-lib=hal_bsp -L../Pacemaker_bsp/   -Wl,-Map=Pacemaker.map   -O0 -g -Wall   -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global  -o Pacemaker.elf obj/default/pacemaker.o obj/default/pacemaker_fsm.o -lm -msys-lib=m
-nios2-elf-insert Pacemaker.elf --thread_model hal --cpu_name cpu --qsys true --simulation_enabled false --id 308784078 --sidp 0x0 --timestamp 1502336826 --stderr_dev jtag_uart --stdin_dev jtag_uart --stdout_dev jtag_uart --sopc_system_name nios2_system --quartus_project_dir "C:/Users/ambib/OneDrive/Desktop/compsys-lab1" --jdi ../..//output_files/lab1.jdi --sopcinfo C:/Users/ambib/OneDrive/Desktop/compsys-lab1/software/Pacemaker_bsp/../../nios2_system.sopcinfo
-Info: (Pacemaker.elf) 93 KBytes program size (code + initialized data).
-Info:                 8091 KBytes free for stack + heap.
-Info: Creating Pacemaker.objdump
-nios2-elf-objdump --disassemble --syms --all-header --source Pacemaker.elf >Pacemaker.objdump
-[Pacemaker build complete]
-13:05:36 **** Incremental Build of configuration Nios II for project Pacemaker ****
-make all 
-Info: Building ../Pacemaker_bsp/
-C:/intelFPGA_lite/16.1/nios2eds/bin/gnu/H-x86_64-mingw32/bin/make --no-print-directory -C ../Pacemaker_bsp/
-[BSP build complete]
-[Pacemaker build complete]
-13:14:23 **** Build of configuration Nios II for project Pacemaker ****
-make all 
-Info: Building ../Pacemaker_bsp/
-C:/intelFPGA_lite/16.1/nios2eds/bin/gnu/H-x86_64-mingw32/bin/make --no-print-directory -C ../Pacemaker_bsp/
-[BSP build complete]
-Info: Compiling pacemaker.c to obj/default/pacemaker.o
-nios2-elf-gcc -xc -MP -MMD -c -I../Pacemaker_bsp//HAL/inc -I../Pacemaker_bsp/ -I../Pacemaker_bsp//drivers/inc  -pipe -D__hal__ -DALT_NO_INSTRUCTION_EMULATION -DALT_SINGLE_THREADED    -O0 -g -Wall   -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global  -o obj/default/pacemaker.o pacemaker.c
-pacemaker.c: In function 'get_heart_signals':
-pacemaker.c:79:2: warning: implicit declaration of function 'test_and_set' [-Wimplicit-function-declaration]
-  test_and_set(&code);
-  ^
-pacemaker.c: At top level:
-pacemaker.c:163:6: warning: conflicting types for 'test_and_set'
- void test_and_set(int* code)
-      ^
-pacemaker.c:79:2: note: previous implicit declaration of 'test_and_set' was here
-  test_and_set(&code);
-  ^
-pacemaker.c: In function 'main':
-pacemaker.c:242:3: warning: implicit declaration of function 'alt_irq_register' [-Wimplicit-function-declaration]
-   alt_irq_register (BUTTONS_IRQ, NULL , get_heart_signals);
-   ^
-pacemaker.c:365:22: warning: passing argument 1 of 'transmit_string' from incompatible pointer type [-Wincompatible-pointer-types]
-      transmit_string(&AP); // make a Vpace on the heart emulator
-                      ^
-pacemaker.c:169:6: note: expected 'char *' but argument is of type 'char (*)[1]'
- void transmit_string(char* txString){
-      ^
-pacemaker.c:384:22: warning: passing argument 1 of 'transmit_string' from incompatible pointer type [-Wincompatible-pointer-types]
-      transmit_string(&VP); // make a Vpace on the heart emulator // make a Vpace on the heart emulator
-                      ^
-pacemaker.c:169:6: note: expected 'char *' but argument is of type 'char (*)[1]'
- void transmit_string(char* txString){
-      ^
-pacemaker.c:214:7: warning: unused variable 'heart_signal' [-Wunused-variable]
-  char heart_signal[1];
-       ^
-Info: Linking Pacemaker.elf
-nios2-elf-g++  -T'../Pacemaker_bsp//linker.x' -msys-crt0='../Pacemaker_bsp//obj/HAL/src/crt0.o' -msys-lib=hal_bsp -L../Pacemaker_bsp/   -Wl,-Map=Pacemaker.map   -O0 -g -Wall   -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global  -o Pacemaker.elf obj/default/pacemaker.o obj/default/pacemaker_fsm.o -lm -msys-lib=m
-nios2-elf-insert Pacemaker.elf --thread_model hal --cpu_name cpu --qsys true --simulation_enabled false --id 308784078 --sidp 0x0 --timestamp 1502336826 --stderr_dev jtag_uart --stdin_dev jtag_uart --stdout_dev jtag_uart --sopc_system_name nios2_system --quartus_project_dir "C:/Users/ambib/OneDrive/Desktop/compsys-lab1" --jdi ../..//output_files/lab1.jdi --sopcinfo C:/Users/ambib/OneDrive/Desktop/compsys-lab1/software/Pacemaker_bsp/../../nios2_system.sopcinfo
-Info: (Pacemaker.elf) 93 KBytes program size (code + initialized data).
-Info:                 8091 KBytes free for stack + heap.
-Info: Creating Pacemaker.objdump
-nios2-elf-objdump --disassemble --syms --all-header --source Pacemaker.elf >Pacemaker.objdump
-[Pacemaker build complete]
-13:14:28 **** Incremental Build of configuration Nios II for project Pacemaker ****
-make all 
-Info: Building ../Pacemaker_bsp/
-C:/intelFPGA_lite/16.1/nios2eds/bin/gnu/H-x86_64-mingw32/bin/make --no-print-directory -C ../Pacemaker_bsp/
-[BSP build complete]
-[Pacemaker build complete]
-13:17:50 **** Build of configuration Nios II for project Pacemaker ****
-make all 
-Info: Building ../Pacemaker_bsp/
-C:/intelFPGA_lite/16.1/nios2eds/bin/gnu/H-x86_64-mingw32/bin/make --no-print-directory -C ../Pacemaker_bsp/
-[BSP build complete]
-Info: Compiling pacemaker.c to obj/default/pacemaker.o
-nios2-elf-gcc -xc -MP -MMD -c -I../Pacemaker_bsp//HAL/inc -I../Pacemaker_bsp/ -I../Pacemaker_bsp//drivers/inc  -pipe -D__hal__ -DALT_NO_INSTRUCTION_EMULATION -DALT_SINGLE_THREADED    -O0 -g -Wall   -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global  -o obj/default/pacemaker.o pacemaker.c
-pacemaker.c: In function 'get_heart_signals':
-pacemaker.c:73:6: warning: unused variable 'code' [-Wunused-variable]
+pacemaker.c:80:6: warning: unused variable 'code' [-Wunused-variable]
   int code;
       ^
 pacemaker.c: In function 'get_uart_contents':
-pacemaker.c:103:33: warning: unused variable 'code' [-Wunused-variable]
+pacemaker.c:121:33: warning: unused variable 'code' [-Wunused-variable]
   unsigned short int data,status,code;
                                  ^
-pacemaker.c: In function 'main':
-pacemaker.c:242:3: warning: implicit declaration of function 'alt_irq_register' [-Wimplicit-function-declaration]
-   alt_irq_register (BUTTONS_IRQ, NULL , get_heart_signals);
-   ^
-pacemaker.c:365:22: warning: passing argument 1 of 'transmit_string' from incompatible pointer type [-Wincompatible-pointer-types]
+pacemaker.c: In function 'emit_outputs':
+pacemaker.c:321:22: warning: passing argument 1 of 'transmit_string' from incompatible pointer type [-Wincompatible-pointer-types]
       transmit_string(&AP); // make a Vpace on the heart emulator
                       ^
-pacemaker.c:169:6: note: expected 'char *' but argument is of type 'char (*)[1]'
+pacemaker.c:180:6: note: expected 'char *' but argument is of type 'char (*)[1]'
  void transmit_string(char* txString){
       ^
-pacemaker.c:384:22: warning: passing argument 1 of 'transmit_string' from incompatible pointer type [-Wincompatible-pointer-types]
+pacemaker.c:346:22: warning: passing argument 1 of 'transmit_string' from incompatible pointer type [-Wincompatible-pointer-types]
       transmit_string(&VP); // make a Vpace on the heart emulator // make a Vpace on the heart emulator
                       ^
-pacemaker.c:169:6: note: expected 'char *' but argument is of type 'char (*)[1]'
+pacemaker.c:180:6: note: expected 'char *' but argument is of type 'char (*)[1]'
  void transmit_string(char* txString){
       ^
-pacemaker.c:214:7: warning: unused variable 'heart_signal' [-Wunused-variable]
-  char heart_signal[1];
-       ^
+pacemaker.c: In function 'main':
+pacemaker.c:439:3: warning: implicit declaration of function 'alt_irq_register' [-Wimplicit-function-declaration]
+   alt_irq_register (BUTTONS_IRQ, NULL , get_heart_signals);
+   ^
+pacemaker.c:413:6: warning: unused variable 'code' [-Wunused-variable]
+  int code;
+      ^
 Info: Linking Pacemaker.elf
 nios2-elf-g++  -T'../Pacemaker_bsp//linker.x' -msys-crt0='../Pacemaker_bsp//obj/HAL/src/crt0.o' -msys-lib=hal_bsp -L../Pacemaker_bsp/   -Wl,-Map=Pacemaker.map   -O0 -g -Wall   -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global  -o Pacemaker.elf obj/default/pacemaker.o obj/default/pacemaker_fsm.o -lm -msys-lib=m
 nios2-elf-insert Pacemaker.elf --thread_model hal --cpu_name cpu --qsys true --simulation_enabled false --id 308784078 --sidp 0x0 --timestamp 1502336826 --stderr_dev jtag_uart --stdin_dev jtag_uart --stdout_dev jtag_uart --sopc_system_name nios2_system --quartus_project_dir "C:/Users/ambib/OneDrive/Desktop/compsys-lab1" --jdi ../..//output_files/lab1.jdi --sopcinfo C:/Users/ambib/OneDrive/Desktop/compsys-lab1/software/Pacemaker_bsp/../../nios2_system.sopcinfo
@@ -250,403 +461,7 @@ Info:                 8091 KBytes free for stack + heap.
 Info: Creating Pacemaker.objdump
 nios2-elf-objdump --disassemble --syms --all-header --source Pacemaker.elf >Pacemaker.objdump
 [Pacemaker build complete]
-13:18:41 **** Build of configuration Nios II for project Pacemaker ****
-make all 
-Info: Building ../Pacemaker_bsp/
-C:/intelFPGA_lite/16.1/nios2eds/bin/gnu/H-x86_64-mingw32/bin/make --no-print-directory -C ../Pacemaker_bsp/
-[BSP build complete]
-[Pacemaker build complete]
-13:18:43 **** Incremental Build of configuration Nios II for project Pacemaker ****
-make all 
-Info: Building ../Pacemaker_bsp/
-C:/intelFPGA_lite/16.1/nios2eds/bin/gnu/H-x86_64-mingw32/bin/make --no-print-directory -C ../Pacemaker_bsp/
-[BSP build complete]
-[Pacemaker build complete]
-13:42:58 **** Build of configuration Nios II for project Pacemaker ****
-make all 
-Info: Building ../Pacemaker_bsp/
-C:/intelFPGA_lite/16.1/nios2eds/bin/gnu/H-x86_64-mingw32/bin/make --no-print-directory -C ../Pacemaker_bsp/
-[BSP build complete]
-Info: Compiling pacemaker.c to obj/default/pacemaker.o
-nios2-elf-gcc -xc -MP -MMD -c -I../Pacemaker_bsp//HAL/inc -I../Pacemaker_bsp/ -I../Pacemaker_bsp//drivers/inc  -pipe -D__hal__ -DALT_NO_INSTRUCTION_EMULATION -DALT_SINGLE_THREADED    -O0 -g -Wall   -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global  -o obj/default/pacemaker.o pacemaker.c
-pacemaker.c: In function 'get_heart_signals':
-pacemaker.c:73:6: warning: unused variable 'code' [-Wunused-variable]
-  int code;
-      ^
-pacemaker.c: In function 'get_uart_contents':
-pacemaker.c:103:33: warning: unused variable 'code' [-Wunused-variable]
-  unsigned short int data,status,code;
-                                 ^
-pacemaker.c: In function 'main':
-pacemaker.c:242:3: warning: implicit declaration of function 'alt_irq_register' [-Wimplicit-function-declaration]
-   alt_irq_register (BUTTONS_IRQ, NULL , get_heart_signals);
-   ^
-pacemaker.c:359:22: warning: passing argument 1 of 'transmit_string' from incompatible pointer type [-Wincompatible-pointer-types]
-      transmit_string(&AP); // make a Vpace on the heart emulator
-                      ^
-pacemaker.c:169:6: note: expected 'char *' but argument is of type 'char (*)[1]'
- void transmit_string(char* txString){
-      ^
-pacemaker.c:378:22: warning: passing argument 1 of 'transmit_string' from incompatible pointer type [-Wincompatible-pointer-types]
-      transmit_string(&VP); // make a Vpace on the heart emulator // make a Vpace on the heart emulator
-                      ^
-pacemaker.c:169:6: note: expected 'char *' but argument is of type 'char (*)[1]'
- void transmit_string(char* txString){
-      ^
-pacemaker.c:214:7: warning: unused variable 'heart_signal' [-Wunused-variable]
-  char heart_signal[1];
-       ^
-Info: Linking Pacemaker.elf
-nios2-elf-g++  -T'../Pacemaker_bsp//linker.x' -msys-crt0='../Pacemaker_bsp//obj/HAL/src/crt0.o' -msys-lib=hal_bsp -L../Pacemaker_bsp/   -Wl,-Map=Pacemaker.map   -O0 -g -Wall   -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global  -o Pacemaker.elf obj/default/pacemaker.o obj/default/pacemaker_fsm.o -lm -msys-lib=m
-nios2-elf-insert Pacemaker.elf --thread_model hal --cpu_name cpu --qsys true --simulation_enabled false --id 308784078 --sidp 0x0 --timestamp 1502336826 --stderr_dev jtag_uart --stdin_dev jtag_uart --stdout_dev jtag_uart --sopc_system_name nios2_system --quartus_project_dir "C:/Users/ambib/OneDrive/Desktop/compsys-lab1" --jdi ../..//output_files/lab1.jdi --sopcinfo C:/Users/ambib/OneDrive/Desktop/compsys-lab1/software/Pacemaker_bsp/../../nios2_system.sopcinfo
-Info: (Pacemaker.elf) 93 KBytes program size (code + initialized data).
-Info:                 8091 KBytes free for stack + heap.
-Info: Creating Pacemaker.objdump
-nios2-elf-objdump --disassemble --syms --all-header --source Pacemaker.elf >Pacemaker.objdump
-[Pacemaker build complete]
-13:43:02 **** Incremental Build of configuration Nios II for project Pacemaker ****
-make all 
-Info: Building ../Pacemaker_bsp/
-C:/intelFPGA_lite/16.1/nios2eds/bin/gnu/H-x86_64-mingw32/bin/make --no-print-directory -C ../Pacemaker_bsp/
-[BSP build complete]
-[Pacemaker build complete]
-13:43:24 **** Build of configuration Nios II for project Pacemaker ****
-make all 
-Info: Building ../Pacemaker_bsp/
-C:/intelFPGA_lite/16.1/nios2eds/bin/gnu/H-x86_64-mingw32/bin/make --no-print-directory -C ../Pacemaker_bsp/
-[BSP build complete]
-[Pacemaker build complete]
-13:43:54 **** Build of configuration Nios II for project Pacemaker ****
-make all 
-Info: Building ../Pacemaker_bsp/
-C:/intelFPGA_lite/16.1/nios2eds/bin/gnu/H-x86_64-mingw32/bin/make --no-print-directory -C ../Pacemaker_bsp/
-[BSP build complete]
-Info: Compiling pacemaker.c to obj/default/pacemaker.o
-nios2-elf-gcc -xc -MP -MMD -c -I../Pacemaker_bsp//HAL/inc -I../Pacemaker_bsp/ -I../Pacemaker_bsp//drivers/inc  -pipe -D__hal__ -DALT_NO_INSTRUCTION_EMULATION -DALT_SINGLE_THREADED    -O0 -g -Wall   -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global  -o obj/default/pacemaker.o pacemaker.c
-pacemaker.c: In function 'get_heart_signals':
-pacemaker.c:73:6: warning: unused variable 'code' [-Wunused-variable]
-  int code;
-      ^
-pacemaker.c: In function 'get_uart_contents':
-pacemaker.c:103:33: warning: unused variable 'code' [-Wunused-variable]
-  unsigned short int data,status,code;
-                                 ^
-pacemaker.c: In function 'main':
-pacemaker.c:242:3: warning: implicit declaration of function 'alt_irq_register' [-Wimplicit-function-declaration]
-   alt_irq_register (BUTTONS_IRQ, NULL , get_heart_signals);
-   ^
-pacemaker.c:359:22: warning: passing argument 1 of 'transmit_string' from incompatible pointer type [-Wincompatible-pointer-types]
-      transmit_string(&AP); // make a Vpace on the heart emulator
-                      ^
-pacemaker.c:169:6: note: expected 'char *' but argument is of type 'char (*)[1]'
- void transmit_string(char* txString){
-      ^
-pacemaker.c:378:22: warning: passing argument 1 of 'transmit_string' from incompatible pointer type [-Wincompatible-pointer-types]
-      transmit_string(&VP); // make a Vpace on the heart emulator // make a Vpace on the heart emulator
-                      ^
-pacemaker.c:169:6: note: expected 'char *' but argument is of type 'char (*)[1]'
- void transmit_string(char* txString){
-      ^
-pacemaker.c:214:7: warning: unused variable 'heart_signal' [-Wunused-variable]
-  char heart_signal[1];
-       ^
-Info: Linking Pacemaker.elf
-nios2-elf-g++  -T'../Pacemaker_bsp//linker.x' -msys-crt0='../Pacemaker_bsp//obj/HAL/src/crt0.o' -msys-lib=hal_bsp -L../Pacemaker_bsp/   -Wl,-Map=Pacemaker.map   -O0 -g -Wall   -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global  -o Pacemaker.elf obj/default/pacemaker.o obj/default/pacemaker_fsm.o -lm -msys-lib=m
-nios2-elf-insert Pacemaker.elf --thread_model hal --cpu_name cpu --qsys true --simulation_enabled false --id 308784078 --sidp 0x0 --timestamp 1502336826 --stderr_dev jtag_uart --stdin_dev jtag_uart --stdout_dev jtag_uart --sopc_system_name nios2_system --quartus_project_dir "C:/Users/ambib/OneDrive/Desktop/compsys-lab1" --jdi ../..//output_files/lab1.jdi --sopcinfo C:/Users/ambib/OneDrive/Desktop/compsys-lab1/software/Pacemaker_bsp/../../nios2_system.sopcinfo
-Info: (Pacemaker.elf) 92 KBytes program size (code + initialized data).
-Info:                 8091 KBytes free for stack + heap.
-Info: Creating Pacemaker.objdump
-nios2-elf-objdump --disassemble --syms --all-header --source Pacemaker.elf >Pacemaker.objdump
-[Pacemaker build complete]
-13:43:59 **** Incremental Build of configuration Nios II for project Pacemaker ****
-make all 
-Info: Building ../Pacemaker_bsp/
-C:/intelFPGA_lite/16.1/nios2eds/bin/gnu/H-x86_64-mingw32/bin/make --no-print-directory -C ../Pacemaker_bsp/
-[BSP build complete]
-[Pacemaker build complete]
-13:53:03 **** Build of configuration Nios II for project Pacemaker ****
-make all 
-Info: Building ../Pacemaker_bsp/
-C:/intelFPGA_lite/16.1/nios2eds/bin/gnu/H-x86_64-mingw32/bin/make --no-print-directory -C ../Pacemaker_bsp/
-[BSP build complete]
-Info: Compiling pacemaker.c to obj/default/pacemaker.o
-nios2-elf-gcc -xc -MP -MMD -c -I../Pacemaker_bsp//HAL/inc -I../Pacemaker_bsp/ -I../Pacemaker_bsp//drivers/inc  -pipe -D__hal__ -DALT_NO_INSTRUCTION_EMULATION -DALT_SINGLE_THREADED    -O0 -g -Wall   -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global  -o obj/default/pacemaker.o pacemaker.c
-pacemaker.c: In function 'get_heart_signals':
-pacemaker.c:73:6: warning: unused variable 'code' [-Wunused-variable]
-  int code;
-      ^
-pacemaker.c: In function 'get_uart_contents':
-pacemaker.c:103:33: warning: unused variable 'code' [-Wunused-variable]
-  unsigned short int data,status,code;
-                                 ^
-pacemaker.c: In function 'main':
-pacemaker.c:246:3: warning: implicit declaration of function 'alt_irq_register' [-Wimplicit-function-declaration]
-   alt_irq_register (BUTTONS_IRQ, NULL , get_heart_signals);
-   ^
-pacemaker.c:364:22: warning: passing argument 1 of 'transmit_string' from incompatible pointer type [-Wincompatible-pointer-types]
-      transmit_string(&AP); // make a Vpace on the heart emulator
-                      ^
-pacemaker.c:169:6: note: expected 'char *' but argument is of type 'char (*)[1]'
- void transmit_string(char* txString){
-      ^
-pacemaker.c:389:22: warning: passing argument 1 of 'transmit_string' from incompatible pointer type [-Wincompatible-pointer-types]
-      transmit_string(&VP); // make a Vpace on the heart emulator // make a Vpace on the heart emulator
-                      ^
-pacemaker.c:169:6: note: expected 'char *' but argument is of type 'char (*)[1]'
- void transmit_string(char* txString){
-      ^
-pacemaker.c:214:7: warning: unused variable 'heart_signal' [-Wunused-variable]
-  char heart_signal[1];
-       ^
-Info: Linking Pacemaker.elf
-nios2-elf-g++  -T'../Pacemaker_bsp//linker.x' -msys-crt0='../Pacemaker_bsp//obj/HAL/src/crt0.o' -msys-lib=hal_bsp -L../Pacemaker_bsp/   -Wl,-Map=Pacemaker.map   -O0 -g -Wall   -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global  -o Pacemaker.elf obj/default/pacemaker.o obj/default/pacemaker_fsm.o -lm -msys-lib=m
-nios2-elf-insert Pacemaker.elf --thread_model hal --cpu_name cpu --qsys true --simulation_enabled false --id 308784078 --sidp 0x0 --timestamp 1502336826 --stderr_dev jtag_uart --stdin_dev jtag_uart --stdout_dev jtag_uart --sopc_system_name nios2_system --quartus_project_dir "C:/Users/ambib/OneDrive/Desktop/compsys-lab1" --jdi ../..//output_files/lab1.jdi --sopcinfo C:/Users/ambib/OneDrive/Desktop/compsys-lab1/software/Pacemaker_bsp/../../nios2_system.sopcinfo
-Info: (Pacemaker.elf) 93 KBytes program size (code + initialized data).
-Info:                 8091 KBytes free for stack + heap.
-Info: Creating Pacemaker.objdump
-nios2-elf-objdump --disassemble --syms --all-header --source Pacemaker.elf >Pacemaker.objdump
-[Pacemaker build complete]
-13:53:08 **** Incremental Build of configuration Nios II for project Pacemaker ****
-make all 
-Info: Building ../Pacemaker_bsp/
-C:/intelFPGA_lite/16.1/nios2eds/bin/gnu/H-x86_64-mingw32/bin/make --no-print-directory -C ../Pacemaker_bsp/
-[BSP build complete]
-[Pacemaker build complete]
-13:54:17 **** Build of configuration Nios II for project Pacemaker ****
-make all 
-Info: Building ../Pacemaker_bsp/
-C:/intelFPGA_lite/16.1/nios2eds/bin/gnu/H-x86_64-mingw32/bin/make --no-print-directory -C ../Pacemaker_bsp/
-[BSP build complete]
-Info: Compiling pacemaker.c to obj/default/pacemaker.o
-nios2-elf-gcc -xc -MP -MMD -c -I../Pacemaker_bsp//HAL/inc -I../Pacemaker_bsp/ -I../Pacemaker_bsp//drivers/inc  -pipe -D__hal__ -DALT_NO_INSTRUCTION_EMULATION -DALT_SINGLE_THREADED    -O0 -g -Wall   -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global  -o obj/default/pacemaker.o pacemaker.c
-pacemaker.c: In function 'get_heart_signals':
-pacemaker.c:73:6: warning: unused variable 'code' [-Wunused-variable]
-  int code;
-      ^
-pacemaker.c: In function 'get_uart_contents':
-pacemaker.c:103:33: warning: unused variable 'code' [-Wunused-variable]
-  unsigned short int data,status,code;
-                                 ^
-pacemaker.c: In function 'main':
-pacemaker.c:246:3: warning: implicit declaration of function 'alt_irq_register' [-Wimplicit-function-declaration]
-   alt_irq_register (BUTTONS_IRQ, NULL , get_heart_signals);
-   ^
-pacemaker.c:364:22: warning: passing argument 1 of 'transmit_string' from incompatible pointer type [-Wincompatible-pointer-types]
-      transmit_string(&AP); // make a Vpace on the heart emulator
-                      ^
-pacemaker.c:169:6: note: expected 'char *' but argument is of type 'char (*)[1]'
- void transmit_string(char* txString){
-      ^
-pacemaker.c:389:22: warning: passing argument 1 of 'transmit_string' from incompatible pointer type [-Wincompatible-pointer-types]
-      transmit_string(&VP); // make a Vpace on the heart emulator // make a Vpace on the heart emulator
-                      ^
-pacemaker.c:169:6: note: expected 'char *' but argument is of type 'char (*)[1]'
- void transmit_string(char* txString){
-      ^
-pacemaker.c:214:7: warning: unused variable 'heart_signal' [-Wunused-variable]
-  char heart_signal[1];
-       ^
-Info: Linking Pacemaker.elf
-nios2-elf-g++  -T'../Pacemaker_bsp//linker.x' -msys-crt0='../Pacemaker_bsp//obj/HAL/src/crt0.o' -msys-lib=hal_bsp -L../Pacemaker_bsp/   -Wl,-Map=Pacemaker.map   -O0 -g -Wall   -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global  -o Pacemaker.elf obj/default/pacemaker.o obj/default/pacemaker_fsm.o -lm -msys-lib=m
-nios2-elf-insert Pacemaker.elf --thread_model hal --cpu_name cpu --qsys true --simulation_enabled false --id 308784078 --sidp 0x0 --timestamp 1502336826 --stderr_dev jtag_uart --stdin_dev jtag_uart --stdout_dev jtag_uart --sopc_system_name nios2_system --quartus_project_dir "C:/Users/ambib/OneDrive/Desktop/compsys-lab1" --jdi ../..//output_files/lab1.jdi --sopcinfo C:/Users/ambib/OneDrive/Desktop/compsys-lab1/software/Pacemaker_bsp/../../nios2_system.sopcinfo
-Info: (Pacemaker.elf) 93 KBytes program size (code + initialized data).
-Info:                 8091 KBytes free for stack + heap.
-Info: Creating Pacemaker.objdump
-nios2-elf-objdump --disassemble --syms --all-header --source Pacemaker.elf >Pacemaker.objdump
-[Pacemaker build complete]
-13:54:21 **** Incremental Build of configuration Nios II for project Pacemaker ****
-make all 
-Info: Building ../Pacemaker_bsp/
-C:/intelFPGA_lite/16.1/nios2eds/bin/gnu/H-x86_64-mingw32/bin/make --no-print-directory -C ../Pacemaker_bsp/
-[BSP build complete]
-[Pacemaker build complete]
-13:55:00 **** Build of configuration Nios II for project Pacemaker ****
-make all 
-Info: Building ../Pacemaker_bsp/
-C:/intelFPGA_lite/16.1/nios2eds/bin/gnu/H-x86_64-mingw32/bin/make --no-print-directory -C ../Pacemaker_bsp/
-[BSP build complete]
-Info: Compiling pacemaker.c to obj/default/pacemaker.o
-nios2-elf-gcc -xc -MP -MMD -c -I../Pacemaker_bsp//HAL/inc -I../Pacemaker_bsp/ -I../Pacemaker_bsp//drivers/inc  -pipe -D__hal__ -DALT_NO_INSTRUCTION_EMULATION -DALT_SINGLE_THREADED    -O0 -g -Wall   -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global  -o obj/default/pacemaker.o pacemaker.c
-pacemaker.c: In function 'get_heart_signals':
-pacemaker.c:73:6: warning: unused variable 'code' [-Wunused-variable]
-  int code;
-      ^
-pacemaker.c: In function 'get_uart_contents':
-pacemaker.c:103:33: warning: unused variable 'code' [-Wunused-variable]
-  unsigned short int data,status,code;
-                                 ^
-pacemaker.c: In function 'main':
-pacemaker.c:246:3: warning: implicit declaration of function 'alt_irq_register' [-Wimplicit-function-declaration]
-   alt_irq_register (BUTTONS_IRQ, NULL , get_heart_signals);
-   ^
-pacemaker.c:364:22: warning: passing argument 1 of 'transmit_string' from incompatible pointer type [-Wincompatible-pointer-types]
-      transmit_string(&AP); // make a Vpace on the heart emulator
-                      ^
-pacemaker.c:169:6: note: expected 'char *' but argument is of type 'char (*)[1]'
- void transmit_string(char* txString){
-      ^
-pacemaker.c:389:22: warning: passing argument 1 of 'transmit_string' from incompatible pointer type [-Wincompatible-pointer-types]
-      transmit_string(&VP); // make a Vpace on the heart emulator // make a Vpace on the heart emulator
-                      ^
-pacemaker.c:169:6: note: expected 'char *' but argument is of type 'char (*)[1]'
- void transmit_string(char* txString){
-      ^
-pacemaker.c:214:7: warning: unused variable 'heart_signal' [-Wunused-variable]
-  char heart_signal[1];
-       ^
-Info: Linking Pacemaker.elf
-nios2-elf-g++  -T'../Pacemaker_bsp//linker.x' -msys-crt0='../Pacemaker_bsp//obj/HAL/src/crt0.o' -msys-lib=hal_bsp -L../Pacemaker_bsp/   -Wl,-Map=Pacemaker.map   -O0 -g -Wall   -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global  -o Pacemaker.elf obj/default/pacemaker.o obj/default/pacemaker_fsm.o -lm -msys-lib=m
-nios2-elf-insert Pacemaker.elf --thread_model hal --cpu_name cpu --qsys true --simulation_enabled false --id 308784078 --sidp 0x0 --timestamp 1502336826 --stderr_dev jtag_uart --stdin_dev jtag_uart --stdout_dev jtag_uart --sopc_system_name nios2_system --quartus_project_dir "C:/Users/ambib/OneDrive/Desktop/compsys-lab1" --jdi ../..//output_files/lab1.jdi --sopcinfo C:/Users/ambib/OneDrive/Desktop/compsys-lab1/software/Pacemaker_bsp/../../nios2_system.sopcinfo
-Info: (Pacemaker.elf) 93 KBytes program size (code + initialized data).
-Info:                 8091 KBytes free for stack + heap.
-Info: Creating Pacemaker.objdump
-nios2-elf-objdump --disassemble --syms --all-header --source Pacemaker.elf >Pacemaker.objdump
-[Pacemaker build complete]
-13:55:05 **** Incremental Build of configuration Nios II for project Pacemaker ****
-make all 
-Info: Building ../Pacemaker_bsp/
-C:/intelFPGA_lite/16.1/nios2eds/bin/gnu/H-x86_64-mingw32/bin/make --no-print-directory -C ../Pacemaker_bsp/
-[BSP build complete]
-[Pacemaker build complete]
-13:58:48 **** Build of configuration Nios II for project Pacemaker ****
-make all 
-Info: Building ../Pacemaker_bsp/
-C:/intelFPGA_lite/16.1/nios2eds/bin/gnu/H-x86_64-mingw32/bin/make --no-print-directory -C ../Pacemaker_bsp/
-[BSP build complete]
-Info: Compiling pacemaker.c to obj/default/pacemaker.o
-nios2-elf-gcc -xc -MP -MMD -c -I../Pacemaker_bsp//HAL/inc -I../Pacemaker_bsp/ -I../Pacemaker_bsp//drivers/inc  -pipe -D__hal__ -DALT_NO_INSTRUCTION_EMULATION -DALT_SINGLE_THREADED    -O0 -g -Wall   -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global  -o obj/default/pacemaker.o pacemaker.c
-pacemaker.c: In function 'get_heart_signals':
-pacemaker.c:73:6: warning: unused variable 'code' [-Wunused-variable]
-  int code;
-      ^
-pacemaker.c: In function 'get_uart_contents':
-pacemaker.c:106:33: warning: unused variable 'code' [-Wunused-variable]
-  unsigned short int data,status,code;
-                                 ^
-pacemaker.c: In function 'main':
-pacemaker.c:249:3: warning: implicit declaration of function 'alt_irq_register' [-Wimplicit-function-declaration]
-   alt_irq_register (BUTTONS_IRQ, NULL , get_heart_signals);
-   ^
-pacemaker.c:367:22: warning: passing argument 1 of 'transmit_string' from incompatible pointer type [-Wincompatible-pointer-types]
-      transmit_string(&AP); // make a Vpace on the heart emulator
-                      ^
-pacemaker.c:172:6: note: expected 'char *' but argument is of type 'char (*)[1]'
- void transmit_string(char* txString){
-      ^
-pacemaker.c:392:22: warning: passing argument 1 of 'transmit_string' from incompatible pointer type [-Wincompatible-pointer-types]
-      transmit_string(&VP); // make a Vpace on the heart emulator // make a Vpace on the heart emulator
-                      ^
-pacemaker.c:172:6: note: expected 'char *' but argument is of type 'char (*)[1]'
- void transmit_string(char* txString){
-      ^
-pacemaker.c:217:7: warning: unused variable 'heart_signal' [-Wunused-variable]
-  char heart_signal[1];
-       ^
-Info: Linking Pacemaker.elf
-nios2-elf-g++  -T'../Pacemaker_bsp//linker.x' -msys-crt0='../Pacemaker_bsp//obj/HAL/src/crt0.o' -msys-lib=hal_bsp -L../Pacemaker_bsp/   -Wl,-Map=Pacemaker.map   -O0 -g -Wall   -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global  -o Pacemaker.elf obj/default/pacemaker.o obj/default/pacemaker_fsm.o -lm -msys-lib=m
-nios2-elf-insert Pacemaker.elf --thread_model hal --cpu_name cpu --qsys true --simulation_enabled false --id 308784078 --sidp 0x0 --timestamp 1502336826 --stderr_dev jtag_uart --stdin_dev jtag_uart --stdout_dev jtag_uart --sopc_system_name nios2_system --quartus_project_dir "C:/Users/ambib/OneDrive/Desktop/compsys-lab1" --jdi ../..//output_files/lab1.jdi --sopcinfo C:/Users/ambib/OneDrive/Desktop/compsys-lab1/software/Pacemaker_bsp/../../nios2_system.sopcinfo
-Info: (Pacemaker.elf) 93 KBytes program size (code + initialized data).
-Info:                 8091 KBytes free for stack + heap.
-Info: Creating Pacemaker.objdump
-nios2-elf-objdump --disassemble --syms --all-header --source Pacemaker.elf >Pacemaker.objdump
-[Pacemaker build complete]
-13:58:53 **** Incremental Build of configuration Nios II for project Pacemaker ****
-make all 
-Info: Building ../Pacemaker_bsp/
-C:/intelFPGA_lite/16.1/nios2eds/bin/gnu/H-x86_64-mingw32/bin/make --no-print-directory -C ../Pacemaker_bsp/
-[BSP build complete]
-[Pacemaker build complete]
-13:59:47 **** Build of configuration Nios II for project Pacemaker ****
-make all 
-Info: Building ../Pacemaker_bsp/
-C:/intelFPGA_lite/16.1/nios2eds/bin/gnu/H-x86_64-mingw32/bin/make --no-print-directory -C ../Pacemaker_bsp/
-[BSP build complete]
-Info: Compiling pacemaker.c to obj/default/pacemaker.o
-nios2-elf-gcc -xc -MP -MMD -c -I../Pacemaker_bsp//HAL/inc -I../Pacemaker_bsp/ -I../Pacemaker_bsp//drivers/inc  -pipe -D__hal__ -DALT_NO_INSTRUCTION_EMULATION -DALT_SINGLE_THREADED    -O0 -g -Wall   -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global  -o obj/default/pacemaker.o pacemaker.c
-pacemaker.c: In function 'get_heart_signals':
-pacemaker.c:70:6: warning: unused variable 'code' [-Wunused-variable]
-  int code;
-      ^
-pacemaker.c: In function 'get_uart_contents':
-pacemaker.c:103:33: warning: unused variable 'code' [-Wunused-variable]
-  unsigned short int data,status,code;
-                                 ^
-pacemaker.c: In function 'main':
-pacemaker.c:246:3: warning: implicit declaration of function 'alt_irq_register' [-Wimplicit-function-declaration]
-   alt_irq_register (BUTTONS_IRQ, NULL , get_heart_signals);
-   ^
-pacemaker.c:364:22: warning: passing argument 1 of 'transmit_string' from incompatible pointer type [-Wincompatible-pointer-types]
-      transmit_string(&AP); // make a Vpace on the heart emulator
-                      ^
-pacemaker.c:169:6: note: expected 'char *' but argument is of type 'char (*)[1]'
- void transmit_string(char* txString){
-      ^
-pacemaker.c:389:22: warning: passing argument 1 of 'transmit_string' from incompatible pointer type [-Wincompatible-pointer-types]
-      transmit_string(&VP); // make a Vpace on the heart emulator // make a Vpace on the heart emulator
-                      ^
-pacemaker.c:169:6: note: expected 'char *' but argument is of type 'char (*)[1]'
- void transmit_string(char* txString){
-      ^
-pacemaker.c:214:7: warning: unused variable 'heart_signal' [-Wunused-variable]
-  char heart_signal[1];
-       ^
-Info: Linking Pacemaker.elf
-nios2-elf-g++  -T'../Pacemaker_bsp//linker.x' -msys-crt0='../Pacemaker_bsp//obj/HAL/src/crt0.o' -msys-lib=hal_bsp -L../Pacemaker_bsp/   -Wl,-Map=Pacemaker.map   -O0 -g -Wall   -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global  -o Pacemaker.elf obj/default/pacemaker.o obj/default/pacemaker_fsm.o -lm -msys-lib=m
-nios2-elf-insert Pacemaker.elf --thread_model hal --cpu_name cpu --qsys true --simulation_enabled false --id 308784078 --sidp 0x0 --timestamp 1502336826 --stderr_dev jtag_uart --stdin_dev jtag_uart --stdout_dev jtag_uart --sopc_system_name nios2_system --quartus_project_dir "C:/Users/ambib/OneDrive/Desktop/compsys-lab1" --jdi ../..//output_files/lab1.jdi --sopcinfo C:/Users/ambib/OneDrive/Desktop/compsys-lab1/software/Pacemaker_bsp/../../nios2_system.sopcinfo
-Info: (Pacemaker.elf) 93 KBytes program size (code + initialized data).
-Info:                 8091 KBytes free for stack + heap.
-Info: Creating Pacemaker.objdump
-nios2-elf-objdump --disassemble --syms --all-header --source Pacemaker.elf >Pacemaker.objdump
-[Pacemaker build complete]
-13:59:52 **** Incremental Build of configuration Nios II for project Pacemaker ****
-make all 
-Info: Building ../Pacemaker_bsp/
-C:/intelFPGA_lite/16.1/nios2eds/bin/gnu/H-x86_64-mingw32/bin/make --no-print-directory -C ../Pacemaker_bsp/
-[BSP build complete]
-[Pacemaker build complete]
-14:00:06 **** Build of configuration Nios II for project Pacemaker ****
-make all 
-Info: Building ../Pacemaker_bsp/
-C:/intelFPGA_lite/16.1/nios2eds/bin/gnu/H-x86_64-mingw32/bin/make --no-print-directory -C ../Pacemaker_bsp/
-[BSP build complete]
-Info: Compiling pacemaker.c to obj/default/pacemaker.o
-nios2-elf-gcc -xc -MP -MMD -c -I../Pacemaker_bsp//HAL/inc -I../Pacemaker_bsp/ -I../Pacemaker_bsp//drivers/inc  -pipe -D__hal__ -DALT_NO_INSTRUCTION_EMULATION -DALT_SINGLE_THREADED    -O0 -g -Wall   -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global  -o obj/default/pacemaker.o pacemaker.c
-pacemaker.c: In function 'get_heart_signals':
-pacemaker.c:69:6: warning: unused variable 'code' [-Wunused-variable]
-  int code;
-      ^
-pacemaker.c: In function 'get_uart_contents':
-pacemaker.c:102:33: warning: unused variable 'code' [-Wunused-variable]
-  unsigned short int data,status,code;
-                                 ^
-pacemaker.c: In function 'main':
-pacemaker.c:245:3: warning: implicit declaration of function 'alt_irq_register' [-Wimplicit-function-declaration]
-   alt_irq_register (BUTTONS_IRQ, NULL , get_heart_signals);
-   ^
-pacemaker.c:363:22: warning: passing argument 1 of 'transmit_string' from incompatible pointer type [-Wincompatible-pointer-types]
-      transmit_string(&AP); // make a Vpace on the heart emulator
-                      ^
-pacemaker.c:168:6: note: expected 'char *' but argument is of type 'char (*)[1]'
- void transmit_string(char* txString){
-      ^
-pacemaker.c:388:22: warning: passing argument 1 of 'transmit_string' from incompatible pointer type [-Wincompatible-pointer-types]
-      transmit_string(&VP); // make a Vpace on the heart emulator // make a Vpace on the heart emulator
-                      ^
-pacemaker.c:168:6: note: expected 'char *' but argument is of type 'char (*)[1]'
- void transmit_string(char* txString){
-      ^
-pacemaker.c:213:7: warning: unused variable 'heart_signal' [-Wunused-variable]
-  char heart_signal[1];
-       ^
-Info: Linking Pacemaker.elf
-nios2-elf-g++  -T'../Pacemaker_bsp//linker.x' -msys-crt0='../Pacemaker_bsp//obj/HAL/src/crt0.o' -msys-lib=hal_bsp -L../Pacemaker_bsp/   -Wl,-Map=Pacemaker.map   -O0 -g -Wall   -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global  -o Pacemaker.elf obj/default/pacemaker.o obj/default/pacemaker_fsm.o -lm -msys-lib=m
-nios2-elf-insert Pacemaker.elf --thread_model hal --cpu_name cpu --qsys true --simulation_enabled false --id 308784078 --sidp 0x0 --timestamp 1502336826 --stderr_dev jtag_uart --stdin_dev jtag_uart --stdout_dev jtag_uart --sopc_system_name nios2_system --quartus_project_dir "C:/Users/ambib/OneDrive/Desktop/compsys-lab1" --jdi ../..//output_files/lab1.jdi --sopcinfo C:/Users/ambib/OneDrive/Desktop/compsys-lab1/software/Pacemaker_bsp/../../nios2_system.sopcinfo
-Info: (Pacemaker.elf) 93 KBytes program size (code + initialized data).
-Info:                 8091 KBytes free for stack + heap.
-Info: Creating Pacemaker.objdump
-nios2-elf-objdump --disassemble --syms --all-header --source Pacemaker.elf >Pacemaker.objdump
-[Pacemaker build complete]
-14:00:11 **** Incremental Build of configuration Nios II for project Pacemaker ****
+16:54:31 **** Incremental Build of configuration Nios II for project Pacemaker ****
 make all 
 Info: Building ../Pacemaker_bsp/
 C:/intelFPGA_lite/16.1/nios2eds/bin/gnu/H-x86_64-mingw32/bin/make --no-print-directory -C ../Pacemaker_bsp/
