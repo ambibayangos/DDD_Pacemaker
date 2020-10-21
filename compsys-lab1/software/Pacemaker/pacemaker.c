@@ -17,9 +17,6 @@
 #include <stdio.h>
 #include <altera_avalon_pio_regs.h>
 #include <altera_avalon_uart_regs.h>
-#include <unistd.h>
-#include <stddef.h>
-#include <fcntl.h>
 #include "sys/alt_alarm.h"
 #include "sys/alt_irq.h"
 
@@ -27,7 +24,6 @@
 #include"system.h"
 #include "pacemaker_fsm.h"
 
-#include <time.h> // REMOVE THIS
 
 # define AVI_VALUE 300
 # define AEI_VALUE 800
@@ -82,12 +78,15 @@ void get_heart_signals(void* context, alt_u32 ID)
 	if(buttonsValue == 0b110) // Vsense occurred
 	{
 		vsense_flag = 1;
-		Vsense = 1;
 	}
 	else if(buttonsValue == 0b101) // Asense occured
 	{
 		asense_flag = 1;
-		Asense = 1;
+	}
+	else if(buttonsValue == 0b100) // Asense and Vsense occured
+	{
+		vsense_flag = 1;
+		asense_flag = 1;
 	}
 
 	// free the critical section
@@ -218,6 +217,10 @@ int main()
 	int prevSwitchValue = -1;
 	// critical section "ticket" variable
 	int code;
+	// led delay counter for vpace
+	int led_counter_vp = 0;
+	// led delay counter for apace
+	int led_counter_ap = 0;
 
 	//Open uart with read and write
 	uart = fopen(UART_NAME , "w+");
@@ -260,28 +263,22 @@ int main()
 		  if(asense_flag_mode_2)
 		  {
 			  Asense = 1; // Asense occured
-			  IOWR_ALTERA_AVALON_PIO_DATA(LEDS_GREEN_BASE, 0b1);
-
 			  asense_flag_mode_2 = 0;
 		  }
 		  else
 		  {
 			  Asense = 0; // no Asense occured
-			  IOWR_ALTERA_AVALON_PIO_DATA(LEDS_GREEN_BASE, 0);
 		  }
 
 		  if(vsense_flag_mode_2)
 		  {
 			  Vsense = 1; // Vsense occured
-			  IOWR_ALTERA_AVALON_PIO_DATA(LEDS_RED_BASE, 0b1);
-
 			  vsense_flag_mode_2 = 0;
 
 		  }
 		  else
 		  {
 			  Vsense = 0; // no Vsense occured
-			  IOWR_ALTERA_AVALON_PIO_DATA(LEDS_RED_BASE, 0);
 		  }
 
 		  occupied = 0; // free critical section
@@ -356,8 +353,9 @@ int main()
 	  {
 
 		  // set all green LED (high green led means atrium is paced)
-		  IOWR_ALTERA_AVALON_PIO_DATA(LEDS_RED_BASE, 0x3FFFF);
+		  IOWR_ALTERA_AVALON_PIO_DATA(LEDS_GREEN_BASE, IORD_ALTERA_AVALON_PIO_DATA(LEDS_GREEN_BASE)| 192);
 		  printf("Apace\n");
+
 
 		  if(swicthValue) // if mode is mode 2
 		  {
@@ -368,14 +366,20 @@ int main()
 	  }
 	  else
 	  {
-		  // clear all red LED (heart is not artificially paced)
-		  IOWR_ALTERA_AVALON_PIO_DATA(LEDS_RED_BASE, 0);
+		  if(led_counter_ap == 50)
+		  {
+			  // clear all red LED (heart is not artificially paced)
+			  IOWR_ALTERA_AVALON_PIO_DATA(LEDS_RED_BASE, 0);
+			  led_counter_vp = 0;
+		  }
+
+		  led_counter_ap++;
 	  }
 
 	  if(Vpace)
 	  {
 		  // set all red LED (high red led means ventricle is paced)
-		  IOWR_ALTERA_AVALON_PIO_DATA(LEDS_GREEN_BASE, 0x3FFFF);
+		  IOWR_ALTERA_AVALON_PIO_DATA(LEDS_GREEN_BASE, IORD_ALTERA_AVALON_PIO_DATA(LEDS_GREEN_BASE)| 3);
 		  printf("Vpace\n");
 
 		  if(swicthValue) // if mode is mode 2
@@ -387,8 +391,14 @@ int main()
 	  }
 	  else
 	  {
-		  // clear all green LED (heart is not artificially paced)
-		  IOWR_ALTERA_AVALON_PIO_DATA(LEDS_GREEN_BASE, 0);
+		  if(led_counter_vp == 50)
+		  {
+			  // clear all green LED (heart is not artificially paced)
+			  IOWR_ALTERA_AVALON_PIO_DATA(LEDS_GREEN_BASE, 0);
+			  led_counter_vp = 0;
+		  }
+
+		  led_counter_vp++;
 	  }
 
 	  // get current value of SW0 from DE-115 board
@@ -398,12 +408,12 @@ int main()
 		  if(swicthValue)
 		  {
 			  fprintf(lcd,"Mode 2 \n");
-			  fprintf(lcd,"\n");
+			  fprintf(lcd,"Uart\n");
 		  }
 		  else
 		  {
-			  fprintf(lcd,"Mode 1 \n\r");
-			  fprintf(lcd,"\n");
+			  fprintf(lcd,"Mode 1 \n");
+			  fprintf(lcd,"Buttons\n");
 		  }
 
 		  prevSwitchValue = swicthValue;
